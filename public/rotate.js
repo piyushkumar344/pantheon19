@@ -1,4 +1,4 @@
-var c = document.getElementById('c');
+var c = document.getElementById('starfield');
 var n = c.getContext('2d');
 
 // View matrix, defines where you're looking
@@ -76,7 +76,7 @@ function loop() {
     var dt = (now - lastLoop) / 1000.0;
     lastLoop = now;
     
-    angle += 5.0 * dt;
+    angle += 3.0 * dt;
 
     viewMtx = ComputeViewMtx(angle);
     
@@ -90,7 +90,7 @@ function loop() {
     n.beginPath();
     n.rect(0, 0, c.width, c.height);
     n.closePath();
-    n.fillStyle = '#000';
+    n.fillStyle = '#14161E';
     n.fill();
     
     n.fillStyle = '#fff';
