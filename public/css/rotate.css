@@ -1,7 +1,6 @@
 body {
     margin: 0;
     overflow-x: hidden;
-    color: #9ba4c1;
 }
 
 #container {
@@ -17,8 +16,8 @@ canvas {
 }
 
 #overlay {
-    position: fixed;
-    top: 50%;
+    position: absolute;
+    top: 20vh;
     width: 100vw;
     text-align: center;
 }

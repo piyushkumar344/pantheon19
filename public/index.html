@@ -5,20 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link href="css/rotate.css" type="text/css" rel="stylesheet">
     <title>Pantheon</title>
-    <style>
-        body {
-            background: black;
-        }
-    </style>
 </head>
 
 <body>
+    <div>
+        <div id="container" class="divs">
+            <canvas id="starfield"></canvas>
+            <div id="overlay">
+                <!-- <h1 style="font-family: 'Baloo Bhai', cursive;">PANTHEON' 19</h1> -->
+                <!-- <img src="images/redA.png" alt="" style="width:20%"> -->
+                <img src="images/Pantheon'19 White.png" alt="" style="width:65vw; height: 40vh;">
+            </div>
+        </div>
 
-    <canvas id="banner_canvas" class="transparent_effect fixed" width="1366" height="669"></canvas>
+        <div class="divs" style="background-color:red;">
+            <h1>Pantheon A</h1>
 
-    <script src="jquery-1.12.4.min.js"></script>
-    <script src="index.js"></script>
+        </div>
+
+        <div class="divs" style="background-color:yellow;">
+            <h1>Pantheon B</h1>
+        </div>
+
+        <div class="divs" style="background-color:blue;">
+            <h1>Pantheon C</h1>
+        </div>
+
+    </div>
+
+
+    <script src="js/lib/jquery-3.0.0.min.js"></script>
+    <script src="js/lib/popper.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/jquery.easing.min.js"></script>
+    <script src="js/lib/jquery.scrollify.js"></script>
+    <script>
+        $(function () {
+            $.scrollify({
+                section: ".divs",
+                interstitialSection: "",
+                easing: "easeOutExpo",
+                scrollSpeed: 1300,
+                offset: 0,
+                scrollbars: true,
+                standardScrollElements: "",
+                setHeights: true,
+                overflowScroll: true,
+                updateHash: true,
+                touchScroll: true,
+            });
+        })
+    </script>
+    <script src="js/lib/gl-matrix-min.js"></script>
+    <script src="js/rotate.js"></script>
 </body>
 
 </html>
