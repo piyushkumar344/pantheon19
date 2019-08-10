@@ -6,33 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/lib/bootstrap.min.css">
-    <link href="css/rotate.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/rotate.css" type="text/css">
+    <link rel="stylesheet" href="css/styles/style.css" type="text/css">
     <title>Pantheon</title>
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="300">
     <div>
-        <div id="container" class="divs">
+
+        <!-- Navbar-section -->
+        <nav class="navbar bg-dark navbar-dark fixed-top">
+            <ul class="d-flex justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="#home-section">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about-section">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#theme-section">Theme</a></li>
+                <li class="nav-item"><a class="nav-link" href="#events-section">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="#team-section">Team</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sponsors-section">Sponsors</a></li>
+            </ul>    
+        </nav>
+
+
+
+
+
+        <!-- Home-section -->
+        <div id="container" class="divs" data-section-name="home-section">
             <canvas id="starfield"></canvas>
             <div id="overlay">
-                <!-- <h1 style="font-family: 'Baloo Bhai', cursive;">PANTHEON' 19</h1> -->
-                <!-- <img src="images/redA.png" alt="" style="width:20%"> -->
                 <img src="images/Pantheon'19 White.png" alt="" style="width:65vw; height: 40vh;">
             </div>
         </div>
 
-        <div class="divs">
-            <h1>Pantheon A</h1>
 
-        </div>
+        <!--About-section-->
+        <section class="divs" id="about-section" data-section-name="about-section">
+            <div class="container">
+                <div class="row section-heading">
+                    <h1>About</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="https://via.placeholder.com/300" alt="" class="section-img">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus. Faucibus nisl tincidunt eget nullam. Facilisis sed odio morbi quis commodo. Egestas fringilla phasellus faucibus scelerisque eleifend. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="divs">
-            <h1>Pantheon B</h1>
-        </div>
+        <!-- Theme-section -->
+        <section class="divs" id="theme-section" data-section-name="theme-section">
+            <div class="container">
+                <div class="row section-heading">
+                    <h1>Theme</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="https://via.placeholder.com/300" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus. Faucibus nisl tincidunt eget nullam. Facilisis sed odio morbi quis commodo. Egestas fringilla phasellus faucibus scelerisque eleifend. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="divs">
-            <h1>Pantheon C</h1>
-        </div>
+        <!-- Events-section -->
+        <section class="divs" id="events-section" data-section-name="events-section">
+            <div class="container">
+                <div class="row section-heading">
+                    <h1>Events</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="https://via.placeholder.com/300" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus. Faucibus nisl tincidunt eget nullam. Facilisis sed odio morbi quis commodo. Egestas fringilla phasellus faucibus scelerisque eleifend. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team-section -->
+        <section class="divs" data-section-name="team-section">
+            <div class="container">
+                <div class="row section-heading">
+                    <h1>Team</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="https://via.placeholder.com/300" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus. Faucibus nisl tincidunt eget nullam. Facilisis sed odio morbi quis commodo. Egestas fringilla phasellus faucibus scelerisque eleifend. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsors-section -->
+        <section class="divs" data-section-name="sponsors-section">
+            <div class="container">
+                <div class="row section-heading">
+                    <h1>Sponsors</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img src="https://via.placeholder.com/300" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vehicula ipsum a arcu cursus. Faucibus nisl tincidunt eget nullam. Facilisis sed odio morbi quis commodo. Egestas fringilla phasellus faucibus scelerisque eleifend. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
     </div>
 
@@ -47,8 +138,8 @@
             $.scrollify({
                 section: ".divs",
                 interstitialSection: "",
-                easing: "easeInOutQuint",
-                scrollSpeed: 1400,
+                easing: "easeOutExpo",
+                scrollSpeed: 2000,
                 offset: 0,
                 scrollbars: true,
                 standardScrollElements: "",
@@ -57,6 +148,12 @@
                 updateHash: true,
                 touchScroll: true,
             });
+        });
+        $(".navbar a").on('click', function() {
+            let ind=String(this.href).indexOf('#');
+            let id=String(this.href).substr(ind+1);
+            console.log(id);
+            $.scrollify.move("#"+id);
         })
     </script>
     <script src="js/lib/gl-matrix-min.js"></script>
