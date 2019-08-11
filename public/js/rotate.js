@@ -1,7 +1,14 @@
 var c = document.getElementById('starfield');
 var n = c.getContext('2d');
-c.width = $(window).width();
-c.height = $(window).height();
+function resize() {
+    c.width = $(window).width();
+    c.height = $(window).height();
+}
+resize();
+
+$(window).on("resize", function(){                      
+    resize();
+});
 
 // View matrix, defines where you're looking
 var viewMtx = mat4.create();

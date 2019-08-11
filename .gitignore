@@ -1,4 +1,8 @@
 .vscode
 /node_modules
 package-lock.json
+<<<<<<< HEAD
 config.js
+=======
+try.*
+>>>>>>> b83beb8690e676f4fced9f26c569bbe50bcc49b1
