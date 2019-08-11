@@ -1,5 +1,5 @@
-section{
-    padding: 30px 0px;
+section {
+    padding-top: 5%;
 }
 section p{
     color: #fff;
@@ -9,7 +9,7 @@ section p{
 }
 .section-heading h1{
     font-size: 4rem;
-    padding: 30px 0px;
+    /* padding: 30px 0px; */
 }
 /* home-section */
 

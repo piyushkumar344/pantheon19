@@ -1,0 +1,14 @@
+(function ($) {
+    $(document).ready(function () {
+        $("#main-navigator").hide();
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.navbar').fadeIn();
+                } else {
+                    $('.navbar').fadeOut();
+                }
+            });
+        });
+    });
+}(jQuery));
