@@ -1,3 +1,80 @@
+/* Sidear */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 6em;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    font-style: italic;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #fff;
+    background-color: rgba(66, 66, 66, 0.5);
+    padding: 0px 14px;
+    border-radius: 5px;
+}
+
+#main {
+    transition: margin-right 0.5s;
+    padding: 16px;
+    float: right;
+}
+
+#main span {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+.active{
+    color: #F34E31;
+}
+
+
+
+
+
+
+
+
+
+
 section {
     padding-top: 5%;
 }
@@ -6,14 +83,40 @@ section p{
 }
 .section-heading{
     color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 .section-heading h1{
-    font-size: 4rem;
+    font-size: 4em;
     /* padding: 30px 0px; */
 }
 /* home-section */
-
-
+#main-navigator{
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px 0px;
+}
+#main-navigator .nav-item{
+    list-style-type: none;
+    text-decoration: none;
+}
+#main-navigator .nav-link{
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bolder;
+    font-style: italic;
+}
+#main-navigator .nav-link .active{
+    color: #F34E31;
+}
+.navbar-logo{
+    width: 3%;
+    height: 3%;
+}
 /* about-section */
 
 

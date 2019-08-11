@@ -11,10 +11,11 @@
     <title>Pantheon</title>
 </head>
 
-<body data-spy="scroll" data-target=".navbar" data-offset="300">
+<body data-spy="scroll" data-target=".sidenav" data-offset="300">
     <div>
         <!-- Navbar-section -->
-        <nav id="main-navigator" class="navbar bg-dark navbar-dark fixed-top">
+        <!-- <nav id="main-navigator" class="navbar fixed-top">
+            <img class="navbar-logo" src="./images/pantheon-logo.jpeg" alt="">
             <ul class="d-flex justify-content-center">
                 <li class="nav-item"><a class="nav-link" href="#home-section">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about-section">About</a></li>
@@ -23,20 +24,38 @@
                 <li class="nav-item"><a class="nav-link" href="#team-section">Team</a></li>
                 <li class="nav-item"><a class="nav-link" href="#sponsors-section">Sponsors</a></li>
             </ul>
-        </nav>
+        </nav> -->
+
+
+        <!-- Sidebar -->
+        
+        <!-- Sidebar ends-->
 
         
         <!-- Home-section -->
-        <div id="container" class="divs" data-section-name="home-section">
+        <div id="container" class="divs" data-section-name="home-section" id="home-section">
             <canvas id="starfield"></canvas>
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="#home-section">Home</a>
+                <a href="#about-section">About</a>
+                <a href="#theme-section">Theme</a>
+                <a href="#events-section">Events</a>
+                <a href="#team-section">Team</a>
+                <a href="#sponsors-section">Sponsors</a>
+                </div>
+                <div id="main" class="text-right">
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            </div>
             <div id="overlay">
                 <img src="images/Pantheon'19 White.png" class="img-fluid" alt="Pantheon Logo" style="width: 50vw">
+                
             </div>
         </div>
 
 
         <!--About-section-->
-        <section class="divs" data-section-name="about-section">
+        <section class="divs" data-section-name="about-section" id="about-section">
             <div class="container">
                 <div class="row section-heading">
                     <h1>About</h1>
@@ -57,7 +76,7 @@
         </section>
 
         <!-- Theme-section -->
-        <section class="divs" data-section-name="theme-section">
+        <section class="divs" data-section-name="theme-section" id="theme-section">
             <div class="container">
                 <div class="row section-heading">
                     <h1>Theme</h1>
@@ -78,7 +97,7 @@
         </section>
 
         <!-- Events-section -->
-        <section class="divs" data-section-name="events-section">
+        <section class="divs" data-section-name="events-section" id="events-section">
             <div class="container">
                 <div class="row section-heading">
                     <h1>Events</h1>
@@ -99,7 +118,7 @@
         </section>
 
         <!-- Team-section -->
-        <section class="divs" data-section-name="team-section">
+        <section class="divs" data-section-name="team-section" id="team-section">
             <div class="container">
                 <div class="row section-heading">
                     <h1>Team</h1>
@@ -120,7 +139,7 @@
         </section>
 
         <!-- Sponsors-section -->
-        <section class="divs" data-section-name="sponsors-section">
+        <section class="divs" data-section-name="sponsors-section" id="sponsors-section">
             <div class="container">
                 <div class="row section-heading">
                     <h1>Sponsors</h1>
@@ -155,7 +174,7 @@
                 section: ".divs",
                 interstitialSection: "",
                 easing: "easeOutExpo",
-                scrollSpeed: 900,
+                scrollSpeed: 700,
                 offset: 0,
                 scrollbars: true,
                 standardScrollElements: "",
@@ -165,7 +184,7 @@
                 touchScroll: true,
             });
         });
-        $(".navbar a").on('click', function () {
+        $(".sidenav a").on('click', function () {
             let ind = String(this.href).indexOf('#');
             let id = String(this.href).substr(ind + 1);
             console.log(id);
@@ -175,6 +194,7 @@
     <script src="js/lib/gl-matrix-min.js"></script>
     <script src="js/rotate.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/sidebar.js"></script>
 </body>
 
 </html>
