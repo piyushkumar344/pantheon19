@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const connect=require('./db/mongoose_connection')
+const connect = require('./db/mongoose_connection')
 const app = express();
-const authentication=require('./routes/authenticate')
-const cors=require('cors');
+const authentication = require('./routes/authenticate')
+const cors = require('cors');
 
 //db connection
 connect();
@@ -12,7 +12,7 @@ connect();
 //middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/auth',authentication);
+app.use('/auth', authentication);
 app.use(cors());
 
 //routes
