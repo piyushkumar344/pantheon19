@@ -13,10 +13,41 @@ const userSchema = new Schema({
     },
     phoneNo:{
         type:Number
+    },
+    instituteName:{
+        type: String,
+        required: true
+    },
+    instituteCity:{
+        type: String,
+        required: true
+    },
+    instituteState:{
+        type: String,
+        required: true
+    },
+    instituteId:{
+        type: String,
+        required: true
+    },
+    emailOTP:{
+        type: Number
+    },
+    phoneOTP:{
+        type: Number
+    },
+    isVerified:{
+        type: Boolean
+    },
+    hasAllFields:{
+        type: Boolean
+    },
+    pantheonId:{
+        type: String
     }
 });
   
-  const User = mongoose.model('User', userSchema);
+  const User = mongoose.model('users', userSchema);
   module.exports=User;
 
   
