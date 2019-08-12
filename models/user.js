@@ -16,31 +16,29 @@ const userSchema = new Schema({
     },
     instituteName: {
         type: String,
-        required: true
+        // required: true
     },
     instituteCity: {
         type: String,
-        required: true
+        // required: true
     },
     instituteState: {
         type: String,
-        required: true
+        // required: true
     },
     instituteId: {
         type: String,
-        required: true
+        // required: true
     },
     emailOTP: {
-        type: Number
+        type: String
     },
     phoneOTP: {
-        type: Number
+        type: String
     },
     isVerified: {
-        type: Boolean
-    },
-    hasAllFields: {
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     pantheonId: {
         type: String
