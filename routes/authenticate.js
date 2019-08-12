@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const bcrypt = require('bcryptjs');
 const config=require('../config');
 const userData=require('../models/register');
@@ -31,7 +31,7 @@ router.post('/register',(req,res,next)=>{
     }
     else if(req.body.email && req.body.password && req.body.confPassword)
     {
-        var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+        let hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
         userData.create({
             email:req.body.email,
@@ -46,7 +46,7 @@ router.post('/register',(req,res,next)=>{
                 })
             }
 
-            var token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
+            let token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
                 expiresIn: 86400 // expires in 24 hours
               });
               res.json({status:200 , auth: true, token: token });
@@ -71,7 +71,7 @@ router.post('/login',(req,res)=>{
         }
         else
         {
-            var passwordIsValid=bcrypt.compareSync(req.body.password,user.password);
+            let passwordIsValid=bcrypt.compareSync(req.body.password,user.password);
 
             if(!passwordIsValid)
             {
@@ -80,7 +80,7 @@ router.post('/login',(req,res)=>{
 
             else
             {
-                var token=jwt.sign({id:user._id},config.secret,{
+                let token=jwt.sign({id:user._id},config.secret,{
                     expiresIn:86400
                 })
 
