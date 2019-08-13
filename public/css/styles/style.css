@@ -1,4 +1,8 @@
 /* Sidear */
+body {
+    font-family: 'Baloo Bhai', cursive;
+}
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -15,11 +19,10 @@
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 1.4em;
     color: #818181;
     display: block;
     transition: 0.3s;
-    font-style: italic;
 }
 
 .sidenav a:hover {
