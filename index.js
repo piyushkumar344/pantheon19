@@ -10,10 +10,11 @@ const cors = require('cors');
 connect();
 
 //middleware
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/auth', authentication);
-app.use(cors());
+
 
 //routes
 app.get('/', (req, res) => {

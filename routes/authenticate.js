@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
 const verifyToken = require('../middlewares/verifyToken');
+const axios = require('axios');
 
 //routes
 router.post('/register', [
@@ -22,8 +23,27 @@ router.post('/register', [
         // console.log(errors);
         return res.json({ status: 422, message: "Invalid " + errors.errors[0].param });
     }
-    else
-        next();
+    else {
+        // Validate Captcha
+        const secret = config.secret_key_google;
+        const response = req.body.captchaToken;
+        if (!response) {
+            return res.json({ status: 422, message: "Invalid Captcha" });
+        }
+        axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`)
+            .then(function (response) {
+                console.log(response.data);
+                if (response && response.success) {
+                    next();
+                } else {
+                    return res.json({ status: 422, message: "Invalid Captcha" });
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                return res.json({ status: 500, message: "Server Error" });
+            });
+    }
 }, (req, res, next) => {
     //check whether already registered
     userData.findOne({ email: req.body.email }, (err, user) => {
@@ -188,7 +208,7 @@ router.post('/login', [
                 })
 
                 // isNotVerified
-                if(user.isVerified) {
+                if (user.isVerified) {
                     return res.json({ status: 200, isVerified: true, token: token });
                 }
                 const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
