@@ -6,7 +6,8 @@ const userData = require('../models/user');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
-const verifyToken = require('../middlewares/verifyToken');
+const verifyToken = require('../middlewares/verify_token');
+const counter = require("../models/counter")
 
 //routes
 router.post('/register', [
@@ -137,16 +138,36 @@ router.post('/verify', verifyToken, (req, res) => {
 
         // Update user data & set isVerifired true and send token
         user.isVerified = true;
-        user.save((err) => {
-            if (err) {
-                return res.json({ status: 500, message: "Internal server error" });
+        let pantheonId = -1;
+        counter.findOne({ find: "pantheonId" }, async (err, response) => {
+            if (response) {
+                pantheonId = response.count + 1;
+                response.count = pantheonId;
+                await response.save((err) => {
+                    if (err) {
+                        return res.json({ status: 500, message: "Internal server error" });
+                    }
+                });
+                user.pantheonId = pantheonId;
+                await user.save((err) => {
+                    if (err) {
+                        return res.json({ status: 500, message: "Internal server error" });
+                    }
+                    return res.json({
+                        status: 200,
+                        isVerfied: true,
+                        token: req.headers['x-access-token'],
+                        pantheonId: pantheonId
+                    });
+                });
+
             }
-            res.json({
-                status: 200,
-                isVerfied: true,
-                token: req.headers['x-access-token']
-            });
-        });
+            else {
+                return res.json({ status: 500, message: "Internal server error " })
+            }
+        })
+
+
     });
 });
 
@@ -188,7 +209,7 @@ router.post('/login', [
                 })
 
                 // isNotVerified
-                if(user.isVerified) {
+                if (user.isVerified) {
                     return res.json({ status: 200, isVerified: true, token: token });
                 }
                 const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();

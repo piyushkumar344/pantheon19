@@ -41,7 +41,8 @@ const userSchema = new Schema({
         default: false
     },
     pantheonId: {
-        type: String
+        type: Number,
+        default:-1
     }
 });
 
