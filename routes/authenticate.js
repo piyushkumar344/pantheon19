@@ -8,7 +8,7 @@ const { check, validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
 const counter = require("../models/counter")
 const verifyToken = require('../middlewares/verifyToken');
-const axios = require('axios');
+const validateCaptcha = require('../middlewares/validateCaptcha');
 
 //routes
 router.post('/register', [
@@ -24,85 +24,65 @@ router.post('/register', [
         // console.log(errors);
         return res.json({ status: 422, message: "Invalid " + errors.errors[0].param });
     }
-    else {
-        // Validate Captcha
-        const secret = config.secret_key_google;
-        const response = req.body.captchaToken;
-        if (!response) {
-            return res.json({ status: 422, message: "Invalid Captcha" });
-        }
-        axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`)
-            .then(function (response) {
-                console.log(response.data);
-                if (response && response.success) {
-                    next();
-                } else {
-                    return res.json({ status: 422, message: "Invalid Captcha" });
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-                return res.json({ status: 500, message: "Server Error" });
-            });
-    }
-}, (req, res, next) => {
-    //check whether already registered
-    userData.findOne({ email: req.body.email }, (err, user) => {
-        if (err)
-            return res.json({ status: 500, message: "error on the server" });
+    next();
+}, validateCaptcha,
+    (req, res, next) => {
+        //check whether already registered
+        userData.findOne({ email: req.body.email }, (err, user) => {
+            if (err)
+                return res.json({ status: 500, message: "error on the server" });
 
-        else if (user)
-            return res.json({ status: 415, message: "user already exits" });
+            else if (user)
+                return res.json({ status: 415, message: "user already exits" });
 
-        else
-            next();
-
-    })
-}, (req, res) => {
-    //continue registration
-    if (req.body.password != req.body.confPassword) {
-        return res.json({
-            status: 401,
-            message: "password doesnt match"
+            else
+                next();
         })
-    }
-    else if (req.body.email && req.body.password && req.body.confPassword) {
-        let hashedPassword = bcrypt.hashSync(req.body.password, 8);
-        const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
-        const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
-        userData.create({
-            email: req.body.email,
-            password: hashedPassword,
-            phoneNo: req.body.phoneNo,
-            emailOTP,
-            phoneOTP
-        }, (err, user) => {
-            if (err) {
-                return res.json({
-                    status: 500,
-                    message: "something went wrong while registering the user, please try again"
-                })
-            }
-
-            let token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
-                expiresIn: 86400 // expires in 24 hours
-            });
-            res.json({ status: 200, auth: true, token: token, id: user._id });
-
-            let transport = nodemailer.createTransport({
-                host: 'smtp.mailtrap.io',
-                port: 2525,
-                auth: {
-                    user: 'ae2a3afdf68576', // Change to config.js
-                    pass: '03f4c3f8c9725c'
+    }, (req, res) => {
+        //continue registration
+        if (req.body.password != req.body.confPassword) {
+            return res.json({
+                status: 401,
+                message: "password doesnt match"
+            })
+        }
+        else if (req.body.email && req.body.password && req.body.confPassword) {
+            let hashedPassword = bcrypt.hashSync(req.body.password, 8);
+            const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            userData.create({
+                email: req.body.email,
+                password: hashedPassword,
+                phoneNo: req.body.phoneNo,
+                emailOTP,
+                phoneOTP
+            }, (err, user) => {
+                if (err) {
+                    return res.json({
+                        status: 500,
+                        message: "Something went wrong while registering the user, please try again"
+                    })
                 }
-            });
 
-            const message = {
-                from: 'pantheontechteam@gmail.com', // Sender address
-                to: 'too@gmail.com',         // change it
-                subject: 'Pantheon Email Verification', // Subject line
-                html: `
+                let token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
+                    expiresIn: 86400 // expires in 24 hours
+                });
+                res.json({ status: 200, isVerified: false, token: token, id: user._id });
+
+                let transport = nodemailer.createTransport({
+                    host: 'smtp.mailtrap.io',
+                    port: 2525,
+                    auth: {
+                        user: 'ae2a3afdf68576', // Change to config.js
+                        pass: '03f4c3f8c9725c'
+                    }
+                });
+
+                const message = {
+                    from: 'pantheontechteam@gmail.com', // Sender address
+                    to: 'too@gmail.com',         // change it
+                    subject: 'Pantheon Email Verification', // Subject line
+                    html: `
                 <h2 align="center">Pantheon BIT Mesra</h2>
                 <br>
                 <h3>Hey there!</h3>
@@ -113,26 +93,29 @@ router.post('/register', [
                 </p>
 
                 <p>With Regards,<br>Pantheon Web Team</p>`
-            };
-            transport.sendMail(message, function (err, info) {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log(info);
-                }
-            });
+                };
+                transport.sendMail(message, function (err, info) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        // console.log(info);
+                        console.log("Email Sent")
+                    }
+                });
 
-            // Send OTP to mobile Phone also
-        })
-    }
-    else {
-        res.json({ status: 404, message: "missing required value" });
-    }
-});
+                // Send OTP to mobile Phone also
+            })
+        }
+        else {
+            res.json({ status: 404, message: "missing required value" });
+        }
+    });
 
 router.post('/verify', verifyToken, (req, res) => {
-    const { id, phoneOTP, emailOTP } = req.body;
-    // console.log(phoneOTP, emailOTP, id);
+    const id = req.body.id;
+    if (!id) {
+        return res.json({ status: 422, message: "Missing User ID" });
+    }
     userData.findById(id, (err, user) => {
         if (err) {
             return res.json({
@@ -146,6 +129,16 @@ router.post('/verify', verifyToken, (req, res) => {
                 message: "User Not found"
             });
         }
+        // User already verified
+        if (user.isVerified === true) {
+            return res.json({ status: 400, message: "User Already Verified" });
+        }
+        // Data Validation
+        const { phoneOTP, emailOTP } = req.body;
+        if (!phoneOTP || !emailOTP) {
+            return res.json({ status: 422, message: "Missing OTPs" });
+        }
+
         // Validate OTPs
         if (user.phoneOTP !== phoneOTP || user.emailOTP !== emailOTP) {
             return res.json({
@@ -153,9 +146,6 @@ router.post('/verify', verifyToken, (req, res) => {
                 message: "Invalid OTP"
             });
         }
-        // Data Validation
-
-
         // Update user data & set isVerifired true and send token
         user.isVerified = true;
         let pantheonId = -1;
@@ -180,14 +170,11 @@ router.post('/verify', verifyToken, (req, res) => {
                         pantheonId: pantheonId
                     });
                 });
-
             }
             else {
                 return res.json({ status: 500, message: "Internal server error " })
             }
         })
-
-
     });
 });
 
@@ -197,14 +184,7 @@ router.post('/login', [
 ], (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.json({ status: 422, message: errors.errors[0].msg });
-    }
-    else
-        next();
-}, (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.json({ status: 422, message: errors.errors[0].msg });
+        return res.json({ status: 422, message: "Invalid " + errors.errors[0].param });
     }
     else
         next();
@@ -221,14 +201,14 @@ router.post('/login', [
                 let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
                 if (!passwordIsValid) {
-                    return res.json({ staus: 401, message: "Incorrect password" });
+                    return res.json({ staus: 401, message: "Incorrect Email or Password" });
                 }
 
                 let token = jwt.sign({ id: user._id }, config.secret, {
                     expiresIn: 86400
                 })
 
-                // isNotVerified
+                // isVerified
                 if (user.isVerified) {
                     return res.json({ status: 200, isVerified: true, token: token });
                 }
@@ -240,7 +220,7 @@ router.post('/login', [
                     if (err) {
                         return res.json({ status: 500, message: "Internal server error" });
                     }
-                    res.json({ status: 200, isVerfied: false, token: token });
+                    res.json({ status: 200, isVerfied: false, id: user._id, token: token });
 
                     let transport = nodemailer.createTransport({
                         host: 'smtp.mailtrap.io',
@@ -271,7 +251,8 @@ router.post('/login', [
                         if (err) {
                             console.log(err)
                         } else {
-                            console.log(info);
+                            // console.log(info);
+                            console.log("Email Sent");
                         }
                     });
 
