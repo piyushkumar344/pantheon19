@@ -46,6 +46,14 @@ const userSchema = new Schema({
     pantheonId: {
         type: Number,
         default:-1
+    },
+    teamMongoId:{
+        type: String,
+        default: null
+    },
+    isTeamLeader:{
+        type: Boolean,
+        default: false
     }
 });
 

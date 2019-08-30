@@ -6,7 +6,7 @@ const userData = require('../models/user');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
-const counter = require("../models/counter")
+const panIdCounter = require("../models/panIdCounter")
 const verifyToken = require('../middlewares/verifyToken');
 const validateCaptcha = require('../middlewares/validateCaptcha');
 
@@ -156,7 +156,7 @@ router.post('/verify', verifyToken, (req, res) => {
         // Update user data & set isVerifired true and send token
         user.isVerified = true;
         let pantheonId = -1;
-        counter.findOne({ find: "pantheonId" }, async (err, response) => {
+        panIdCounter.findOne({ find: "pantheonId" }, async (err, response) => {
             if (response) {
                 pantheonId = response.count + 1;
                 response.count = pantheonId;
