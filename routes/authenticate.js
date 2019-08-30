@@ -13,7 +13,7 @@ const validateCaptcha = require('../middlewares/validateCaptcha');
 //routes
 router.post('/register', [
     check('email').isEmail(),
-    check('password').isLength({ min: 5 }),
+    check('password').isLength({ min: 6 }),
     check('phoneNo')
         .isLength({ min: 10 })
         .isLength({ max: 10 })
@@ -21,11 +21,18 @@ router.post('/register', [
 ], (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        // console.log(errors);
-        return res.json({ status: 422, message: "Invalid " + errors.errors[0].param });
+        if(errors.errors[0].param=="email")
+        return res.json({ status: 422, message: "Invalid email address" });
+        else if(errors.errors[0].param=="phoneNo")
+        return res.json({ status: 422, message: "Invalid phone no format, length of phone no should be 10 and should not contain any + or +91 at the beginning"});
+        else
+        {
+            return res.json({ status: 422, message: "Invalid password, password lenght must be greater than 5."})
+        }
     }
     next();
-}, validateCaptcha,
+}, 
+validateCaptcha,
     (req, res, next) => {
         //check whether already registered
         userData.findOne({ email: req.body.email }, (err, user) => {
@@ -264,6 +271,10 @@ router.post('/login', [
     else {
         return res.json({ status: 404, message: "missing required details" })
     }
+})
+
+router.get('/logout',(req,res)=>{
+    return res.json({status:200 , token:""});
 })
 
 module.exports = router;
