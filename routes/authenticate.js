@@ -44,14 +44,14 @@ validateCaptcha,
 
             else
                 next();
-        })
+        });
     }, (req, res) => {
         //continue registration
         if (req.body.password != req.body.confPassword) {
             return res.json({
                 status: 401,
                 message: "password doesnt match"
-            })
+            });
         }
         else if (req.body.email && req.body.password && req.body.confPassword) {
             let hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -68,7 +68,7 @@ validateCaptcha,
                     return res.json({
                         status: 500,
                         message: "Something went wrong while registering the user, please try again"
-                    })
+                    });
                 }
 
                 let token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
@@ -179,9 +179,9 @@ router.post('/verify', verifyToken, (req, res) => {
                 });
             }
             else {
-                return res.json({ status: 500, message: "Internal server error " })
+                return res.json({ status: 500, message: "Internal server error " });
             }
-        })
+        });
     });
 });
 
@@ -202,7 +202,7 @@ router.post('/login', [
                 return res.json({ status: 500, message: "Internal server error" });
             }
             else if (!user) {
-                return res.json({ status: 404, message: "No such user exists" })
+                return res.json({ status: 404, message: "No such user exists" });
             }
             else {
                 let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
@@ -213,7 +213,7 @@ router.post('/login', [
 
                 let token = jwt.sign({ id: user._id }, config.secret, {
                     expiresIn: 86400
-                })
+                });
 
                 // isVerified
                 if (user.isVerified) {
@@ -266,15 +266,15 @@ router.post('/login', [
                     // Send OTP to mobile Phone also
                 });
             }
-        })
+        });
     }
     else {
         return res.json({ status: 404, message: "missing required details" })
     }
-})
+});
 
 router.get('/logout',(req,res)=>{
     return res.json({status:200 , token:""});
-})
+});
 
 module.exports = router;
