@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const schema = mongoose.schema;
+const schema = mongoose.Schema;
 
 const panIdCounterSchema = new schema({
     find: {
@@ -12,5 +12,5 @@ const panIdCounterSchema = new schema({
     }
 });
 
-const PanIdCounter = mongoose.model('panIdCounters', panIdCounterSchema);
+const PanIdCounter = mongoose.model('panidcounters', panIdCounterSchema);
 module.exports = PanIdCounter;

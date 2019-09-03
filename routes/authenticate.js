@@ -32,7 +32,7 @@ router.post('/register', [
     }
     next();
 }, 
-validateCaptcha,
+// validateCaptcha,
     (req, res, next) => {
         //check whether already registered
         userData.findOne({ email: req.body.email }, (err, user) => {
@@ -162,12 +162,14 @@ router.post('/verify', verifyToken, (req, res) => {
                 response.count = pantheonId;
                 await response.save((err) => {
                     if (err) {
+                        console.log("1 ",err);
                         return res.json({ status: 500, message: "Internal server error" });
                     }
                 });
                 user.pantheonId = pantheonId;
                 await user.save((err) => {
                     if (err) {
+                        console.log("2 ",err);
                         return res.json({ status: 500, message: "Internal server error" });
                     }
                     return res.json({
@@ -178,7 +180,8 @@ router.post('/verify', verifyToken, (req, res) => {
                     });
                 });
             }
-            else {
+            else{
+                console.log("3",err);
                 return res.json({ status: 500, message: "Internal server error " });
             }
         });
