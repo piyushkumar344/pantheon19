@@ -14,25 +14,19 @@ const validateCaptcha = require('../middlewares/validateCaptcha');
 router.post('/register', [
     check('email').isEmail(),
     check('password').isLength({ min: 6 }),
-    check('phoneNo')
-        .isLength({ min: 10 })
-        .isLength({ max: 10 })
-        .isMobilePhone()
 ], (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        if(errors.errors[0].param=="email")
-        return res.json({ status: 422, message: "Invalid email address" });
-        else if(errors.errors[0].param=="phoneNo")
-        return res.json({ status: 422, message: "Invalid phone no format, length of phone no should be 10 and should not contain any + or +91 at the beginning"});
-        else
-        {
-            return res.json({ status: 422, message: "Invalid password, password lenght must be greater than 5."})
+        if (errors.errors[0].param == "email") {
+            return res.json({ status: 422, message: "Invalid email address" });
+        }
+        else {
+            return res.json({ status: 422, message: "Invalid password, password length must be greater than 5." });
         }
     }
     next();
-}, 
-// validateCaptcha,
+},
+    validateCaptcha,
     (req, res, next) => {
         //check whether already registered
         userData.findOne({ email: req.body.email }, (err, user) => {
@@ -50,19 +44,17 @@ router.post('/register', [
         if (req.body.password != req.body.confPassword) {
             return res.json({
                 status: 401,
-                message: "password doesnt match"
+                message: "Passwords doesn't match"
             });
         }
         else if (req.body.email && req.body.password && req.body.confPassword) {
             let hashedPassword = bcrypt.hashSync(req.body.password, 8);
-            const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
             const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
             userData.create({
                 email: req.body.email,
                 password: hashedPassword,
                 phoneNo: req.body.phoneNo,
-                emailOTP,
-                phoneOTP
+                emailOTP
             }, (err, user) => {
                 if (err) {
                     return res.json({
@@ -74,7 +66,7 @@ router.post('/register', [
                 let token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
                     expiresIn: 86400 // expires in 24 hours
                 });
-                res.json({ status: 200, isVerified: false, token: token, id: user._id });
+                res.json({ status: 200, isVerified: false, token: token });
 
                 let transport = nodemailer.createTransport({
                     host: 'smtp.mailtrap.io',
@@ -109,17 +101,15 @@ router.post('/register', [
                         console.log("Email Sent")
                     }
                 });
-
-                // Send OTP to mobile Phone also
             })
         }
         else {
-            res.json({ status: 404, message: "missing required value" });
+            res.json({ status: 404, message: "Missing required value" });
         }
     });
 
 router.post('/verify', verifyToken, (req, res) => {
-    const id = req.body.id;
+    const id = req.userId;
     if (!id) {
         return res.json({ status: 422, message: "Missing User ID" });
     }
@@ -141,21 +131,50 @@ router.post('/verify', verifyToken, (req, res) => {
             return res.json({ status: 400, message: "User Already Verified" });
         }
         // Data Validation
-        const { phoneOTP, emailOTP } = req.body;
-        if (!phoneOTP || !emailOTP) {
-            return res.json({ status: 422, message: "Missing OTPs" });
+        const { emailOTP, name, phoneNo, gender, clgName, clgCity, clgState } = req.body;
+
+        name = name.toString().trim();
+        phoneNo = Number(phoneNo);
+        clgName = clgName.toString().trim();
+        clgCity = clgCity.toString().trim();
+        clgState = clgState.toString().trim();
+
+        for (let key in req.body) {
+            if (req.body.hasOwnProperty(key)) {
+                let val = req.body[key];
+                if (!val) {
+                    return res.json({ status: 422, message: `Missing ${key}` });
+                }
+            }
+        }
+
+        if (name === "") {
+            return res.json({ status: 422, message: "Empty Name" });
+        }
+        if (!isMobilePhone(phoneNo)) {
+            return res.json({ status: 422, message: "Invalid Phone Number" });
+        }
+        if (gender > 1) {
+            return res.json({ status: 422, message: "Invalid Gender" });
         }
 
         // Validate OTPs
-        if (user.phoneOTP !== phoneOTP || user.emailOTP !== emailOTP) {
+        if (user.emailOTP !== emailOTP) {
             return res.json({
                 status: 401,
                 message: "Invalid OTP"
             });
         }
         // Update user data & set isVerifired true and send token
+        user.name = name;
+        user.phoneNo = phoneNo;
+        user.gender = gender;
+        user.clgName = clgName;
+        user.clgCity = clgCity;
+        user.clgState = clgState;
         user.isVerified = true;
         let pantheonId = -1;
+        
         panIdCounter.findOne({ find: "pantheonId" }, async (err, response) => {
             if (response) {
                 pantheonId = response.count + 1;
@@ -222,9 +241,7 @@ router.post('/login', [
                 if (user.isVerified) {
                     return res.json({ status: 200, isVerified: true, token: token });
                 }
-                const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
                 const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
-                user.phoneOTP = phoneOTP;
                 user.emailOTP = emailOTP;
                 user.save((err) => {
                     if (err) {
@@ -265,19 +282,17 @@ router.post('/login', [
                             console.log("Email Sent");
                         }
                     });
-
-                    // Send OTP to mobile Phone also
                 });
             }
         });
     }
     else {
-        return res.json({ status: 404, message: "missing required details" })
+        return res.json({ status: 404, message: "Missing required details" })
     }
 });
 
-router.get('/logout',(req,res)=>{
-    return res.json({status:200 , token:""});
+router.get('/logout', (req, res) => {
+    return res.json({ status: 200, token: "" });
 });
 
 module.exports = router;

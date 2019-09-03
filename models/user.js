@@ -21,26 +21,23 @@ const userSchema = new Schema({
     gender: {
         type: String,
     },
-    instituteName: {
+    clgName: {
         type: String,
         // required: true
     },
-    instituteCity: {
+    clgCity: {
         type: String,
         // required: true
     },
-    instituteState: {
+    clgState: {
         type: String,
         // required: true
     },
-    instituteId: {
+    clgId: {
         type: String,
         // required: true
     },
     emailOTP: {
-        type: String
-    },
-    phoneOTP: {
         type: String
     },
     isVerified: {

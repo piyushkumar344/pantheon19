@@ -4,7 +4,6 @@ $("#sEmail").hide();
 $("#sPassword").hide();
 $("#sCnfPassword").hide();
 $("#sPasswordMatch").hide();
-$("#sPhone").hide();
 $("#sCaptcha").hide();
 
 function signupForm() {
@@ -18,7 +17,6 @@ function signupForm() {
     $("#sPassword").hide();
     $("#sCnfPassword").hide();
     $("#sPasswordMatch").hide();
-    $("#sPhone").hide();
     $("#sCaptcha").hide();
     $("#email").css({ "border": "" });
     $("#password").css({ "border": "" });
@@ -46,12 +44,6 @@ function signupForm() {
     if (confirmPassword !== password) {
         $("#confirmPassword").css({ "border": "2px solid red" });
         $("#sPasswordMatch").show();
-        return;
-    }
-
-    if (phone === "") {
-        $("#phone").css({ "border": "2px solid red" });
-        $("#sPhone").show();
         return;
     }
 
