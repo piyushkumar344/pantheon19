@@ -36,9 +36,6 @@ const userSchema = new Schema({
     emailOTP: {
         type: String
     },
-    phoneOTP: {
-        type: String
-    },
     isVerified: {
         type: Boolean,
         default: false

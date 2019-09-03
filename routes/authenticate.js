@@ -48,14 +48,12 @@ router.post('/register', [
         }
         else if (req.body.email && req.body.password && req.body.confPassword) {
             let hashedPassword = bcrypt.hashSync(req.body.password, 8);
-            const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
             const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
             userData.create({
                 email: req.body.email,
                 password: hashedPassword,
                 phoneNo: req.body.phoneNo,
-                emailOTP,
-                phoneOTP
+                emailOTP
             }, (err, user) => {
                 if (err) {
                     return res.json({
@@ -67,7 +65,7 @@ router.post('/register', [
                 let token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
                     expiresIn: 86400 // expires in 24 hours
                 });
-                res.json({ status: 200, isVerified: false, token: token, id: user._id });
+                res.json({ status: 200, isVerified: false, token: token });
 
                 let transport = nodemailer.createTransport({
                     host: 'smtp.mailtrap.io',
@@ -102,8 +100,6 @@ router.post('/register', [
                         console.log("Email Sent")
                     }
                 });
-
-                // Send OTP to mobile Phone also
             })
         }
         else {
@@ -112,7 +108,7 @@ router.post('/register', [
     });
 
 router.post('/verify', verifyToken, (req, res) => {
-    const id = req.body.id;
+    const id = req.userId;
     if (!id) {
         return res.json({ status: 422, message: "Missing User ID" });
     }
@@ -212,9 +208,7 @@ router.post('/login', [
                 if (user.isVerified) {
                     return res.json({ status: 200, isVerified: true, token: token });
                 }
-                const phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
                 const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
-                user.phoneOTP = phoneOTP;
                 user.emailOTP = emailOTP;
                 user.save((err) => {
                     if (err) {
@@ -255,8 +249,6 @@ router.post('/login', [
                             console.log("Email Sent");
                         }
                     });
-
-                    // Send OTP to mobile Phone also
                 });
             }
         })
