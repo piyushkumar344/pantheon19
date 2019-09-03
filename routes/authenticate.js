@@ -9,6 +9,7 @@ const nodemailer = require('nodemailer');
 const panIdCounter = require("../models/panIdCounter")
 const verifyToken = require('../middlewares/verifyToken');
 const validateCaptcha = require('../middlewares/validateCaptcha');
+const { isMobilePhone } = require('validator');
 
 //routes
 router.post('/register', [
@@ -26,7 +27,6 @@ router.post('/register', [
     }
     next();
 },
-    validateCaptcha,
     (req, res, next) => {
         //check whether already registered
         userData.findOne({ email: req.body.email }, (err, user) => {
@@ -53,7 +53,6 @@ router.post('/register', [
             userData.create({
                 email: req.body.email,
                 password: hashedPassword,
-                phoneNo: req.body.phoneNo,
                 emailOTP
             }, (err, user) => {
                 if (err) {
@@ -131,21 +130,21 @@ router.post('/verify', verifyToken, (req, res) => {
             return res.json({ status: 400, message: "User Already Verified" });
         }
         // Data Validation
-        const { emailOTP, name, phoneNo, gender, clgName, clgCity, clgState } = req.body;
+        let { emailOTP, name, phoneNo, gender, clgName, clgCity, clgState } = req.body;
 
+        if (!emailOTP || !name || !phoneNo || !gender || !clgName || !clgCity || !clgState) {
+            return res.json({ status: 422, message: "Missing Data Fields" });
+        }
+
+        emailOTP = emailOTP.toString().trim();
         name = name.toString().trim();
-        phoneNo = Number(phoneNo);
+        phoneNo = phoneNo.toString().trim();
         clgName = clgName.toString().trim();
         clgCity = clgCity.toString().trim();
         clgState = clgState.toString().trim();
 
-        for (let key in req.body) {
-            if (req.body.hasOwnProperty(key)) {
-                let val = req.body[key];
-                if (!val) {
-                    return res.json({ status: 422, message: `Missing ${key}` });
-                }
-            }
+        if(!emailOTP) {
+            return res.json({ status: 422, message: "Invalid OTP" });
         }
 
         if (name === "") {
@@ -174,7 +173,7 @@ router.post('/verify', verifyToken, (req, res) => {
         user.clgState = clgState;
         user.isVerified = true;
         let pantheonId = -1;
-        
+
         panIdCounter.findOne({ find: "pantheonId" }, async (err, response) => {
             if (response) {
                 pantheonId = response.count + 1;

@@ -10,7 +10,6 @@ function signupForm() {
     let email = $('#email').val().trim();
     let password = $('#password').val();
     let confirmPassword = $('#confirmPassword').val();
-    let phoneNo = $('#phone').val().trim();
     let captchaToken = grecaptcha.getResponse();
 
     $("#sEmail").hide();
@@ -21,7 +20,6 @@ function signupForm() {
     $("#email").css({ "border": "" });
     $("#password").css({ "border": "" });
     $("#confirmPassword").css({ "border": "" });
-    $("#phoneNo").css({ "border": "" });
 
     if (email === "") {
         $("#email").css({ "border": "2px solid red" });
@@ -61,7 +59,6 @@ function signupForm() {
             email: email,
             password: password,
             confPassword: confirmPassword,
-            phoneNo: phoneNo,
             captchaToken: captchaToken
         },
         crossDomain: true,

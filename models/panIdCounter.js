@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
-const panIdCounterSchema = new schema({
+const panIdCounterSchema = new Schema({
     find: {
         type: String,
         default: 'pantheonId'
