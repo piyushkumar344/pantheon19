@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <p> USER NOT VERIFIED</p>
+    <br><br>
+    <center>
+        <form onsubmit=event.preventDefault()>
+            <p>Enter your email OTP</p>
+            <input type="number" placeholder="enter your otp" id="emotp">
+            <p>Enter your phone OTP</p>
+            <input type="number" placeholder="enter your otp" id="phoneotp">
+            <br>
+            <button onclick="verify()"> submit</button>
+        </form>
+    </center>
+</body>
+
+
+<script>
+    let url = "http://192.168.158.230:4000/auth";
+    function verify() {
+        var emotp = $('#emotp').val().trim();
+        var photp = $('#phoneotp').val().trim();
+        var id = localStorage.id;
+        var token = localStorage.token;
+        // console.log(emotp);
+        //console.log(phoneotp);
+        //console.log(id);
+
+        if (emotp === "") {
+            $("#emotp").show();
+            return;
+        }
+
+
+        if (photp === "") {
+            $("#phoneotp").show();
+            return;
+        }
+
+        if (id === "") {
+            return;
+        }
+
+
+        if (token === "") {
+            return;
+        }
+
+        $.ajax({
+            url: url + "/verify",
+            method: "POST",
+            data: {
+                emailOTP: emotp,
+                phoneOTP: photp,
+                id: id,
+
+            },
+            headers: {
+                "x-access-token": token
+            },
+
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (xhr, status) {
+                alert("error");
+            }
+
+        });
+    }
+</script>
+
+</html>

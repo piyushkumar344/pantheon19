@@ -10,6 +10,7 @@ body {
 #container canvas {
     position: fixed;
     z-index: -1000;
+    /* position: absolute; */
 }
 
 canvas {
@@ -17,9 +18,6 @@ canvas {
 }
 
 #overlay {
-    position: absolute;
-    top: 20vh;
-    width: 100vw;
     text-align: center;
 }
 
