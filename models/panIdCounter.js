@@ -12,5 +12,5 @@ const panIdCounterSchema = new Schema({
     }
 });
 
-const PanIdCounter = mongoose.model('panIdCounters', panIdCounterSchema);
+const PanIdCounter = mongoose.model('panidcounters', panIdCounterSchema);
 module.exports = PanIdCounter;

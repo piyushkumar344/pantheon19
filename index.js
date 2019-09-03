@@ -5,6 +5,7 @@ const connect = require('./db/mongoose_connection')
 const app = express();
 const authentication = require('./routes/authenticate')
 const cors = require('cors');
+const profile = require('./routes/profile');
 
 //db connection
 connect();
@@ -14,11 +15,11 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/auth', authentication);
-
+app.use('/profile', profile);
 
 //routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'view', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public/view', 'index.html'));
 });
 
 

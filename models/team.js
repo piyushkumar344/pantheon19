@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const teamMemberSchema = new Schema({
     userPanId:{
@@ -23,7 +23,7 @@ const eventRegisteredSchema = new Schema({
     }
 });
 
-const teamSchema = new schema({
+const teamSchema = new Schema({
     teamName:{
         type: String,
         required: true

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
-const teamIdCounterSchema = new schema({
+const teamIdCounterSchema = new Schema({
     find: {
         type: String,
         default: 'teamId'
@@ -12,5 +12,5 @@ const teamIdCounterSchema = new schema({
     }
 });
 
-const TeamIdCounter = mongoose.model('teamIdCounters', teamIdCounterSchema);
+const TeamIdCounter = mongoose.model('teamidcounters', teamIdCounterSchema);
 module.exports = TeamIdCounter;
