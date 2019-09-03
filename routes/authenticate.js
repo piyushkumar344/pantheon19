@@ -6,14 +6,14 @@ const userData = require('../models/user');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
-const counter = require("../models/counter")
+const panIdCounter = require("../models/panIdCounter")
 const verifyToken = require('../middlewares/verifyToken');
 const validateCaptcha = require('../middlewares/validateCaptcha');
 
 //routes
 router.post('/register', [
     check('email').isEmail(),
-    check('password').isLength({ min: 5 }),
+    check('password').isLength({ min: 6 }),
     check('phoneNo')
         .isLength({ min: 10 })
         .isLength({ max: 10 })
@@ -21,11 +21,18 @@ router.post('/register', [
 ], (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        // console.log(errors);
-        return res.json({ status: 422, message: "Invalid " + errors.errors[0].param });
+        if(errors.errors[0].param=="email")
+        return res.json({ status: 422, message: "Invalid email address" });
+        else if(errors.errors[0].param=="phoneNo")
+        return res.json({ status: 422, message: "Invalid phone no format, length of phone no should be 10 and should not contain any + or +91 at the beginning"});
+        else
+        {
+            return res.json({ status: 422, message: "Invalid password, password lenght must be greater than 5."})
+        }
     }
     next();
-}, validateCaptcha,
+}, 
+validateCaptcha,
     (req, res, next) => {
         //check whether already registered
         userData.findOne({ email: req.body.email }, (err, user) => {
@@ -37,14 +44,14 @@ router.post('/register', [
 
             else
                 next();
-        })
+        });
     }, (req, res) => {
         //continue registration
         if (req.body.password != req.body.confPassword) {
             return res.json({
                 status: 401,
                 message: "password doesnt match"
-            })
+            });
         }
         else if (req.body.email && req.body.password && req.body.confPassword) {
             let hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -59,7 +66,7 @@ router.post('/register', [
                     return res.json({
                         status: 500,
                         message: "Something went wrong while registering the user, please try again"
-                    })
+                    });
                 }
 
                 let token = jwt.sign({ id: user._id }, config.secret, {  //jwt sign encodes payload and secret
@@ -145,7 +152,7 @@ router.post('/verify', verifyToken, (req, res) => {
         // Update user data & set isVerifired true and send token
         user.isVerified = true;
         let pantheonId = -1;
-        counter.findOne({ find: "pantheonId" }, async (err, response) => {
+        panIdCounter.findOne({ find: "pantheonId" }, async (err, response) => {
             if (response) {
                 pantheonId = response.count + 1;
                 response.count = pantheonId;
@@ -168,9 +175,9 @@ router.post('/verify', verifyToken, (req, res) => {
                 });
             }
             else {
-                return res.json({ status: 500, message: "Internal server error " })
+                return res.json({ status: 500, message: "Internal server error " });
             }
-        })
+        });
     });
 });
 
@@ -191,7 +198,7 @@ router.post('/login', [
                 return res.json({ status: 500, message: "Internal server error" });
             }
             else if (!user) {
-                return res.json({ status: 404, message: "No such user exists" })
+                return res.json({ status: 404, message: "No such user exists" });
             }
             else {
                 let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
@@ -202,7 +209,7 @@ router.post('/login', [
 
                 let token = jwt.sign({ id: user._id }, config.secret, {
                     expiresIn: 86400
-                })
+                });
 
                 // isVerified
                 if (user.isVerified) {
@@ -251,11 +258,15 @@ router.post('/login', [
                     });
                 });
             }
-        })
+        });
     }
     else {
         return res.json({ status: 404, message: "missing required details" })
     }
-})
+});
+
+router.get('/logout',(req,res)=>{
+    return res.json({status:200 , token:""});
+});
 
 module.exports = router;

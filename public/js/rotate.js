@@ -76,7 +76,7 @@ Star.prototype.AsVector = function () {
 }
 
 var stars = [];
-for (var i = 0; i < 5000; i++) stars.push(new Star());
+for (var i = 0; i < 4000; i++) stars.push(new Star());
 
 var lastLoop = Date.now();
 
@@ -86,7 +86,7 @@ function loop() {
     var dt = (now - lastLoop) / 1000.0;
     lastLoop = now;
 
-    angle += 3.0 * dt;
+    angle += 2.0 * dt;
 
     viewMtx = ComputeViewMtx(angle);
 

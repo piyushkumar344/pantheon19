@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login V4</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Google Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    <script>
+        var onloadCallback = function () {
+            $(".g-recaptcha").each(function () {
+                var object = $(this);
+                grecaptcha.render(object.attr("id"), {
+                    "sitekey": "6LfTprIUAAAAAEWATbkWhGxOolQEZ2jRPzAFXKdB",
+                    "callback": function (token) {
+                        $(".hidden-token").text(token);
+                    }
+                });
+            });
+        }
+    </script>
+</head>
+
+<body style="background: #b92b27;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1565C0, #b92b27);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+    <header>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background: transparent !important;">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="../images/bitLogo.png" alt="BIT Logo" width="50" height="50">
+                </a>
+                <div style="border-left: 2px solid white; height: 50px; margin-right: 10px"></div>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../images/PantheonLogo.png" alt="Pantheon Logo" width="140" height="50">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+                    style="color: black">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Home</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>About</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Events</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Sponsors</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Register</strong></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100 p-l-55 p-r-55 p-t-35 p-b-54">
+
+                    <div id="sign-up-form">
+                        <form class="login100-form validate-form" onsubmit=event.preventDefault()>
+                            <span class="login100-form-title p-b-10" style="color:white">
+                                Sign Up
+                            </span>
+                            <p id="sEmail" style="color : red">email is required</p>
+                            <div class="wrap-input100 validate-input m-b-33" data-validate="Username is required">
+                                <span class="label-input100" style="color:white">Email</span>
+                                <input class="input100" type="email" id="signUpEmail" name="email"
+                                    placeholder="Type your username">
+                                <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            </div>
+
+                            <p id="sPassword" style="color : red">password is required</p>
+                            <div class="wrap-input100 validate-input m-b-33" data-validate="Password is required">
+                                <span class="label-input100" style="color:white">Password</span>
+                                <input class="input100" type="password" id="signUpPassword" name="pass"
+                                    placeholder="Type your password">
+                                <span class="focus-input100" data-symbol="&#xf190;"></span>
+                            </div>
+
+                            <p id="sCnfPassword1" style="color : red">Re-Enter Password</p>
+                            <p id="sCnfPassword2" style="color : red">Password Mismatch</p>
+                            <div class="wrap-input100 validate-input m-b-33"
+                                data-validate="Confirm Password is required">
+                                <span class="label-input100" style="color:white">Confirm Password</span>
+                                <input class="input100" type="password" id="signUpConfirmPassword" name="pass"
+                                    placeholder="Retype your password">
+                                <span class="focus-input100" data-symbol="&#xf190;"></span>
+                            </div>
+
+                            <p id="sPhone" style="color : red">Phone number is required</p>
+                            <div class="wrap-input100 validate-input m-b-33">
+                                <span class="label-input100" style="color:white">Phone</span>
+                                <input class="input100" type="tel" id="signUpPhone" name="phone"
+                                    placeholder="Type your phone number" pattern="[6789][0-9]{9}">
+                                <span class="focus-input100" data-symbol="&#xf106;"></span>
+                            </div>
+
+                            <div class=" m-b-33" style="text-align: center ">
+                                <div id="captcha1" class="g-recaptcha" style="display:inline-block"></div>
+                                <p style="display: none;" class="hidden-token"></p>
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" id="signUp" type="submit" onclick="signupForm()">
+                                        Sign Up
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+                            <!-- <div class="txt1 text-center p-t-54 p-b-20">
+							<span>
+								Or Sign Up Using
+							</span>
+						</div>
+
+						<div class="flex-c-m">
+							<a href="#" class="login100-social-item bg1">
+								<i class="fa fa-facebook"></i>
+							</a>
+
+							<a href="#" class="login100-social-item bg2">
+								<i class="fa fa-twitter"></i>
+							</a>
+
+							<a href="#" class="login100-social-item bg3">
+								<i class="fa fa-google"></i>
+							</a>
+						</div> -->
+
+                            <div class="flex-col-c p-t-25">
+                                <span class="txt1 p-b-17" style="color: white">
+                                    Or Login instead
+                                </span>
+
+                                <a href="#" id="toggle-button1" class="txt2" style="color:white">
+                                    Login
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="login-form">
+                        <form class="login100-form validate-form" onsubmit=event.preventDefault()>
+                            <span class="login100-form-title p-b-25" style="color:white">
+                                Login
+                            </span>
+
+                            <p id="lEmail" style="color : red">email is required</p>
+                            <div class="wrap-input100 validate-input m-b-33" data-validate="Username is required">
+                                <span class="label-input100" style="color:white">Email</span>
+                                <input class="input100" type="email" id="loginEmail" name="email"
+                                    placeholder="Type your email">
+                                <span class="focus-input100" data-symbol="&#xf206;"></span>
+                            </div>
+
+                            <p id="lPassword" style="color : red">Password is required</p>
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <span class="label-input100" style="color:white">Password</span>
+                                <input class="input100" type="password" id="loginPassword" name="pass"
+                                    placeholder="Type your password">
+                                <span class="focus-input100" data-symbol="&#xf190;"></span>
+                            </div>
+
+                            <div class="text-right p-t-8 p-b-31">
+                                <a href="#" style="color:white">
+                                    Forgot password?
+                                </a>
+                            </div>
+
+                            <!-- <div class="m-b-33" style="text-align: center ">
+							<div id="captcha2" class="g-recaptcha" style="display:inline-block"></div>
+							<p style="display: none;" class="hidden-token"></p>
+						</div> -->
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" id="login" type="submit" onclick="loginForm()">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- <div class="txt1 text-center p-t-54 p-b-20">
+							<span>
+								Or Sign Up Using
+							</span>
+						</div>
+
+						<div class="flex-c-m">
+							<a href="#" class="login100-social-item bg1">
+								<i class="fa fa-facebook"></i>
+							</a>
+
+							<a href="#" class="login100-social-item bg2">
+								<i class="fa fa-twitter"></i>
+							</a>
+
+							<a href="#" class="login100-social-item bg3">
+								<i class="fa fa-google"></i>
+							</a>
+						</div> -->
+
+                            <div class="flex-col-c p-t-100">
+                                <span class="txt1 p-b-17">
+                                    Or Sign Up Instead
+                                </span>
+
+                                <a href="#" id="toggle-button2" class="txt2">
+                                    Sign Up
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script>
+        $("#sEmail").hide();
+        $("#sPassword").hide();
+        $("#sCnfPassword1").hide();
+        $("#sCnfPassword2").hide();
+        $("#sPhone").hide();
+        $("#lEmail").hide();
+        $("#lPassword").hide();
+        $("#login-form").hide();
+        $("#toggle-button1").on("click", function () {
+            $("#sign-up-form").hide();
+            $("#login-form").show();
+        });
+        $("#toggle-button2").on("click", function () {
+            $("#login-form").hide();
+            $("#sign-up-form").show();
+        });
+    </script>
+    <script src='../js/login.js'></script>
+
+</body>
+
+</html>

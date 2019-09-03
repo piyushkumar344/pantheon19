@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema({
+    name:{
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
@@ -43,6 +47,14 @@ const userSchema = new Schema({
     pantheonId: {
         type: Number,
         default:-1
+    },
+    teamMongoId:{
+        type: String,
+        default: null
+    },
+    isTeamLeader:{
+        type: Boolean,
+        default: false
     }
 });
 
