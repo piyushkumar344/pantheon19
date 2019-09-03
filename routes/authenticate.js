@@ -131,21 +131,50 @@ router.post('/verify', verifyToken, (req, res) => {
             return res.json({ status: 400, message: "User Already Verified" });
         }
         // Data Validation
-        const { emailOTP } = req.body;
-        if (!emailOTP) {
-            return res.json({ status: 422, message: "Missing email OTPs" });
+        const { emailOTP, name, phoneNo, gender, clgName, clgCity, clgState } = req.body;
+
+        name = name.toString().trim();
+        phoneNo = Number(phoneNo);
+        clgName = clgName.toString().trim();
+        clgCity = clgCity.toString().trim();
+        clgState = clgState.toString().trim();
+
+        for (let key in req.body) {
+            if (req.body.hasOwnProperty(key)) {
+                let val = req.body[key];
+                if (!val) {
+                    return res.json({ status: 422, message: `Missing ${key}` });
+                }
+            }
+        }
+
+        if (name === "") {
+            return res.json({ status: 422, message: "Empty Name" });
+        }
+        if (!isMobilePhone(phoneNo)) {
+            return res.json({ status: 422, message: "Invalid Phone Number" });
+        }
+        if (gender > 1) {
+            return res.json({ status: 422, message: "Invalid Gender" });
         }
 
         // Validate OTPs
-        if (user.phoneOTP !== phoneOTP || user.emailOTP !== emailOTP) {
+        if (user.emailOTP !== emailOTP) {
             return res.json({
                 status: 401,
                 message: "Invalid OTP"
             });
         }
         // Update user data & set isVerifired true and send token
+        user.name = name;
+        user.phoneNo = phoneNo;
+        user.gender = gender;
+        user.clgName = clgName;
+        user.clgCity = clgCity;
+        user.clgState = clgState;
         user.isVerified = true;
         let pantheonId = -1;
+        
         panIdCounter.findOne({ find: "pantheonId" }, async (err, response) => {
             if (response) {
                 pantheonId = response.count + 1;
