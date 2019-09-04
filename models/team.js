@@ -36,8 +36,14 @@ const teamSchema = new Schema({
         type: Number,
         required: true
     },
-    teamMembers:[teamMemberSchema],
-    eventsRegistered:[eventRegisteredSchema],
+    teamMembers:{
+        type: [teamMemberSchema],
+        default: []
+    },
+    eventsRegistered:{
+        type: [eventRegisteredSchema],
+        default: []
+    },
     points:{
         type: Number,
         default: 0
