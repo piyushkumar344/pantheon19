@@ -20,15 +20,15 @@ function closeNav() {
 
 $(document).ready(function () {
     $("a").on("click", function (event) {
+        $("#mySidenav").hide("slide", {direction: "right"});
         if (this.hash !== "") {
             event.preventDefault();
             var hash = this.hash;
-            console.log(hash);
             $("html, body").animate(
                 {
                     scrollTop: $(hash).offset().top
                 },
-                800,
+                400,
                 function () {
                     window.location.hash = hash;
                 }
