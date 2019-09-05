@@ -38,7 +38,7 @@ const userSchema = new Schema({
         // required: true
     },
     emailOTP: {
-        type: String
+        type: Number
     },
     isVerified: {
         type: Boolean,
