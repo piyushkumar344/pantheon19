@@ -64,6 +64,7 @@ function loginForm() {
             }
         },
         error: function (err) {
+            $("#btnSignIn").attr("disabled", false);
             console.log(err);
         }
     });
