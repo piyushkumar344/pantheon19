@@ -66,7 +66,8 @@ function signupForm() {
             console.log(res);
         },
         error: function (xhr, status) {
-            alert("error");
+            $("#btnSignUp").attr("disabled", false);
+            console.log(status);
         }
     });
 }

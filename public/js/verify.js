@@ -101,7 +101,7 @@ function verifyForm() {
         return;
     }
 
-
+    $("#btnSubmit").attr("disabled", true);
 
     
     $.ajax({
@@ -140,6 +140,7 @@ function verifyForm() {
             }
         },
         error: function (err) {
+            $("#btnSubmit").attr("disabled", false);
             console.log(err);
         }
     });
