@@ -144,6 +144,11 @@ section {
     color: #fff;
 }
 
+.container {
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
 /*.section-image {
     display: flex;
     flex-direction: column;
@@ -151,24 +156,6 @@ section {
     align-items: center;
     padding: 30px;
 }*/
-
-.container {
-    color: black;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-} */
-
-/* sponsors-section */
-
-#sponsors .container {
-    background-color: coral;
-}
-
-#footer .container {
-    color: white;
-    border-radius: 0;
-    box-shadow: none;
-}
 
 /* .footer div h1 {
     text-align: center;
