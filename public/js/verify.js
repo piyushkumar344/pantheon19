@@ -51,3 +51,24 @@ function verifyForm() {
         }
     });
 }
+
+
+function autoFill() {
+    $('#clgname').val("Birla Institute of Technology") ;
+    $('#clgcity').val("Ranchi") ;
+    $('#clgstate').val("Jharkhand") ;
+
+    $( "#clgname" ).prop( "disabled", true );
+    $( "#clgcity" ).prop( "disabled", true );
+    $( "#clgstate" ).prop( "disabled", true );
+}
+
+function erase() {
+    $( "#clgname" ).prop( "disabled", false );
+    $( "#clgcity" ).prop( "disabled", false );
+    $( "#clgstate" ).prop( "disabled", false );
+
+    $('#clgname').val("") ;
+    $('#clgcity').val("") ;
+    $('#clgstate').val("") ;
+}
