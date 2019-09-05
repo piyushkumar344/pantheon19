@@ -22,7 +22,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/view', 'index.html'));
 });
 
-
 //port connection
 let port = 4000 || process.env.PORT;
 app.listen(port, () => {
