@@ -10,8 +10,13 @@
     src: url("../../fonts/Formation UltraBold.ttf") format("opentype");
 }
 
+@font-face {
+    font-family: "product-sans";
+    src: url("../../fonts/Product Sans Italic.ttf") format("opentype");
+}
+
 body {
-    font-family: "baron-neue", "Helvetica", "Arial";
+    font-family: "product-sans";
     font-weight: 400;
     /* font-family: 'Baloo Bhai', cursive; */
 }
@@ -276,8 +281,8 @@ section {
 
 .section-heading h1 {
     font-weight: 800 !important;
-    font-size: 2em;
-    text-decoration: underline;
+    font-size: 2em; 
+     
 }
 
 /* home-section */
@@ -363,6 +368,7 @@ section {
     font-size: 0.85em;
     padding-left: 60px;
     padding-right: 60px;
+    font-family: "product-sans";
 }
 
 .footer-desc a {
