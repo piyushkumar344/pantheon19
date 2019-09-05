@@ -308,6 +308,13 @@ section {
         margin-top: 0;
         font-size: 0.8em;
     }
+    #first-img {
+        width: 90vw !important;
+        top: 20vh !important;
+    }
+    #planet-img {
+        height: 50vh;
+    }
 }
 
 @media only screen and (min-width: 600px) {
