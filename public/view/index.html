@@ -38,25 +38,41 @@
 
 
         <!-- Home-section -->
-        <div id="container" class="divs" data-section-name="home-section" id="home">
+        <div class="divs dontainer" data-section-name="home-section" id="home">
             <canvas id="starfield"></canvas>
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0);" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="#home"><span><i class="fas fa-home"></i> &nbspHome</span></a>
+                <a href="#home"><span><i class="fas fa-home"></i>&nbspHome</span></a>
                 <a href="#about"><span><i class="fas fa-address-card"></i>&nbspAbout</span></a>
                 <a href="#theme"><span><i class="fas fa-space-shuttle"></i>&nbspTheme</span></a>
-                <a href="#events"><span><i class="fas fa-calendar-check"></i>&nbspEvents</span></a>
-                <a href="#team"><span><i class="fas fa-users"></i> &nbspTeam</span></a>
-                <a href="#sponsors"><span><i class="fas fa-money-check"></i>&nbspSponsors</span></a>
+                <a href="#social"><span><i class="fas fa-hand-holding-heart"></i>&nbspCause</span></a>
+                <a href="#social1"><span><i class="fas fa-bullseye"></i>&nbspCampaign</span></a>
+                <a href="#footer"><span><i class="fas fa-envelope-open-text"></i>&nbspContact</span></a>
+
+                <!-- <a href="#events"><span><i class="fas fa-calendar-check"></i>&nbspEvents</span></a> -->
+                <!-- <a href="#team"><span><i class="fas fa-users"></i> &nbspTeam</span></a>
+                <a href="#sponsors"><span><i class="fas fa-money-check"></i>&nbspSponsors</span></a> -->
             </div>
             <div id="main" class="text-right">
                 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
             </div>
+
+
+            <div class="nav-links">
+                <div class="social-icons">
+                        <ul class="icon-icon"><a href="https://www.facebook.com/bitmesra.pantheon/"><span><i style="font-size:30px;color:white;" class="fab fa-facebook-square fa-2x"></i></span></a></ul>
+                        <ul class="icon-icon"><a href="https://www.instagram.com/pantheon_techfest/"><span><i style="font-size:30px;color:white;" class="fa-2x fab fa-instagram"></i></span></a></ul>
+                        <ul class="icon-icon"><a href="https://www.youtube.com"><span><i style="font-size:30px;color:white;" class=" fab fa-youtube"></i></span></a></ul>
+                    
+                </div>
+            </div>
+
+
             <div id="overlay">
-                <img src="../images/PantheonLogo.png" class="img-fluid" alt="Pantheon Logo"
+                <img id="first-img" src="../images/PantheonLogo.png" class="img-fluid" alt="Pantheon Logo"
                     style="position:relative; width: 50vw; top:10vh;">
-                <img id="planet-img" src="../images/planet4.png" class="img-fluid" alt="" srcset=""
-                    style="width:60vw; position: absolute; left: 20%; bottom: 0;">
+                <img id="planet-img" src="../images/under.png" class="img-fluid" alt="" srcset=""
+                    style="width:60vw; position: absolute; left: 25%; bottom: 0;">
             </div>
         </div>
 
@@ -73,7 +89,8 @@
                     </div>
                     <div class="col-md-6 section-description">
                         <p>With an ambition to provide a platform for the youth to showcase their technical skills and
-                            display cutting-edge technologies, BIT conducts one of the biggest technical fests of Eastern India- Pantheon.
+                            display cutting-edge technologies, BIT conducts one of the biggest technical fests of
+                            Eastern India- Pantheon.
                             Pantheon is an intricately strung assortment of technological marvels blended with a unique
                             taste of youthful exuberance. This edition of Pantheon dove deeper into the wondrous world
                             of technology through its intriguing theme “Cosmos: Beyond the Realms”.
@@ -91,18 +108,21 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 section-description">
-                        <p>Pantheon’19 aims to celebrate the milestones set by astronomers, astronauts around the world and especially the success of ISRO in the field of space research and exploration. It also tries to encapsulate the possibilities of creating colonies in space, exploiting natural resources of other planets, and the probable existence of extraterrestrial species.
+                        <p>Pantheon’19 aims to celebrate the milestones set by astronomers, astronauts around the world
+                            and especially the success of ISRO in the field of space research and exploration. It also
+                            tries to encapsulate the possibilities of creating colonies in space, exploiting natural
+                            resources of other planets, and the probable existence of extraterrestrial species.
                         </p>
                     </div>
                     <div class="col-md-6 section-image">
-                        <img src="../images/event.jpg" alt="" class="img-fluid">
+                        <img src="../images/theme.jpg" alt="" class="img-fluid">
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Events-section -->
-        <section class="divs" data-section-name="events-section" id="events">
+        <!-- <section class="divs" data-section-name="events-section" id="events">
             <div class="container">
                 <div class="row section-heading">
                     <h1>Events</h1>
@@ -111,8 +131,7 @@
                     <div class="col-md-6 section-image">
                         <img src="https://via.placeholder.com/300" alt="" class="img-fluid">
                     </div>
-                    <div
-                        class="col-md-6 section-description">
+                    <div class="col-md-6 section-description">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Vehicula ipsum a arcu cursus. Faucibus nisl tincidunt eget
                             nullam. Facilisis sed odio morbi quis commodo. Egestas fringilla phasellus faucibus
@@ -122,7 +141,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- social-cause-section -->
         <section class="divs" data-section-name="social-section" id="social">
@@ -170,7 +189,7 @@
         </section>
 
         <!-- Team-section -->
-        <section class="divs" data-section-name="team-section" id="team">
+        <!-- <section class="divs" data-section-name="team-section" id="team">
             <div class="container">
                 <div class="row section-heading">
                     <h1>Team</h1>
@@ -191,7 +210,6 @@
             </div>
         </section>
 
-        <!-- Sponsors-section -->
         <section class="divs" data-section-name="sponsors-section" id="sponsors">
             <div class="container">
                 <div class="row section-heading">
@@ -211,7 +229,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!--Footer section-->
         <section class="divs footer" data-section-name="footer-section" id="footer">
@@ -220,7 +238,7 @@
                     <h1>Contact Us</h1>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <form>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -253,13 +271,13 @@
                     </div>
 
 
-                    <div class="col-md-6 text-center">
-                        <div class="footer-desc">
-                            <div class="indiv-desc">
+                    <div class="for-large col-sm-6 text-center">
+                        <div class="row footer-desc">
+                            <div class="indiv-desc col-md-12 col-sm-6">
                                 <a href=""><i class="fas fa-map-marked-alt fa-4x"></i></a>
                                 <p> Birla Institute of Technology, Mesra, Ranchi, Jharkhand, 835215, India</p>
                             </div>
-                            <div class="indiv-desc">
+                            <div class="indiv-desc col-md-12 col-sm-6">
                                 <a href=""> <i class="fa fa-envelope fa-4x"></i></a>
                                 <p> EMAIL: bitotsav@bitmesra.ac.in <br> Phone: +91 79030 02489</p>
                             </div>
@@ -271,7 +289,12 @@
                                 </p>
                             </div>
                         </div>
+                    </div>
 
+                    <div class="for-small">
+                        <p> EMAIL: bitotsav@bitmesra.ac.in</p>
+                        <p>Phone: +91 79030 02489</p>
+                        <p>Follow Us <i class="fab fa-facebook-square"></i> <i class="fab fa-instagram"></i></p>
                     </div>
 
                 </div>

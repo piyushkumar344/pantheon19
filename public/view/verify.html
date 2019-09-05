@@ -80,6 +80,8 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
             <div class="form-container sign-in-container">
                 <h1 style="text-align: center; font-weight: bolder">Personal Details</h1>
                 <form action="#" onsubmit=event.preventDefault()>
+                   
+
                     
                         
                     <div class="input-wrap">
@@ -90,6 +92,7 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                             <input type="email" id="email" disabled />
                         </div>
                         <hr style="border: 1px solid black">
+
                     </div>
 
                     <div class="input-wrap">
@@ -97,9 +100,11 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                             <span>Email OTP</span>
                         </div>
                         <div class="field-wrap" style="display: inline">
-                            <input type="text" id="eotp" required />
+                            <input type="text" id="eotp" />
                         </div>
                         <hr style="border: 1px solid black">
+                        <p id="sotp" style="color : red">OTP is required</p>
+                        <p id="sotp1" style="color : red">OTP  is incorrect</p>
                     </div>
 
                     <div class="input-wrap">
@@ -107,9 +112,11 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                             <span>Full Name</span>
                         </div>
                         <div class="field-wrap" style="display: inline">
-                            <input type="text" id="name" required />
+                            <input type="text" id="name" />
                         </div>
                         <hr style="border: 1px solid black">
+                        <p id="sname" style="color : red">Name  is required</p>
+
                     </div>
 
                     <div class="input-wrap">
@@ -117,34 +124,42 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                             <span>Mobile</span>
                         </div>
                         <div class="field-wrap" style="display: inline">
-                            <input type="text" id="mobile" required />
+                            <input type="text" id="mobile"  />
                         </div>
                         <hr style="border: 1px solid black">
+                        <p id="smobile" style="color : red">Mobile number is required</p>
+                        <p id="smobile1" style="color : red">Mobile number must be of 10 digit </p>
+                        <p id="smobile2" style="color : red">Mobile number must contain only digit </p>
                     </div>
 
                     <div class="input-wrap">
                         <div id="gender">
+                           
                             <div>
                                 <span>Gender</span>
                             </div>
                             <div class="radio">
-                                    <input id="gen1" name="gen" type="radio" value="Male" required>
+                                    <input id="gen1" name="gen" type="radio" value="Male" >
                                     <label for="gen1" class="radio-label">Male</label>
-                                    <input id="gen2" name="gen" type="radio" value="Female"required>
+                                    <input id="gen2" name="gen" type="radio" value="Female">
                                     <label  for="gen2" class="radio-label">Female</label>
+                                    <p id="sgender" style="color : red">Gender is required</p>
                             </div>
                             
                         </div>
                 
                         <div id="clg">
+                            
+
                             <div>
                                 <span>Institute</span>
                             </div>
                             <div class="radio">
-                                <input id="clg1" name="college" type="radio" value="BIT Student" onclick="autoFill()" required>
+                                <input id="clg1" name="college" type="radio" value="BIT Student" onclick="autoFill()" >
                                 <label for="clg1" class="radio-label">BIT Mesra Student</label>
-                                <input id="clg2" name="college" type="radio" value="other" onclick="erase()" required>
+                                <input id="clg2" name="college" type="radio" value="other" onclick="erase()" >
                                 <label  for="clg2" class="radio-label">Other</label>
+                                <p id="scollege" style="color : red">College is required</p>
                             </div>
                         </div>
                     </div>
@@ -153,14 +168,18 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                             
                     
                     <div>
+                        
+
                         <div class="input-wrap">
                             <div>
                                 <span>Institute Name</span>
                             </div>
                             <div class="field-wrap" style="display: inline">
-                                <input type="text" name="clgname" id="clgname" required>
+                                <input type="text" name="clgname" id="clgname" >
                             </div>
                             <hr style="border: 1px solid black">
+                            <p id="sclgname" style="color : red">Institute Name is required</p>
+
                         </div>
                         
                         <div class="input-wrap">
@@ -168,9 +187,11 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                                 <span>Institute City</span>
                             </div>
                             <div class="field-wrap" style="display: inline">
-                                <input type="text" name="clgcity" id="clgcity" required>
+                                <input type="text" name="clgcity" id="clgcity" >
                             </div>
                             <hr style="border: 1px solid black">
+                            <p id="sclgcity" style="color : red"> Institute City  is required</p>
+
                         </div>
 
                         <div class="input-wrap">
@@ -178,9 +199,11 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                                 <span>Institute State</span>
                             </div>
                             <div class="field-wrap" style="display: inline">
-                                <input type="text" name="clgstate" id="clgstate" required>
+                                <input type="text" name="clgstate" id="clgstate" >
                             </div>
                             <hr style="border: 1px solid black">
+                            <p id="sclgstate" style="color : red"> Institute State  is required</p>
+
                         </div>
                         
                         <div class="input-wrap">
@@ -188,9 +211,11 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                                 <span>Institute Roll No</span>
                             </div>
                             <div class="field-wrap" style="display: inline">
-                                <input type="text" name="clgroll" id="clgroll" required>
+                                <input type="text" name="clgroll" id="clgroll" >
                             </div>
                             <hr style="border: 1px solid black">
+                            <p id="sclgroll" style="color : red"> Institute Roll is required</p>
+
                         </div>
                     </div>
 
