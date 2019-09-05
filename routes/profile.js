@@ -35,9 +35,9 @@ router.post('/teamRegister', verifyToken, (req, res) => {
     try {
       const userId = req.userId;
       let user = null;
-      await UserModel.findById(userId, (err, res) => {
-        if (err || !res) return res.json({ status: 500, message: "error on the server" });
-        user = res;
+      await UserModel.findById(userId, (err, foundUser) => {
+        if (err || !foundUser) return res.json({ status: 500, message: "error on the server" });
+        user = foundUser;
       });
 
       //checking if team name has minimum 4 characters
@@ -45,9 +45,9 @@ router.post('/teamRegister', verifyToken, (req, res) => {
       if (teamName.length < 4) return res.json({ status: 422, message: "Email address must contain at least 4 characters!" });
 
       //checking if team name is unique
-      await TeamModel.findOne({ teamName: teamName }, (err, res) => {
+      await TeamModel.findOne({ teamName: teamName }, (err, foundTeam) => {
         if (err) return res.json({ status: 500, message: "error on the server" });
-        if (res) return res.json({ status: 415, message: "Team name already used!" });
+        if (foundTeam) return res.json({ status: 415, message: "Team name already used!" });
       });
 
       const teamSize = req.body.teamSize;
@@ -61,123 +61,126 @@ router.post('/teamRegister', verifyToken, (req, res) => {
       panIdSet.add(req.body.member6PanId);
       if (teamSize > 6) panIdSet.add(req.body.member7PanId);
       if (teamSize > 7) panIdSet.add(req.body.member8PanId);
-      if (panIdSet.size() < teamSize) return res.json({ status: 415, message: "Ensure that unique pantheon ids are used for team regsitration!" });
+      if (panIdSet.size < teamSize) return res.json({ status: 415, message: "Ensure that unique pantheon ids are used for team regsitration!" });
 
       //check all email ids are unique
       let emailSet = new Set();
-      emailSet.add(req.body.member1email);
-      emailSet.add(req.body.member2email);
-      emailSet.add(req.body.member3email);
-      emailSet.add(req.body.member4email);
-      emailSet.add(req.body.member5email);
-      emailSet.add(req.body.member6email);
-      if (teamSize > 6) emailSet.add(req.body.member7email);
-      if (teamSize > 7) emailSet.add(req.body.member8email);
-      if (emailSet.size() < teamSize) return res.json({ status: 415, message: "Ensure that unique email ids are used for team regsitration!" });
+      emailSet.add(req.body.member1Email);
+      emailSet.add(req.body.member2Email);
+      emailSet.add(req.body.member3Email);
+      emailSet.add(req.body.member4Email);
+      emailSet.add(req.body.member5Email);
+      emailSet.add(req.body.member6Email);
+      if (teamSize > 6) emailSet.add(req.body.member7Email);
+      if (teamSize > 7) emailSet.add(req.body.member8Email);
+      if (emailSet.size < teamSize) return res.json({ status: 415, message: "Ensure that unique email ids are used for team regsitration!" });
 
       //check if any member is already in some team and email and panIds are in sync
       async function validateMembers(key, panId, email) {
-        await UserModel.findOne({ email: email }, (err, res) => {
+        await UserModel.findOne({ email: email }, (err, foundUser) => {
           if (err) return res.json({ status: 500, message: "Error on the server!" });
-          if (!res) return res.json({ status: 415, message: `Wrong credentials of member ${key}` });
-          if (res.email !== email) return res.json({ status: 415, message: `Wrong credentials of member ${key}` });
-          if (res.teamMongoId) return res.json({ status: 415, message: `Member ${key} is already registered in some another team!` });
+          if (!foundUser) return res.json({ status: 415, message: `Wrong credentials of member ${key}` });
+          if (foundUser.email !== email) return res.json({ status: 415, message: `Wrong credentials of member ${key}` });
+          if (foundUser.teamMongoId) return res.json({ status: 415, message: `Member ${key} is already registered in some another team!` });
         });
       }
-      validateMembers(1, req.body.member1PanId, req.body.member1email);
-      validateMembers(2, req.body.member2PanId, req.body.member2email);
-      validateMembers(3, req.body.member3PanId, req.body.member3email);
-      validateMembers(4, req.body.member4PanId, req.body.member4email);
-      validateMembers(5, req.body.member5PanId, req.body.member5email);
-      validateMembers(6, req.body.member6PanId, req.body.member6email);
-      if (teamSize > 6) validateMembers(7, req.body.member7PanId, req.body.member7email);
-      if (teamSize > 7) validateMembers(8, req.body.member8PanId, req.body.member8email);
-
-      //increment team id couter
-      let teamCount = -1;
-      await TeamIdCounter.findOne({ find: 'teamId' }, (err, res) => {
-        if (err || !res) return res.json({ status: 500, message: "Error on the server!" });
-        teamCount = res.count + 1;
-        res.count = teamCount;
-        res.save();
-      });
+      validateMembers(1, req.body.member1PanId, req.body.member1Email);
+      validateMembers(2, req.body.member2PanId, req.body.member2Email);
+      validateMembers(3, req.body.member3PanId, req.body.member3Email);
+      validateMembers(4, req.body.member4PanId, req.body.member4Email);
+      validateMembers(5, req.body.member5PanId, req.body.member5Email);
+      validateMembers(6, req.body.member6PanId, req.body.member6Email);
+      if (teamSize > 6) validateMembers(7, req.body.member7PanId, req.body.member7Email);
+      if (teamSize > 7) validateMembers(8, req.body.member8PanId, req.body.member8Email);
 
 
       let newTeam = new TeamModel({
         teamName: req.body.teamName,
-        teamId: req.body.teamCount,
         teamSize: req.body.teamSize
       });
 
+      let teamMembers = [];
       //member1
       let member = {
         userPanId: req.body.member1PanId,
-        userEmail: req.body.member1email
+        userEmail: req.body.member1Email
       };
-      newTeam.members.push(member);
+      teamMembers.push({...member});
 
       //member2
-      member.userEmail = req.body.member2email;
+      member.userEmail = req.body.member2Email;
       member.userPanId = req.body.member2PanId;
-      newTeam.members.push(member);
+      teamMembers.push({...member});
 
       //member3
-      member.userEmail = req.body.member3email;
+      member.userEmail = req.body.member3Email;
       member.userPanId = req.body.member3PanId;
-      newTeam.members.push(member);
+      teamMembers.push({...member});
 
       //member4
-      member.userEmail = req.body.member4email;
+      member.userEmail = req.body.member4Email;
       member.userPanId = req.body.member4PanId;
-      newTeam.members.push(member);
+      teamMembers.push({...member});
 
       //member5
-      member.userEmail = req.body.member5email;
+      member.userEmail = req.body.member5Email;
       member.userPanId = req.body.member5PanId;
-      newTeam.members.push(member);
+      teamMembers.push({...member});
 
       //member6
-      member.userEmail = req.body.member6email;
+      member.userEmail = req.body.member6Email;
       member.userPanId = req.body.member6PanId;
-      newTeam.members.push(member);
+      teamMembers.push({...member});
 
       if (teamSize > 6) {
         //member7
-        member.userEmail = req.body.member7email;
+        member.userEmail = req.body.member7Email;
         member.userPanId = req.body.member7PanId;
-        newTeam.members.push(member);
+        teamMembers.push({...member});
       }
 
       if (teamSize > 7) {
         //member8
-        member.userEmail = req.body.member8email;
+        member.userEmail = req.body.member8Email;
         member.userPanId = req.body.member8PanId;
-        newTeam.members.push(member);
+        teamMembers.push({...member});
       }
 
+      newTeam.teamMembers = [...teamMembers];
 
-      newTeam.save();
+      //increment team id couter
+      let teamCount = -1;
+      await TeamIdCounter.findOne({ find: 'teamId' }, (err, foundTeam) => {
+        if (err || !foundTeam) return res.json({ status: 500, message: "Error on the server!" });
+        teamCount = foundTeam.count + 1;
+        foundTeam.count = teamCount;
+        foundTeam.save();
+      });
 
-      await TeamModel.findOne({ teamId: teamCount }, (err, res) => {
-        if (err || !res) return res.json({ status: 500, message: "Error on the server!" });
-        const id = res._id;
+      newTeam.teamId = teamCount;
+
+
+      await newTeam.save((err, room)=>{
+        if(err) return res.json({ status: 500, message: "Error while saving the team on db!" });
+        const { _id } = room;
 
         //setting member1 as leader and its teamMongoId
         user.isTeamLeader = true;
-        user.teamMongoId = id;
+        user.teamMongoId = _id;
         user.save();
 
         //setting  teamMongoId of other users
         async function includeInTeam() {
           try {
-            await UserModel.findOneAndUpdate({ pantheonId: req.body.member1PanId }, { $set: { teamMongoId: id } });
-            await UserModel.findOneAndUpdate({ pantheonId: req.body.member2PanId }, { $set: { teamMongoId: id } });
-            await UserModel.findOneAndUpdate({ pantheonId: req.body.member3PanId }, { $set: { teamMongoId: id } });
-            await UserModel.findOneAndUpdate({ pantheonId: req.body.member4PanId }, { $set: { teamMongoId: id } });
-            await UserModel.findOneAndUpdate({ pantheonId: req.body.member5PanId }, { $set: { teamMongoId: id } });
-            await UserModel.findOneAndUpdate({ pantheonId: req.body.member6PanId }, { $set: { teamMongoId: id } });
-            if (teamSize > 6) await UserModel.findOneAndUpdate({ pantheonId: req.body.member7PanId }, { $set: { teamMongoId: id } });
-            if (teamSize > 7) await UserModel.findOneAndUpdate({ pantheonId: req.body.member8PanId }, { $set: { teamMongoId: id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member1PanId }, { $set: { teamMongoId: _id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member2PanId }, { $set: { teamMongoId: _id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member3PanId }, { $set: { teamMongoId: _id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member4PanId }, { $set: { teamMongoId: _id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member5PanId }, { $set: { teamMongoId: _id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member6PanId }, { $set: { teamMongoId: _id } });
+            if (teamSize > 6) await UserModel.findOneAndUpdate({ pantheonId: req.body.member7PanId }, { $set: { teamMongoId: _id } });
+            if (teamSize > 7) await UserModel.findOneAndUpdate({ pantheonId: req.body.member8PanId }, { $set: { teamMongoId: _id } });
+            res.json({status: 200, message: "Team registration complete!"});
           }
           catch (er) {
             console.log(er.message);
@@ -185,8 +188,39 @@ router.post('/teamRegister', verifyToken, (req, res) => {
           }
         }
 
+        includeInTeam();
 
       });
+
+      // await TeamModel.findOne({ teamId: teamCount }, (err, res) => {
+      //   if (err || !res) return res.json({ status: 500, message: "Error on the server!" });
+      //   const id = res._id;
+
+      //   //setting member1 as leader and its teamMongoId
+      //   user.isTeamLeader = true;
+      //   user.teamMongoId = id;
+      //   user.save();
+
+      //   //setting  teamMongoId of other users
+      //   async function includeInTeam() {
+      //     try {
+      //       await UserModel.findOneAndUpdate({ pantheonId: req.body.member1PanId }, { $set: { teamMongoId: id } });
+      //       await UserModel.findOneAndUpdate({ pantheonId: req.body.member2PanId }, { $set: { teamMongoId: id } });
+      //       await UserModel.findOneAndUpdate({ pantheonId: req.body.member3PanId }, { $set: { teamMongoId: id } });
+      //       await UserModel.findOneAndUpdate({ pantheonId: req.body.member4PanId }, { $set: { teamMongoId: id } });
+      //       await UserModel.findOneAndUpdate({ pantheonId: req.body.member5PanId }, { $set: { teamMongoId: id } });
+      //       await UserModel.findOneAndUpdate({ pantheonId: req.body.member6PanId }, { $set: { teamMongoId: id } });
+      //       if (teamSize > 6) await UserModel.findOneAndUpdate({ pantheonId: req.body.member7PanId }, { $set: { teamMongoId: id } });
+      //       if (teamSize > 7) await UserModel.findOneAndUpdate({ pantheonId: req.body.member8PanId }, { $set: { teamMongoId: id } });
+      //     }
+      //     catch (er) {
+      //       console.log(er.message);
+      //       return res.json({ status: 500, message: "Error on the server!" });
+      //     }
+      //   }
+
+      //   includeInTeam();
+      // });
     }
     catch (err) {
       console.log(err.message);
