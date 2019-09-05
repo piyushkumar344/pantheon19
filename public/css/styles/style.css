@@ -357,3 +357,26 @@ section {
     }
         
 }
+
+
+.nav-links{
+
+    margin-top: 4.5rem;
+    position: absolute;
+    margin-right: 1.0rem;
+    margin-left: 0;
+
+    float: right;
+    z-index: 0;
+    right: 0;
+    color: white;
+    /* background-color: blue; */
+    overflow-x: hidden;
+
+}
+
+.icon-icon{
+    padding: 0.4rem;
+    /* padding: 0; !Important */
+    margin-bottom: 0; !important
+}
