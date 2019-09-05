@@ -3,11 +3,11 @@ body {
     overflow-x: hidden;
 }
 
-#container {
+.dontainer {
     position: relative;
 }
 
-#container canvas {
+.dontainer canvas {
     position: fixed;
     z-index: -1000;
     /* position: absolute; */
