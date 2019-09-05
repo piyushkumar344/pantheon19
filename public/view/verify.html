@@ -80,33 +80,42 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                 <form action="#" onsubmit=event.preventDefault()>
                     <div class="form-group">
                         <label for="email" class="control-label">Email</label>
-                        <input type="email" id="email" disabled />
+                        <input type="email" id="email" />
+                        <p id="sEmail" style="color : red">Email is required</p>
                     </div>
 
                     <div class="form-group">
                         <label for="eotp" class="control-label">Email OTP</label>
-                        <input type="text" id="eotp" required />
+                        <input type="text" id="eotp"  />
+                        <p id="sotp" style="color : red">OTP is required</p>
+                        <p id="sotp1" style="color : red">OTP  is incorrect</p>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="control-label">Full Name</label>
-                        <input type="text" id="name" required />
+                        <input type="text" id="name"  />
+                        <p id="sname" style="color : red">Name  is required</p>
                     </div>
 
                     <div class="form-group">
                         <label for="mobile" class="control-label">Mobile</label>
-                        <input type="text" id="mobile" required />
+                        <input type="text" id="mobile"  />
+                        <p id="smobile" style="color : red">Mobile number is required</p>
+                        <p id="smobile1" style="color : red">Mobile number must be of 10 digit </p>
+                        <p id="smobile2" style="color : red">Mobile number must contain only digit </p>
+
                     </div>
 
                     <div class="form-group">
                         <div id="gender">
                             <span>Gender</span>
                             <label>
-                                <input type="radio" name="gen" id="gen1" value="Male" required>Male
+                                <input type="radio" name="gen" id="gen1" value="Male" >Male
                             </label>
                             <label>
-                                <input type="radio" name="gen" id="gen2" value="Female" required>Female
+                                <input type="radio" name="gen" id="gen2" value="Female" >Female
                             </label>
+                            <p id="sgender" style="color : red">Gender is required</p>
                         </div>
                     </div>
 
@@ -114,30 +123,38 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
                         <div id="clg">
                             <span>Institute</span>
                             <label>
-                                <input type="radio" name="college" id="clg1" value="BIT Student" required>BIT Mesra Student
+                                <input type="radio" name="college" id="clg1" value="BIT Student" >BIT Mesra Student
                             </label>
                             <label>
-                                <input type="radio" name="college" id="clg2" value="other" required>Other
+                                <input type="radio" name="college" id="clg2" value="other" >Other
                             </label>
+                            <p id="scollege" style="color : red">College is required</p>
+
                         </div>
                     </div>
 
                     <div>
                         <div class="form-group">
                             <label for="clgname" class="control-label">Institute Name</label>
-                            <input type="text" name="clgname" id="clgname" required>
+                            <input type="text" name="clgname" id="clgname" >
+                            <p id="sclgname" style="color : red">Institute Name is required</p>
                         </div>
                         <div class="form-group">
                             <label for="clgcity" class="control-label">Institute City</label>
-                            <input type="text" name="clgcity" id="clgcity" required>
+                            <input type="text" name="clgcity" id="clgcity" >
+                            <p id="sclgcity" style="color : red"> Institute City  is required</p>
                         </div>
                         <div class="form-group">
                             <label for="clgstate" class="control-label">Institute State</label>
-                            <input type="text" name="clgstate" id="clgstate" required>
+                            <input type="text" name="clgstate" id="clgstate" >
+                            <p id="sclgstate" style="color : red"> Institute State  is required</p>
+
                         </div>
                         <div class="form-group">
                             <label for="clgroll" class="control-label">Institute Roll No</label>
-                            <input type="text" name="clgroll" id="clgroll" required>
+                            <input type="text" name="clgroll" id="clgroll" >
+                            <p id="sclgroll" style="color : red"> Institute Roll is required</p>
+
                         </div>
                     </div>
 
