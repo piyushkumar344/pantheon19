@@ -5,6 +5,11 @@
     src: url("../../fonts/baron-neue-regular.otf") format("opentype");
 }
 
+@font-face {
+    font-family: "formation-bold";
+    src: url("../../fonts/Formation UltraBold.ttf") format("opentype");
+}
+
 body {
     font-family: "baron-neue", "Helvetica", "Arial";
     font-weight: 400;
@@ -87,8 +92,9 @@ section {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    font-family: Montserrat;
-    color: #fff;
+    font-family: "formation-bold";
+    font-weight: 800;
+    color: #fff;    
 }
 
 /* home-section */
@@ -131,14 +137,14 @@ section {
     color: #fff;
 }
 
-.section-image {
+/*.section-image {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
-}
-/* 
+    padding: 30px;
+}*/
+
 .container {
     color: black;
     border-radius: 10px;
@@ -318,4 +324,36 @@ section {
     .section-description {
         font-size: 20px;
     }
+}
+
+@media only screen and (min-width: 600px) {
+    .s1{
+        height:400px;
+        width:300px;
+        
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .section-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+        
+}
+
+
+@media only screen and (min-width: 600px) {
+    .section-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+    }
+        
 }
