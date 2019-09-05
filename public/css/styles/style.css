@@ -87,7 +87,7 @@ section {
     padding-top: 5%;
 }
 
-.section-heading  {
+.section-heading {
     padding: 20px;
     display: flex;
     flex-direction: row;
@@ -95,13 +95,12 @@ section {
     font-family: "formation-bold";
     font-weight: 800;
     color: #fff;
-      
 }
 
-.section-heading h1{
+.section-heading h1 {
     font-weight: 800 !important;
-    font-size: 2em; 
-    text-decoration: underline; 
+    font-size: 2em;
+    text-decoration: underline;
 }
 
 /* home-section */
@@ -278,6 +277,14 @@ section {
     background-color: #212529;
 }
 
+.for-small {
+    display: none;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.8em;
+}
+
 /*responsive section*/
 
 /* Extra small devices (phones, 600px and down) */
@@ -290,10 +297,23 @@ section {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
-@media only screen and (min-width: 600px) {}
+@media only screen and (max-width: 575px) {
+    .for-large {
+        display: none;
+    }
+    .for-small {
+        display: block;
+    }
+    .footer-copyright {
+        margin-top: 0;
+        font-size: 0.8em;
+    }
+}
 
-.section-description {
-    font-size: 12px;
+@media only screen and (min-width: 600px) {
+    .section-description {
+        font-size: 12px;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -336,7 +356,6 @@ section {
     }
 }*/
 
-
 @media only screen and (max-width: 768px) {
     .section-image {
         display: flex;
@@ -345,9 +364,7 @@ section {
         align-items: center;
         padding: 5px;
     }
-        
 }
-
 
 @media only screen and (min-width: 768px) {
     .section-image {
@@ -356,28 +373,17 @@ section {
         justify-content: center;
         align-items: center;
         padding: 20px;
-
     }
-        
 }
 
 @media only screen and (min-width: 768px) {
     .s1 {
-        
-        
-        height:400px;
-        
-
+        height: 400px;
     }
-        
 }
 
 @media only screen and (max-width: 760px) {
     .s1 {
-        
-       
-        height:300px;
-
+        height: 300px;
     }
-        
 }
