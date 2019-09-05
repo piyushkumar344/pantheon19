@@ -24,6 +24,7 @@ router.get('/user', verifyToken, (req, res) => {
       });
     } catch (e) {
       res.send(e.message);
+      return res.json({ status: 500, message: "Error on the server!" });
     }
   }
   getUser();
@@ -178,8 +179,9 @@ router.post('/teamRegister', verifyToken, (req, res) => {
             if (teamSize > 6) await UserModel.findOneAndUpdate({ pantheonId: req.body.member7PanId }, { $set: { teamMongoId: id } });
             if (teamSize > 7) await UserModel.findOneAndUpdate({ pantheonId: req.body.member8PanId }, { $set: { teamMongoId: id } });
           }
-          catch(er){
+          catch (er) {
             console.log(er.message);
+            return res.json({ status: 500, message: "Error on the server!" });
           }
         }
 
@@ -188,10 +190,13 @@ router.post('/teamRegister', verifyToken, (req, res) => {
     }
     catch (err) {
       console.log(err.message);
+      return res.json({ status: 500, message: "Error on the server!" });
     }
   }
 
   teamRegister();
 });
+
+
 
 module.exports = router;
