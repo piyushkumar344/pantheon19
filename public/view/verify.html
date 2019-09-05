@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="../css/verify.css">
 
+    <link rel="stylesheet" href="../css/login2.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -78,81 +80,140 @@ background: linear-gradient(to right, #1565C0, #b92b27); /* W3C, IE 10+/ Edge, F
             <div class="form-container sign-in-container">
                 <h1 style="text-align: center; font-weight: bolder">Personal Details</h1>
                 <form action="#" onsubmit=event.preventDefault()>
-                    <div class="form-group">
-                        <label for="email" class="control-label">Email</label>
-                        <input type="email" id="email" />
-                        <p id="sEmail" style="color : red">Email is required</p>
+                   
+
+                    
+                        
+                    <div class="input-wrap">
+                        <div>
+                            <span>Email</span>
+                        </div>
+                        <div class="field-wrap" style="display: inline">
+                            <input type="email" id="email" disabled />
+                        </div>
+                        <hr style="border: 1px solid black">
+
                     </div>
 
-                    <div class="form-group">
-                        <label for="eotp" class="control-label">Email OTP</label>
-                        <input type="text" id="eotp"  />
+                    <div class="input-wrap">
+                        <div>
+                            <span>Email OTP</span>
+                        </div>
+                        <div class="field-wrap" style="display: inline">
+                            <input type="text" id="eotp" />
+                        </div>
+                        <hr style="border: 1px solid black">
                         <p id="sotp" style="color : red">OTP is required</p>
                         <p id="sotp1" style="color : red">OTP  is incorrect</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="name" class="control-label">Full Name</label>
-                        <input type="text" id="name"  />
+                    <div class="input-wrap">
+                        <div>
+                            <span>Full Name</span>
+                        </div>
+                        <div class="field-wrap" style="display: inline">
+                            <input type="text" id="name" />
+                        </div>
+                        <hr style="border: 1px solid black">
                         <p id="sname" style="color : red">Name  is required</p>
+
                     </div>
 
-                    <div class="form-group">
-                        <label for="mobile" class="control-label">Mobile</label>
-                        <input type="text" id="mobile"  />
+                    <div class="input-wrap">
+                        <div>
+                            <span>Mobile</span>
+                        </div>
+                        <div class="field-wrap" style="display: inline">
+                            <input type="text" id="mobile"  />
+                        </div>
+                        <hr style="border: 1px solid black">
                         <p id="smobile" style="color : red">Mobile number is required</p>
                         <p id="smobile1" style="color : red">Mobile number must be of 10 digit </p>
                         <p id="smobile2" style="color : red">Mobile number must contain only digit </p>
-
                     </div>
 
-                    <div class="form-group">
+                    <div class="input-wrap">
                         <div id="gender">
-                            <span>Gender</span>
-                            <label>
-                                <input type="radio" name="gen" id="gen1" value="Male" >Male
-                            </label>
-                            <label>
-                                <input type="radio" name="gen" id="gen2" value="Female" >Female
-                            </label>
-                            <p id="sgender" style="color : red">Gender is required</p>
+                           
+                            <div>
+                                <span>Gender</span>
+                            </div>
+                            <div class="radio">
+                                    <input id="gen1" name="gen" type="radio" value="Male" >
+                                    <label for="gen1" class="radio-label">Male</label>
+                                    <input id="gen2" name="gen" type="radio" value="Female">
+                                    <label  for="gen2" class="radio-label">Female</label>
+                                    <p id="sgender" style="color : red">Gender is required</p>
+                            </div>
+                            
                         </div>
-                    </div>
-
-                    <div class="form-group">
+                
                         <div id="clg">
-                            <span>Institute</span>
-                            <label>
-                                <input type="radio" name="college" id="clg1" value="BIT Student" >BIT Mesra Student
-                            </label>
-                            <label>
-                                <input type="radio" name="college" id="clg2" value="other" >Other
-                            </label>
-                            <p id="scollege" style="color : red">College is required</p>
+                            
 
+                            <div>
+                                <span>Institute</span>
+                            </div>
+                            <div class="radio">
+                                <input id="clg1" name="college" type="radio" value="BIT Student" onclick="autoFill()" >
+                                <label for="clg1" class="radio-label">BIT Mesra Student</label>
+                                <input id="clg2" name="college" type="radio" value="other" onclick="erase()" >
+                                <label  for="clg2" class="radio-label">Other</label>
+                                <p id="scollege" style="color : red">College is required</p>
+                            </div>
                         </div>
                     </div>
 
+                    
+                            
+                    
                     <div>
-                        <div class="form-group">
-                            <label for="clgname" class="control-label">Institute Name</label>
-                            <input type="text" name="clgname" id="clgname" >
+                        
+
+                        <div class="input-wrap">
+                            <div>
+                                <span>Institute Name</span>
+                            </div>
+                            <div class="field-wrap" style="display: inline">
+                                <input type="text" name="clgname" id="clgname" >
+                            </div>
+                            <hr style="border: 1px solid black">
                             <p id="sclgname" style="color : red">Institute Name is required</p>
+
                         </div>
-                        <div class="form-group">
-                            <label for="clgcity" class="control-label">Institute City</label>
-                            <input type="text" name="clgcity" id="clgcity" >
+                        
+                        <div class="input-wrap">
+                            <div>
+                                <span>Institute City</span>
+                            </div>
+                            <div class="field-wrap" style="display: inline">
+                                <input type="text" name="clgcity" id="clgcity" >
+                            </div>
+                            <hr style="border: 1px solid black">
                             <p id="sclgcity" style="color : red"> Institute City  is required</p>
+
                         </div>
-                        <div class="form-group">
-                            <label for="clgstate" class="control-label">Institute State</label>
-                            <input type="text" name="clgstate" id="clgstate" >
+
+                        <div class="input-wrap">
+                            <div>
+                                <span>Institute State</span>
+                            </div>
+                            <div class="field-wrap" style="display: inline">
+                                <input type="text" name="clgstate" id="clgstate" >
+                            </div>
+                            <hr style="border: 1px solid black">
                             <p id="sclgstate" style="color : red"> Institute State  is required</p>
 
                         </div>
-                        <div class="form-group">
-                            <label for="clgroll" class="control-label">Institute Roll No</label>
-                            <input type="text" name="clgroll" id="clgroll" >
+                        
+                        <div class="input-wrap">
+                            <div>
+                                <span>Institute Roll No</span>
+                            </div>
+                            <div class="field-wrap" style="display: inline">
+                                <input type="text" name="clgroll" id="clgroll" >
+                            </div>
+                            <hr style="border: 1px solid black">
                             <p id="sclgroll" style="color : red"> Institute Roll is required</p>
 
                         </div>

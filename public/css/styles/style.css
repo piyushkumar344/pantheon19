@@ -5,6 +5,11 @@
     src: url("../../fonts/baron-neue-regular.otf") format("opentype");
 }
 
+@font-face {
+    font-family: "formation-bold";
+    src: url("../../fonts/Formation UltraBold.ttf") format("opentype");
+}
+
 body {
     font-family: "baron-neue", "Helvetica", "Arial";
     font-weight: 400;
@@ -82,12 +87,21 @@ section {
     padding-top: 5%;
 }
 
-.section-heading {
+.section-heading  {
     padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    font-family: Montserrat;
+    font-family: "formation-bold";
+    font-weight: 800;
+    color: #fff;
+      
+}
+
+.section-heading h1{
+    font-weight: 800 !important;
+    font-size: 2em; 
+    text-decoration: underline; 
 }
 
 /* home-section */
@@ -126,63 +140,23 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: justify;
+    color: #fff;
 }
 
-.section-image {
+/*.section-image {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
-}
+    padding: 30px;
+}*/
 
 .container {
     color: black;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-#about .container {
-    background: #0f2027;
-    background: -webkit-linear-gradient( to right, #2c5364, #203a43, #0f2027);
-    background: linear-gradient( to right, #2c5364, #203a43, #0f2027);
-}
-
-/* about-section */
-
-#about .container {
-    background: #0f2027;
-    background: -webkit-linear-gradient( to right, #2c5364, #203a43, #0f2027);
-    background: linear-gradient( to right, #2c5364, #203a43, #0f2027);
-}
-
-/* theme-section */
-
-#theme .container {
-    background-image: linear-gradient( to left bottom, #25671f, #438026, #63992b, #85b231, #aacb36);
-}
-
-/* events-section */
-
-#events .container {
-    background-image: linear-gradient( to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-}
-
-/*social */
-
-#social .container {
-    background-image: linear-gradient( to bottom, #370514, #63052e, #90024f, #bf0278, #eb12a9);
-}
-
-#social1 .container {
-    background-image: linear-gradient( to left bottom, #940e88, #5e6ac7, #389cd6, #7bc3d1, #cce1dc);
-}
-
-/* team-section */
-
-#team .container {
-    background-image: linear-gradient( to right top, #70c6c9, #6cc3d2, #6fbfda, #78badf, #85b4e1, #8daee4, #be92de, #d583d2, #ea72be, #fb5fa3);
-}
+} */
 
 /* sponsors-section */
 
@@ -357,4 +331,66 @@ section {
     .section-description {
         font-size: 20px;
     }
+}
+
+/*@media only screen and (max-width: 768px) {
+    .s1{
+        height:280px;
+        
+        
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .s1{
+        height:400px;
+    
+        
+    }
+}*/
+
+
+@media only screen and (max-width: 768px) {
+    .section-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+        
+}
+
+
+@media only screen and (min-width: 768px) {
+    .section-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+
+    }
+        
+}
+
+@media only screen and (min-width: 768px) {
+    .s1 {
+        
+        
+        height:400px;
+        
+
+    }
+        
+}
+
+@media only screen and (max-width: 760px) {
+    .s1 {
+        
+       
+        height:300px;
+
+    }
+        
 }

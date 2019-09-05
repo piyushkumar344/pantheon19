@@ -1,6 +1,6 @@
 let url = "http://192.168.158.230:4000/auth";
 
-$("#sEmail").hide();
+
 $("#sotp").hide();
 $("#sotp1").hide();
 $("#sname").hide();
@@ -15,7 +15,6 @@ $('#sgender').hide();
 $('#scollege').hide();
 
 function verifyForm() {
-    $("#sEmail").hide();
     $("#sotp").hide();
     $("#sotp1").hide();
     $("#sname").hide();
@@ -40,10 +39,7 @@ function verifyForm() {
     let collegestate= $('#clgstate').val().trim();
     let collegeroll= $('#clgroll').val().trim();
     
-    if (email === "") {
-        $("#sEmail").show();
-        return;
-    }
+    
     
     if(otp ===""){
         $("#sotp").show();
@@ -147,4 +143,25 @@ function verifyForm() {
             console.log(err);
         }
     });
+}
+
+
+function autoFill() {
+    $('#clgname').val("Birla Institute of Technology") ;
+    $('#clgcity').val("Ranchi") ;
+    $('#clgstate').val("Jharkhand") ;
+
+    $( "#clgname" ).prop( "disabled", true );
+    $( "#clgcity" ).prop( "disabled", true );
+    $( "#clgstate" ).prop( "disabled", true );
+}
+
+function erase() {
+    $( "#clgname" ).prop( "disabled", false );
+    $( "#clgcity" ).prop( "disabled", false );
+    $( "#clgstate" ).prop( "disabled", false );
+
+    $('#clgname').val("") ;
+    $('#clgcity').val("") ;
+    $('#clgstate').val("") ;
 }
