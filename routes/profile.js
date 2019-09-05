@@ -30,7 +30,7 @@ router.get('/user', verifyToken, (req, res) => {
 });
 
 router.post('/teamRegister', verifyToken, (req, res) => {
-  async function teamRegister () {
+  async function teamRegister() {
     try {
       const userId = req.userId;
       let user = null;
@@ -75,7 +75,7 @@ router.post('/teamRegister', verifyToken, (req, res) => {
       if (emailSet.size() < teamSize) return res.json({ status: 415, message: "Ensure that unique email ids are used for team regsitration!" });
 
       //check if any member is already in some team and email and panIds are in sync
-      function validateMembers(key, panId, email) {
+      async function validateMembers(key, panId, email) {
         await UserModel.findOne({ email: email }, (err, res) => {
           if (err) return res.json({ status: 500, message: "Error on the server!" });
           if (!res) return res.json({ status: 415, message: `Wrong credentials of member ${key}` });
@@ -167,18 +167,26 @@ router.post('/teamRegister', verifyToken, (req, res) => {
         user.save();
 
         //setting  teamMongoId of other users
-        await UserModel.findOneAndUpdate({ pantheonId: req.body.member1PanId }, { $set: { teamMongoId: id } });
-        await UserModel.findOneAndUpdate({ pantheonId: req.body.member2PanId }, { $set: { teamMongoId: id } });
-        await UserModel.findOneAndUpdate({ pantheonId: req.body.member3PanId }, { $set: { teamMongoId: id } });
-        await UserModel.findOneAndUpdate({ pantheonId: req.body.member4PanId }, { $set: { teamMongoId: id } });
-        await UserModel.findOneAndUpdate({ pantheonId: req.body.member5PanId }, { $set: { teamMongoId: id } });
-        await UserModel.findOneAndUpdate({ pantheonId: req.body.member6PanId }, { $set: { teamMongoId: id } });
-        if (teamSize > 6) await UserModel.findOneAndUpdate({ pantheonId: req.body.member7PanId }, { $set: { teamMongoId: id } });
-        if (teamSize > 7) await UserModel.findOneAndUpdate({ pantheonId: req.body.member8PanId }, { $set: { teamMongoId: id } });
+        async function includeInTeam() {
+          try {
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member1PanId }, { $set: { teamMongoId: id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member2PanId }, { $set: { teamMongoId: id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member3PanId }, { $set: { teamMongoId: id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member4PanId }, { $set: { teamMongoId: id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member5PanId }, { $set: { teamMongoId: id } });
+            await UserModel.findOneAndUpdate({ pantheonId: req.body.member6PanId }, { $set: { teamMongoId: id } });
+            if (teamSize > 6) await UserModel.findOneAndUpdate({ pantheonId: req.body.member7PanId }, { $set: { teamMongoId: id } });
+            if (teamSize > 7) await UserModel.findOneAndUpdate({ pantheonId: req.body.member8PanId }, { $set: { teamMongoId: id } });
+          }
+          catch(er){
+            console.log(er.message);
+          }
+        }
+
 
       });
     }
-    catch(err){
+    catch (err) {
       console.log(err.message);
     }
   }
