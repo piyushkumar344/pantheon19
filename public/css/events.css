@@ -2,9 +2,12 @@
 body {
     font-family: 'Poppins', sans-serif !important;
     overflow-x: hidden;
-    background: url('../images/hang.jpg') no-repeat center center fixed;
+    background: url('../images/vadim.jpg') no-repeat center center fixed;
 }
 
+main .container img {
+    width: 100%;
+}
 /* 
  * Footer
  */
