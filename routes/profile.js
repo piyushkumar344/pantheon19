@@ -201,23 +201,19 @@ router.post("/eventRegister", verifyToken, async (req, res) => {
                 status: 400,
                 msg: " Only team leader can register for an event "
             });
-
         const eventId = Number(req.body.eventId);
         const event = await EventModel.findOne({ eventId: eventId });
 
         if (!event) {
             return res.json({ status: 400, msg: " No such event exist" });
         }
-
         const team = await TeamModel.findById(user.teamMongoId);
-
         let totalEvents = team.eventsRegistered.length;
         for (let i = 0; i < totalEvents; i++) {
             if (team.eventsRegistered[i].eventId === eventId) {
                 return res.json({ status: 304, msg: " Event already registered" });
             }
         }
-
         team.eventsRegistered.push({ eventId: event.eventId, eventName: event.eventName });
         await team.save();
 
@@ -236,18 +232,13 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
                 status: 400,
                 msg: " Only team leader can register for an event "
             });
-
         const eventId = Number(req.body.eventId);
         const event = await EventModel.findOne({ eventId: eventId });
-
         if (!event) {
             return res.json({ status: 400, msg: " No such event exist" });
         }
-
         const team = await TeamModel.findById(user.teamMongoId);
-
         var index=-1;
-
         for(let i=0;i<team.eventsRegistered.length;i++)
         {
           if(team.eventsRegistered[i].eventId===eventId)
@@ -256,14 +247,12 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
             break;
           }
         }
-  
         if (index > -1) {
           team.eventsRegistered.splice(index, 1);
         }
-
         await team.save();
 
-        return res.json({ status: 200, msg: " Successfully Deregistered" });
+        return res.json({ status: 200, msg: "Successfully Deregistered" });
     } catch (err) {
          console.log(err)
         return res.json({ status: 500, msg: "Internal Server Error" });
