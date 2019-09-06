@@ -169,8 +169,6 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
             const room = await newTeam.save();
             let { _id } = room;
 
-            // _id = mongoose.Types.ObjectId(_id);
-
             //setting member1 as leader and its teamMongoId
             user.isTeamLeader = true;
             user.teamMongoId = _id;
@@ -248,21 +246,26 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
 
         const team = await TeamModel.findById(user.teamMongoId);
 
-        const eventDelete = {
-            eventId: eventId,
-            eventName: event.eventName
-        };
-        team.eventsRegistered.find(eventDelete => {
-            var index = team.eventsRegistered.indexOf(eventDelete);
-            if (index > -1) {
-                team.eventsRegistered.splice(index, 1);
-            }
-        });
+        var index=-1;
+
+        for(let i=0;i<team.eventsRegistered.length;i++)
+        {
+          if(team.eventsRegistered[i].eventId===eventId)
+          {
+            index=i;
+            break;
+          }
+        }
+  
+        if (index > -1) {
+          team.eventsRegistered.splice(index, 1);
+        }
 
         await team.save();
 
         return res.json({ status: 200, msg: " Successfully Deregistered" });
     } catch (err) {
+         console.log(err)
         return res.json({ status: 500, msg: "Internal Server Error" });
     }
 });
