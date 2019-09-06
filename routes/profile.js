@@ -59,14 +59,14 @@ router.post('/teamRegister', verifyToken,
     }
 
     let membersData = [];
-    for(let i=0;i<teamSize;i++){
+    for (let i = 0; i < teamSize; i++) {
       const obj = req.body.membersData[i];
       membersData.push(obj);
     }
     console.log(membersData);
     //check all pantheon ids are unique
     let panIdSet = new Set();
-    for(let i=0;i<teamSize;i++){
+    for (let i = 0; i < teamSize; i++) {
       console.log(membersData[i].pantheonId);
       panIdSet.add(membersData[i].pantheonId);
     }
@@ -74,11 +74,11 @@ router.post('/teamRegister', verifyToken,
     if (panIdSet.size < teamSize) {
       return res.json({ status: 415, message: "Ensure that unique pantheon ids are used for team regsitration!" });
     }
-    
+
 
     //check all email ids are unique
     let emailSet = new Set();
-    for(let i=0;i<teamSize;i++){
+    for (let i = 0; i < teamSize; i++) {
       emailSet.add(membersData[i].email);
     }
     console.log("emailSet", emailSet);
@@ -121,18 +121,18 @@ router.post('/teamRegister', verifyToken,
           });
         }
 
-        for(let i=0;i<teamSize;i++){
-          const obj = validateMembers(i+1, membersData[i].pantheonId, membersData[i].email);
-          if(obj.status) return res.json(obj);
+        for (let i = 0; i < teamSize; i++) {
+          const obj = validateMembers(i + 1, membersData[i].pantheonId, membersData[i].email);
+          if (obj.status) return res.json(obj);
         }
-        
+
 
         let newTeam = new TeamModel({
           teamName: req.body.teamName,
           teamSize: req.body.teamSize
         });
 
-        
+
         newTeam.teamMembers = membersData;
 
         //increment team id couter
@@ -159,10 +159,10 @@ router.post('/teamRegister', verifyToken,
           async function includeInTeam() {
             try {
               let panIdsInTeam = [];
-              for(let i=0;i<teamSize;i++){
+              for (let i = 0; i < teamSize; i++) {
                 panIdsInTeam.push(membersData[i].pantheonId);
               }
-              const modifiedTeams = await UserModel.updateMany({pantheonId: {$in: panIdsInTeam}},{ $set: { teamMongoId: _id } });
+              const modifiedTeams = await UserModel.updateMany({ pantheonId: { $in: panIdsInTeam } }, { $set: { teamMongoId: _id } });
               console.log(modifiedTeams);
 
               return res.json({ status: 200, message: "Team registration complete!" });
