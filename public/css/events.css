@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
 body {
     font-family: 'Poppins', sans-serif !important;
     overflow-x: hidden;
-    background: url('../images/vadim.jpg') no-repeat center center fixed;
+    padding: 0;
+    margin: 0;
 }
 
-main .container img {
+canvas {
+    position: fixed;
     width: 100%;
+    height: 100%;
 }
+
+.back-text {
+    margin: 5%;
+}
+
 /* 
  * Footer
  */
@@ -21,64 +30,60 @@ main .container img {
     color: #fff;
 }
 
-footer .row
-{
+footer .row {
     margin-bottom: 0px;
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
+
 @media only screen and (min-width: 768px) {
-      
-      footer {
+    footer {
         position: absolute;
         bottom: 0;
-        width: 100%;       
-      }
+        width: 100%;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
+
 @media only screen and (min-width: 992px) {
-      
-      footer {
+    footer {
         position: absolute;
         bottom: 0;
-        width: 100%;       
-      }
+        width: 100%;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
+
 @media only screen and (min-width: 1200px) {
-      
-      footer {
+    footer {
         position: absolute;
         bottom: 0;
-        width: 100%;       
-      }
+        width: 100%;
+    }
 }
 
-/* for demo purposes */
-/* body {
-    background: grey;
-  } */
-  
-  .card-block .btn-outline-primary {
+.card-block .btn-outline-primary {
     width: 100%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     bottom: 0;
     left: 0;
     position: absolute;
-  }
-  
-  .card {
+}
+
+.card {
     margin: 20px 0;
-  }
-  
-  /* Flip Cards CSS */
-  .card-container {
+}
+
+/* Flip Cards CSS */
+
+.card-container {
     perspective: 700px;
-  }
-  .card-flip {
+}
+
+.card-flip {
     position: relative;
     width: 100%;
     transform-style: preserve-3d;
@@ -86,28 +91,27 @@ footer .row
     transition: all 0.5s ease-out;
     background: white;
     border: none;
-  }
-  
-  .card-flip div {
+}
+
+.card-flip div {
     backface-visibility: hidden;
     transform-style: preserve-3d;
     height: 100%;
     width: 100%;
     border: none;
-  }
-  
-  .card-flip .front {
+}
+
+.card-flip .front {
     position: relative;
     z-index: 1;
-  }
-  
-  .card-flip .back {
+}
+
+.card-flip .back {
     position: relative;
     z-index: 0;
     transform: rotateY(-180deg);
-  }
-  
-  .card-container:hover .card-flip {
+}
+
+.card-container:hover .card-flip {
     transform: rotateY(180deg);
-  }
-  
+}
