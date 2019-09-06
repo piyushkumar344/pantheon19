@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: #50555a;
+    padding: 10px 20px;
+    background-color: dimgrey
+  }
+  
+  
+  .text-color {
+    color: #46a1de;
+    transition-duration: .5s;
+  }
+  
+  .wrapper {
+    margin: 0 auto;
+  }
+  
+  .tabs {
+    background-color: #46a1de;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+  }
+  .tabs > li {
+    transition-duration: .25s;
+    display: table-cell;
+    list-style: none;
+    text-align: center;
+    padding: 20px 20px 25px 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: white;
+  }
+  .tabs > li:before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 120%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    transition-duration: .25s;
+    border-radius: 5px 5px 0 0;
+  }
+  .tabs > li:hover:before {
+    -webkit-transform: translateY(70%);
+    transform: translateY(70%);
+  }
+  .tabs > li.active {
+    color: #50555a;
+  }
+  .tabs > li.active:before {
+    transition-duration: .5s;
+    background-color: white;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  
+  .tab_content {
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+  }
+  .tab_content > li {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    list-style: none;
+  }
+  .tab_content > li .content_wrapper {
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    padding: 45px 40px 40px 40px;
+    background-color: white;
+  }
+  
+  .content_wrapper h2 {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+    font-weight: 300;
+  }
+  .content_wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .footer-copyright {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    color: #fff;
+}
+  
