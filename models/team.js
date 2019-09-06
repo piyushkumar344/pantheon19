@@ -14,7 +14,7 @@ const teamMemberSchema = new Schema({
 
 const eventRegisteredSchema = new Schema({
     eventId:{
-        type: String,
+        type: Number,
         required: true
     },
     eventName:{
