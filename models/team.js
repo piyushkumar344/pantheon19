@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const teamMemberSchema = new Schema({
-    userPanId:{
+    pantheonId:{
         type: Number,
         required: true
     },
-    userEmail:{
+    email:{
         type: String,
         required: true
     }
