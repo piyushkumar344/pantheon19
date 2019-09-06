@@ -4,16 +4,16 @@ const schema = mongoose.Schema;
 const eventWinnersSchema = new schema({
     teamId:{
         type: Number,
-        required: true
+        // required: true
     },
     teamName:{
         type: String,
-        required: true
+        // required: true
     },
     rank:{
         type: Number,
         enum:[1,2,3],
-        required: true
+        // required: true
     }
 });
 
@@ -25,11 +25,11 @@ const eventSchema = new schema({
     eventType:{
         type: String,
         enum:['formal','informal','flagship'],
-        required: true
+        // required: true
     },
     eventName:{
         type: String,
-        required: true
+        // required: true
     },
     winners:[eventWinnersSchema]
 });

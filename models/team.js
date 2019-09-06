@@ -19,7 +19,7 @@ const eventRegisteredSchema = new Schema({
     },
     eventName:{
         type: String,
-        required: true
+        // required: true
     }
 });
 
