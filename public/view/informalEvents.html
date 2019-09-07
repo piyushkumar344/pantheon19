@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="../css/login2.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -21,272 +19,77 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../css/informalEvents.css">
+    <link rel="stylesheet" href="../css/formalEvents.css">
 </head>
 
 <body>
+    <header>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background: transparent !important;">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="../images/bitLogo.png" alt="BIT Logo" width="50" height="50">
+                </a>
+                <div style="border-left: 2px solid white; height: 50px; margin-right: 10px"></div>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../images/PantheonLogo.png" alt="Pantheon Logo" width="140" height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+                    style="color: black">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    <div class="container">
-        <header>
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background: transparent !important;">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="../images/bitLogo.png" alt="BIT Logo" width="50" height="50">
-                    </a>
-                    <div style="border-left: 2px solid white; height: 50px; margin-right: 10px"></div>
-                    <a class="navbar-brand" href="index.html">
-                        <img src="../images/PantheonLogo.png" alt="Pantheon Logo" width="140" height="100">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
-                        style="color: black">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <!-- Navbar links -->
-                    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>Home</strong></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>About</strong></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>Events</strong></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>Sponsors</strong></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><strong>Register</strong></a>
-                            </li>
-                        </ul>
-                    </div>
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Home</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>About</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Events</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Sponsors</strong></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong>Register</strong></a>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </header>
-
+            </div>
+        </nav>
+    </header>
+    <main>
         <div class="container">
             <div class="row events-main-heading">
-                <h1>INFORMAL EVENTS</h1>
+                <h1>Inormal Events</h1>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event1Modal"
-                        alt="event1 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event1Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event1ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event1ModalTitle">Event1</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event1 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event1 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event2Modal"
-                        alt="event2 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event2Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event2ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event2ModalTitle">Event2</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event2 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event2 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event3Modal"
-                        alt="event3 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event3Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event3ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event3ModalTitle">Event3</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event3 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event3 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event4Modal"
-                        alt="event4 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event4Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event4ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event4ModalTitle">Event4</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event4 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event4 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event5Modal"
-                        alt="event5 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event5Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event5ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event5ModalTitle">Event5</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event5 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event5 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event6Modal"
-                        alt="event6 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event6Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event6ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event6ModalTitle">Event6</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event6 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event6 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event7Modal"
-                        alt="event7 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event7Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event7ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event7ModalTitle">Event7</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event7 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event7 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/ss.png" data-toggle="modal" data-target="#event8Modal"
-                        alt="event8 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event8Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event8ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="event8ModalTitle">Event8</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img class="img-fluid" src="../images/ss.png" alt="event8 poster">
-                                </div>
-                                <div class="modal-footer">
-                                    <p>Event8 description</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row main1" id="main1" >
+                
+            </div>
+    
+    </main>
+
+    <footer>
+        <div class="row">
+            <div class="col-sm-12 footer-copyright">
+                <img class="img-fluid" src="../images/pantheon.png" width="100" height="120" alt="" srcset="">
+                <p>All rights reserved. &copy; Pantheon'19</p>
             </div>
         </div>
-
-        <footer>
-            <div class="row">
-                <div class="col-sm-12 footer-copyright">
-                    <img class="img-fluid" src="../images/pantheon.png" width="100" height="120" alt="" srcset="">
-                    <p>All rights reserved. &copy; Pantheon'19</p>
-                </div>
-            </div>
-        </footer>
-    </div>
+    </footer>
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src='../js/login.js'></script>
+    <script src="informalEvents.js"></script>
 
 </body>
 
 </html>
+
+<script>
+
+
+</script>
