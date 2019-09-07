@@ -1,17 +1,17 @@
 let url1 = "http://192.168.43.253:4000";
 
 $.ajax({
-    url: url1 + "/event/getFormalEvents",
+    url: url1 + "/event/getInformalEvents",
     method: "GET",
     crossDomain: true,
     success: function (res) {
         for (i = 0; i < res.length; i++) {
-            console.log(res[i]);
             $(".main1").append(eventsTemplate(res[i], i));
         }
     },
     error: function (err) {
         console.log(err);
+        alert(err);
     }
 
 
@@ -23,8 +23,8 @@ function eventsTemplate(events, i) {
     return (`
         <div class="col-md-6 col-lg-3 mb-4 events-container">
 
-        <img class="img-fluid" src="../images/events/${events.imageName}" data-toggle="modal"
-        data-target="#event${i}Modal" alt="event1 poster">
+        <img class="img-fluid" src="../images/events/${events.eventName}.png" data-toggle="modal"
+        data-target="#event${i}Modal" alt="event${i} poster">
 
         <div class="modal fade" id="event${i}Modal" tabindex="-1" role="dialog"
         aria-labelledby="event${i}ModalTitle" aria-hidden="true">
@@ -44,25 +44,25 @@ function eventsTemplate(events, i) {
                                 <br>
                                 <h4> <span class="text-underline">Venue:</span> &nbsp ${events.venue} </h4>
                                 <br>
-                                <h4> <span class="text-underline">Duration:</span> &nbsp ${events.duration} </h4>
+                                <h4> <span class="text-underline">Duration:</span> &nbsp ${events.Duration} </h4>
                                 <br>
                                 <h4> <span class="text-underline">Team Size:</span> &nbsp ${events.teamSize} </h4>
                                 <br>
                             </div>
 
                             <div class="col-md-6">
-                                <img class="img-fluid modal-image zoom" src="../images/events/${events.imageName}"
+                                <img class="img-fluid modal-image zoom" src="../images/events/${events.eventName}.png"
                                     alt="${events.eventName}">
                             </div>
                         </div>
                     </div>
                     <br>
-                    <h4 class="text-center modal-description">Description</h4>
+                    <h4 class="text-center modal-description">Event Description</h4>
                     <p>${events.description}</p>
 
                 </div>
                 <div class="modal-footer text-center ">
-                    <h4>Event coodinator</h4>
+                    <h4>Event coodinators </h4>
                     <h6>${events.coordinators}</h6>
                 </div>
             </div>
