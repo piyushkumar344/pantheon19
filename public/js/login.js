@@ -16,13 +16,11 @@ function loginForm() {
     $("#password").css({ "border": "" });
 
     if (email === "") {
-        $("#email").css({ "border": "2px solid red" });
         $("#lEmail").show();
         return;
     }
 
     if (password === "") {
-        $("#password").css({ "border": "2px solid red" });
         $("#lPassword").show();
         return;
     }

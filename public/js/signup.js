@@ -17,30 +17,23 @@ function signupForm() {
     $("#sCnfPassword").hide();
     $("#sPasswordMatch").hide();
     $("#sCaptcha").hide();
-    $("#email").css({ "border": "" });
-    $("#password").css({ "border": "" });
-    $("#confirmPassword").css({ "border": "" });
 
     if (email === "") {
-        $("#email").css({ "border": "2px solid red" });
         $("#sEmail").show();
         return;
     }
 
     if (password === "") {
-        $("#password").css({ "border": "2px solid red" });
         $("#sPassword").show();
         return;
     }
 
     if (confirmPassword === "") {
-        $("#confirmPassword").css({ "border": "2px solid red" });
         $("#sCnfPassword").show();
         return;
     }
 
     if (confirmPassword !== password) {
-        $("#confirmPassword").css({ "border": "2px solid red" });
         $("#sPasswordMatch").show();
         return;
     }
