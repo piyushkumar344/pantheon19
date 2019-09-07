@@ -15,6 +15,11 @@
     src: url("../../fonts/Product Sans Italic.ttf") format("opentype");
 }
 
+@font-face {
+    font-family: "product-regular";
+    src: url("../../fonts/Product\ Sans\ Regular.ttf") format("opentype");
+}
+
 body {
     font-family: "product-sans";
     font-weight: 400;
@@ -265,6 +270,7 @@ body {
     overflow-x: hidden;
     /* transition: 0.25s; */
     padding-top: 6em;
+    font-family: "product-regular";
 }
 
 .sidenav a {
@@ -414,6 +420,8 @@ section {
     color: white;
     text-decoration: none;
 } */
+
+.footer 
 
 .footer-desc {
     display: flex;
