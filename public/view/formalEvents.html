@@ -66,116 +66,10 @@
             <div class="row events-main-heading">
                 <h1>Formal Events</h1>
             </div>
-            <div class="row main1" >
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/events/formal/bhadaas.png" data-toggle="modal"
-                        data-target="#event1Modal" alt="event1 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event1Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event1ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="eventModalTitle"></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h4 class="oganisingClubs"> <span class="text-underline">Organising Club:</span> &nbsp </h4>
-                                                <br>
-                                                <h4> <span class="text-underline">Venue:</span> &nbsp Lab 2,3 </h4>
-                                                <br>
-                                                <h4> <span class="text-underline">Duration:</span> &nbsp 2hrs </h4>
-                                                <br>
-                                                <h4> <span class="text-underline">Team Size:</span> &nbsp 2 </h4>
-                                                <br>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <img class="img-fluid modal-image zoom" src="../images/ss.png"
-                                                    alt="event1 poster">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <h4 class="text-center modal-description">Description</h4>
-                                    <p> The primary objective of a bug hunt is to hunt for the ultimate bug and find the
-                                        output of the code. use your programming and problem-solving skills to find bugs
-                                        and solve a series of cryptic code statements in order to arrive at the final
-                                        destination for the ultimate prize.</p>
-
-                                </div>
-                                <div class="modal-footer text-center ">
-                                    <h4>Event coodinator</h4>
-                                    <h6> Hemant Chowdhury: 7632002227</h6>
-                                    <h6> Sumit Jain : 9709026600</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-3 mb-4 events-container">
-                    <!-- Image trigger modal -->
-                    <img class="img-fluid" src="../images/events/formal/bhadaas.png" data-toggle="modal"
-                        data-target="#event2Modal" alt="event1 poster">
-                    <!-- Modal -->
-                    <div class="modal fade" id="event2Modal" tabindex="-1" role="dialog"
-                        aria-labelledby="event1ModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="eventModalTitle"></h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h4 class="oganisingClubs"> <span class="text-underline">Organising
-                                                        Club:</span> &nbsp </h4>
-                                                <br>
-                                                <h4 class="venue"> <span class="text-underline">Venue:</span> &nbsp
-                                                </h4>
-                                                <br>
-                                                <h4 class="duration"> <span class="text-underline">Duration:</span>
-                                                    &nbsp </h4>
-                                                <br>
-                                                <h4 class="teamsize"> <span class="text-underline">Team Size:</span>
-                                                    &nbsp </h4>
-                                                <br>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <img class="img-fluid modal-image zoom" src="../images/ss.png"
-                                                    alt="event1 poster">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <h4 class="text-center modal-description">Description</h4>
-                                    <p class="desc"> </p>
-
-                                </div>
-                                <div class="modal-footer text-center ">
-                                    <h4>Event coodinator</h4>
-                                    <h6 class="ev1"></h6>
-                                    <h6 class="ev2"></h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+            <div class="row main1" id="main1" >
+                
             </div>
+    
     </main>
 
     <footer>
@@ -189,44 +83,13 @@
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src='../js/login.js'></script>
+    <script src="../js/formalEvents.js"></script>
 
 </body>
 
 </html>
 
 <script>
-    let url1 = "http://192.168.158.230:4000/event/getFormalEvents";
-
-   for(i=0;i<=14;i++)
-   {
-   var div=document.createElement("div");
-   div.classList.add("events-container");
-   div.classList.add("col-md-6");
-   div.classList.add("col-lg-3");
-   div.classList.add("mb-4");
-   div.id="event"+i+"modal";
-   var x=document.createElement("img");
-   x.setAttribute("src","../images/events/formal/bhadaas.png");
-   x.classList.add("img-fluid");
-   div.appendChild(x);
-   $(".main1").append(div);
-   }
 
 
-
-    $.ajax({
-        url: url1,
-        method: "GET",
-        crossDomain: true,
-        success: function (res) {
-            console.log(res);
-            var i;
-          
-        },
-        error: function (err) {
-            console.log(err);
-        }
-
-
-    });
 </script>

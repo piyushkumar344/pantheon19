@@ -31,7 +31,7 @@
    },
    {
       "id": 4,
-      "eventName": "BHADAAS:",
+      "eventName": "BHADAAS",
       "club": "Literary Society",
       "venue": "",
       "duration": "",
@@ -41,7 +41,7 @@
    },
    {
       "id": 5,
-      "eventName": "NERVE:",
+      "eventName": "NERVE",
       "club": "Leo",
       "venue": "Room",
       "duration": "2hrs",
@@ -51,7 +51,7 @@
    },
    {
       "id": 6,
-      "eventName": "FRAMED:",
+      "eventName": "FRAMED",
       "club": "PSoc",
       "venue": "Any Classroom with a projector",
       "duration": "2 hrs",
