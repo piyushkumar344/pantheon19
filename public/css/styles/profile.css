@@ -3,13 +3,21 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+  }
+  #particles-js{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+ 
 }
-
-body {
+  body {
     font-family: 'Montserrat', sans-serif !important;
     color: #50555a;
     /* padding: 10px 20px; */
-    background-color: dimgrey;
+    background-color: rgb(0, 0, 0);
+    background-image: url('../../images/profilebg.jpg');
     overflow-x: hidden;
 }
 
