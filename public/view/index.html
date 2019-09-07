@@ -25,6 +25,8 @@
             <span class="ringTwo"></span>
             <span class="ball"></span>
         </div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
     </div>
 
     <div id="appContent">
@@ -69,13 +71,21 @@
 
             <div class="text-right">
                 <div class="social-icons">
-                    <ul class="icon-icon"><a target="_blank" href="https://www.facebook.com/bitmesra.pantheon/"><span><i title="Facebook" style="font-size:30px;color:white;" class="fab fa-facebook-square fa-2x"></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="Instagram" href="https://www.instagram.com/pantheon_techfest/"><span><i style="font-size:30px;color:white;" class="fa-2x fab fa-instagram"></i></span></a>
+                    <ul class="icon-icon"><a target="_blank" href="https://www.facebook.com/bitmesra.pantheon/"><span><i
+                                    title="Facebook" style="font-size:30px;color:white;"
+                                    class="fab fa-facebook-square fa-2x"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="Instagram"
+                            href="https://www.instagram.com/pantheon_techfest/"><span><i
+                                    style="font-size:30px;color:white;" class="fa-2x fab fa-instagram"></i></span></a>
                     </ul>
-                    <ul class="icon-icon"><a target="_blank" title="Brochure" href="https://www.youtube.com"><span><i style="font-size:30px;color:white;" class="far fa-file-alt"></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="SAP" href="sap.html"><span><i style="font-size:28px;color:white;" class="fas fa-user-tie"></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="Login" href="login2.html"><span><i style="font-size:28px;color:white;" class="fas fa-sign-in-alt"></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="Events" href="events.html"><span><i style="font-size:28px;color:white;" class="fas fa-calendar-alt"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="Brochure" href="https://www.youtube.com"><span><i
+                                    style="font-size:30px;color:white;" class="far fa-file-alt"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="SAP" href="sap.html"><span><i
+                                    style="font-size:28px;color:white;" class="fas fa-user-tie"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="Login" href="login2.html"><span><i
+                                    style="font-size:28px;color:white;" class="fas fa-sign-in-alt"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="Events" href="events.html"><span><i
+                                    style="font-size:28px;color:white;" class="fas fa-calendar-alt"></i></span></a></ul>
 
                 </div>
             </div>
@@ -371,12 +381,10 @@
             'use strict';
             $(window).on('load', function () {
                 setTimeout(function () {
-                    if ($("#load-wrapper").length > 0) {
-                        $("#load-wrapper").fadeOut(400, () => {
-                            $('#appContent').css({ opacity: 1, visibility: "visible" }).animate({ opacity: 1 }, 200);
-                        });
-                    }
-                }, 1000);
+                    var preLoder = $("#load-wrapper");
+                    preLoder.delay(700).fadeOut(500);
+                    $('body').addClass('loaded');
+                }, 1500);
             });
         })(jQuery)
     </script>
