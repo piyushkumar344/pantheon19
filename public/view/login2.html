@@ -23,10 +23,17 @@
 
     <!-- Google Recaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    
+
+    <link rel="stylesheet" href="../css/preloader.css">
+
 </head>
 
 <body>
+
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+
     <header>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background: transparent !important;">
             <div class="container">
@@ -83,7 +90,7 @@
                         </div>
                         <div class="field-wrap" style="display: inline">
                             <span class="fas fa-user"></span>
-                            <input type="email" id="email"/>
+                            <input type="email" id="email" />
                         </div>
                         <hr style="border: 1px solid black">
                         <p id="lEmail" style="color : red">email is required</p>
@@ -95,7 +102,7 @@
                         </div>
                         <div class="field-wrap" style="display: inline">
                             <span class="fas fa-lock"></span>
-                            <input type="password" id="password"/>
+                            <input type="password" id="password" />
                         </div>
                         <hr style="border: 1px solid black">
                         <p id="lPassword" style="color : red">password is required</p>
@@ -125,10 +132,11 @@
     </footer>
 
     <script>
-    
+
     </script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src='../js/login.js'></script>
+    <script src="../js/preloader.js"></script>
 
 </body>
 

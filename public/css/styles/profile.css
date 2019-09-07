@@ -145,7 +145,16 @@ body {
 
 #profile-content p {
     margin-bottom: 0;
-    margin-top: 20px;
+    margin-top: 25px;
+}
+
+#profile-content p span {
+    font-weight: bolder;
+    font-style: italic;
+    /* background: blue; */
+    color: red;
+    /* border: 1px dashed black; */
+    /* border-bottom-style: none; */
 }
 
 #profile-content .symbol-input {

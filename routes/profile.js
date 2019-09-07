@@ -16,18 +16,39 @@ router.get("/user", verifyToken, (req, res) => {
     const userId = req.userId;
     async function getUser() {
         try {
-            await UserModel.findById(userId, (err, user) => {
-                if (err)
-                    return res.json({ status: 500, message: "Internal server error" });
-                else if (!user) {
-                    res.json({
-                        status: 422,
-                        message: "Invalid " + errors.errors[0].param
-                    });
-                } else {
-                    res.json({ status: 200, user: user });
-                }
-            });
+            const userFound = await UserModel.findById(userId)
+            if (!userFound) {
+                res.json({
+                    status: 422,
+                    message: "No such user Found"
+                });
+            }
+            const user = {
+                name: userFound.name,
+                pantheonId: userFound.pantheonId,
+                email: userFound.email,
+                phoneNo: userFound.phoneNo,
+                clgName: userFound.clgName,
+                clgCity: userFound.clgCity,
+                clgState: userFound.clgState,
+                clgId: userFound.clgId,
+                isTeamLeader: userFound.isTeamLeader
+            }
+
+            const teamMongoId = userFound.teamMongoId;
+            if (!teamMongoId) {
+                user.teamDetails = null;
+                return res.json({ status: 200, user: user });
+            }
+            const teamDetails = await TeamModel.findById(teamMongoId);
+            user.teamName = teamDetails.teamName;
+            user.teamId = teamDetails.teamId;
+            user.teamSize = teamDetails.teamSize;
+            user.teamMembers = teamDetails.teamMembers;
+            user.eventsRegistered = teamDetails.eventsRegistered;
+
+            return res.json({ status: 200, user: user });
+
         } catch (e) {
             return res.json({ status: 500, message: "Error on the server!" });
         }
@@ -238,23 +259,21 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
             return res.json({ status: 400, msg: " No such event exist" });
         }
         const team = await TeamModel.findById(user.teamMongoId);
-        var index=-1;
-        for(let i=0;i<team.eventsRegistered.length;i++)
-        {
-          if(team.eventsRegistered[i].eventId===eventId)
-          {
-            index=i;
-            break;
-          }
+        var index = -1;
+        for (let i = 0; i < team.eventsRegistered.length; i++) {
+            if (team.eventsRegistered[i].eventId === eventId) {
+                index = i;
+                break;
+            }
         }
         if (index > -1) {
-          team.eventsRegistered.splice(index, 1);
+            team.eventsRegistered.splice(index, 1);
         }
         await team.save();
 
         return res.json({ status: 200, msg: "Successfully Deregistered" });
     } catch (err) {
-         console.log(err)
+        console.log(err)
         return res.json({ status: 500, msg: "Internal Server Error" });
     }
 });
