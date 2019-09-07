@@ -129,8 +129,8 @@ function verifyForm() {
                     console.log("user not verified");
                     var id = res.id;
                     var token = res.token;
-                    localStorage.id = id;
-                    localStorage.token = token;
+                    //localStorage.id = id;
+                    localStorage.setItem("token", token);
                     window.location = "notverified.html";
                 }
                 else {

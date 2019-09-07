@@ -38,6 +38,7 @@ router.get("/user", verifyToken, (req, res) => {
             const teamMongoId = userFound.teamMongoId;
             if (!teamMongoId) {
                 user.teamDetails = null;
+                //user.eventsRegistered = null;
                 return res.json({ status: 200, user: user });
             }
             const teamDetails = await TeamModel.findById(teamMongoId);
