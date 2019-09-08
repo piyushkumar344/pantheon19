@@ -1,72 +1,82 @@
 [
-   {
-      "id": 1,
-      "eventName": "FUNNITO",
-      "club": "BIOTS",
-      "venue": "classroom with projectors",
-      "duration": "2-3 hrs",
-      "teamSize": "2-3",
-      "description": "It's a fun game with three rounds which tests your memory and time management skills.",
-      "coordinators": "Apoorva sahu(9199268738), Aditya(9709315267)"
-   },
-   {
-      "id": 2,
-      "eventName": "COMIC QUIZ",
-      "club": "Literary Society",
-      "venue": "237",
-      "duration": "",
-      "teamSize": "",
-      "description": "A fun-filled quiz that combines the best of childhood memories with the vast universe of Comics, Anime and Cartoon characters.",
-      "coordinators": "Nishant-9065842628, Deepansh-9425766883"
-   },
-   {
-      "id": 3,
-      "eventName": "CATCH YOUR MATCH",
-      "club": "Leo",
-      "venue": "Room",
-      "duration": "2hr",
-      "teamSize": "2",
-      "description": "You may be listening but can you really hear something which is not being said? Seek first to understand and then be understood. So, if you want to have some fun being dumb, participate in our three round event of charades.",
-      "coordinators": "Kritika- 9471544492, Sneha- 7484864586"
-   },
-   {
-      "id": 4,
-      "eventName": "BHADAAS",
-      "club": "Literary Society",
-      "venue": "",
-      "duration": "",
-      "teamSize": "1",
-      "description": "क्या आपको अपनी भाषण शैली पर पूर्ण विश्वास है? क्या आपके अंदर किसी भी विषय पर अपने विचारों से सबको सहमत करने का सामर्थ्य है?क्या आपके अंदर अपने से भिन्न विचार रखने वालों को अपनी तार्किक क्षमता से परास्त करने की प्रबल आकांक्षा है? यदि हाँ,तो आपको अपने विचार रखने और आपकी तार्किक क्षमता को परखने के लिए एक सुअवसर देने जा रहा है एक मंच जिसका नाम है \"भड़ास\"।",
-      "coordinators": "Vishesh-7889896493, Aditya Narayan-9128898223"
-   },
-   {
-      "id": 5,
-      "eventName": "NERVE",
-      "club": "Leo",
-      "venue": "Room",
-      "duration": "2hrs",
-      "teamSize": "2",
-      "description": "Your true companion is the person who can read your mind, perceive your emotions and dewel their thoughts to you. So, let's test the coalescence of you and your companion over verbal and intellectual compatibility and let's see how you perform in our nerve cracking game. No. of rounds=3;",
-      "coordinators": "Kritika- 9471544492, Sneha-7484864586"
-   },
-   {
-      "id": 6,
-      "eventName": "FRAMED",
-      "club": "PSoc",
-      "venue": "Any Classroom with a projector",
-      "duration": "2 hrs",
-      "teamSize": "",
-      "description": "On the spot Photography Competition ‘Visual storytelling of one kind or another has been around since cavemen were drawing on the walls’ - Frank Darabont Taking pictures is savouring life intensely, every hundredth of a second. Life goes on, but a photograph is a memento of that moment. A photograph has the ability to convey emotion, mood, narrative, ideas and messages – all of which are important elements of storytelling. We celebrate photography as an art and provide you with the opportunity to compete with the best in this genre and showcase your talent. Rules",
-      "coordinators": "Saurabh- 82716 58650, Komal"
-   },
-   {
-      "id": 7,
-      "eventName": "Boom Merchant",
-      "club": "EDC",
-      "venue": "LH1",
-      "duration": "3-4 hrs",
-      "teamSize": "2-3",
-      "description": "BOOM MERCHANT",
-      "coordinators": "Utkarsh Mishra- 8340235961, Nagendra Kumar- 7488735177"
-   }
+    {
+        "id": 1,
+        "eventName": "FUNNITO",
+        "club": "BIOTS",
+        "venue": "classroom with projectors",
+        "duration": "2-3 hrs",
+        "teamSize": "2-3",
+        "description": "It's a fun game with three rounds which tests your memory and time management skills.",
+        "coordinators": "Apoorva sahu(9199268738), Aditya(9709315267)"
+    },
+    {
+        "id": 2,
+        "eventName": "COMIC QUIZ",
+        "club": "Literary Society",
+        "venue": "237",
+        "duration": "",
+        "teamSize": "",
+        "description": "A fun-filled quiz that combines the best of childhood memories with the vast universe of Comics, Anime and Cartoon characters.",
+        "coordinators": "Nishant-9065842628, Deepansh-9425766883"
+    },
+    {
+        "id": 3,
+        "eventName": "CATCH YOUR MATCH",
+        "club": "Leo",
+        "venue": "Room",
+        "duration": "2hr",
+        "teamSize": "2",
+        "description": "You may be listening but can you really hear something which is not being said? Seek first to understand and then be understood. So, if you want to have some fun being dumb, participate in our three round event of charades.",
+        "coordinators": "Kritika- 9471544492, Sneha- 7484864586"
+    },
+    {
+        "id": 4,
+        "eventName": "BHADAAS",
+        "club": "Literary Society",
+        "venue": "",
+        "duration": "",
+        "teamSize": "1",
+        "description": "क्या आपको अपनी भाषण शैली पर पूर्ण विश्वास है? क्या आपके अंदर किसी भी विषय पर अपने विचारों से सबको सहमत करने का सामर्थ्य है?क्या आपके अंदर अपने से भिन्न विचार रखने वालों को अपनी तार्किक क्षमता से परास्त करने की प्रबल आकांक्षा है? यदि हाँ,तो आपको अपने विचार रखने और आपकी तार्किक क्षमता को परखने के लिए एक सुअवसर देने जा रहा है एक मंच जिसका नाम है \"भड़ास\"।",
+        "coordinators": "Vishesh-7889896493, Aditya Narayan-9128898223"
+    },
+    {
+        "id": 5,
+        "eventName": "NERVE",
+        "club": "Leo",
+        "venue": "Room",
+        "duration": "2hrs",
+        "teamSize": "2",
+        "description": "Your true companion is the person who can read your mind, perceive your emotions and dewel their thoughts to you. So, let's test the coalescence of you and your companion over verbal and intellectual compatibility and let's see how you perform in our nerve cracking game. No. of rounds=3;",
+        "coordinators": "Kritika- 9471544492, Sneha-7484864586"
+    },
+    {
+        "id": 6,
+        "eventName": "FRAMED",
+        "club": "PSoc",
+        "venue": "Any Classroom with a projector",
+        "duration": "2 hrs",
+        "teamSize": "",
+        "description": "On the spot Photography Competition ‘Visual storytelling of one kind or another has been around since cavemen were drawing on the walls’ - Frank Darabont Taking pictures is savouring life intensely, every hundredth of a second. Life goes on, but a photograph is a memento of that moment. A photograph has the ability to convey emotion, mood, narrative, ideas and messages – all of which are important elements of storytelling. We celebrate photography as an art and provide you with the opportunity to compete with the best in this genre and showcase your talent. Rules",
+        "coordinators": "Saurabh- 82716 58650, Komal- +91 79059 81441"
+    },
+    {
+        "id": 7,
+        "eventName": "Boom Merchant",
+        "club": "EDC",
+        "venue": "LH1",
+        "duration": "3-4 hrs",
+        "teamSize": "2-3",
+        "description": "Participants to be involved in a quiz from Entrepreneurial world . In the second round, they will have to design revival strategies for bankrupt companies followed by a third round where they have to argue with a rival company only to prove their credibility in the market",
+        "coordinators": "Utkarsh Mishra- 8340235961, Nagendra Kumar- 7488735177"
+    },
+    {
+        "id": 8,
+        "eventName": "Nuke Them All",
+        "club": "IET",
+        "venue": "Room 236, 237",
+        "duration": "2 hrs",
+        "teamSize": "1-2",
+        "description": "Do you get Goosebumps moments playing Call of Duty and IGI? Do you like planning a strategy to wreak havoc upon your enemies? Then, come and let’s “NUKE THEM ALL”. But wait…... finding your enemies requires to solve a puzzle at first. And, don’t forget to bring your Captain Price and Woods along. This is a team event. So, all Captain Soap MacTavish(es), come and participate",
+        "coordinators": "Karn (8051005416), Shalu(9304442397)"
+    }
 ]
