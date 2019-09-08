@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css
     ">
 
+    <!-- Google Recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body data-spy="scroll" data-target=".sidenav" data-offset="300">
@@ -47,7 +50,7 @@
         <!-- Sidebar -->
 
         <!-- Sidebar ends-->
-       
+
 
         <!-- Home-section -->
         <div class="divs dontainer" data-section-name="home-section" id="home">
@@ -71,22 +74,13 @@
 
             <div class="text-right">
                 <div class="social-icons">
-                    <ul class="icon-icon "><a target="_blank" href="https://www.facebook.com/bitmesra.pantheon/"><span><i
-                                    title="Facebook" style="font-size:30px;color:white;"
-                                    class="fab fa-facebook-square fa-2x wow slideInRight " data-wow-duration=2s data-wow-delay=2.5s></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="Instagram"
-                            href="https://www.instagram.com/pantheon_techfest/"><span><i
-                                    style="font-size:30px;color:white;" class="fa-2x fab fa-instagram wow slideInRight" data-wow-duration=2s data-wow-delay=2.5s></i></span></a>
+                    <ul class="icon-icon "><a target="_blank" href="https://www.facebook.com/bitmesra.pantheon/"><span><i title="Facebook" style="font-size:30px;color:white;" class="fab fa-facebook-square fa-2x"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="Instagram" href="https://www.instagram.com/pantheon_techfest/"><span><i style="font-size:30px;color:white;" class="fa-2x fab fa-instagram"></i></span></a>
                     </ul>
-                    <ul class="icon-icon"><a target="_blank" title="Brochure" href="https://www.youtube.com"><span><i
-                                    style="font-size:30px;color:white;" class="far fa-file-alt wow slideInRight" data-wow-duration=2s data-wow-delay=2.5s></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="SAP" href="sap.html"><span><i
-                                    style="font-size:28px;color:white;" class="fas fa-user-tie wow slideInRight" data-wow-duration=2s data-wow-delay=2.5s></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="Login" href="login2.html"><span><i
-                                    style="font-size:28px;color:white;" class="fas fa-sign-in-alt wow slideInRight" data-wow-duration=2s data-wow-delay=2.5s></i></span></a></ul>
-                    <ul class="icon-icon"><a target="_blank" title="Events" href="events.html"><span><i
-                                    style="font-size:28px;color:white;" class="fas fa-calendar-alt wow slideInRight" data-wow-duration=2s data-wow-delay=2.5s></i></span></a></ul>
-
+                    <ul class="icon-icon"><a target="_blank" title="Brochure" href="https://www.youtube.com"><span><i style="font-size:30px;color:white;" class="far fa-file-alt"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="SAP" href="view/sap.html"><span><i style="font-size:28px;color:white;" class="fas fa-user-tie"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="Login" href="view/login2.html"><span><i style="font-size:28px;color:white;" class="fas fa-sign-in-alt"></i></span></a></ul>
+                    <ul class="icon-icon"><a target="_blank" title="Events" href="view/events.html"><span><i style="font-size:28px;color:white;" class="fas fa-calendar-alt"></i></span></a></ul>
                 </div>
             </div>
 
@@ -285,9 +279,12 @@
                                     <span class="input-group-text fa fa-envelope"></span>
                                 </div>
                                 <textarea type="text" class="form-control" id="feedbackMessage"
-                                    placeholder="ENTER YOUR MESSAGE" rows="4" name="message" required></textarea>
+                                    placeholder="ENTER YOUR MESSAGE" rows="2" name="message" required></textarea>
                             </div>
                             <br>
+                            <div class="input-wrap">
+                                <div class="g-recaptcha" data-sitekey="6LfTprIUAAAAAEWATbkWhGxOolQEZ2jRPzAFXKdB"></div>
+                            </div>
                             <p id="feedbackErrMsg"></p>
                             <input id="feedbackSendButton" type="submit" class="btn btn-success" name="submit">&nbsp &nbsp
                             <button id="feedbackResetButton" type="reset" class="btn btn-success" name="submit">RESET</button>
@@ -298,27 +295,29 @@
                     <div class="for-large col-sm-6 text-center">
                         <div class="row footer-desc">
                             <div class="indiv-desc col-md-12 col-sm-6">
-                                <a href=""><i class="fas fa-map-marked-alt fa-4x"></i></a>
+                                <a target="_blank"
+                                    href="https://www.google.com/maps/place/Birla+Institute+of+Technology,+Mesra/@23.4122599,85.4399411,15z/data=!4m2!3m1!1s0x0:0x66180c1cf3c5e704?sa=X&ved=2ahUKEwi014mB-8DkAhXLrY8KHQJ-BxQQ_BIwE3oECAsQCA"><i
+                                        class="fas fa-map-marked-alt fa-4x"></i></a>
                                 <p> Birla Institute of Technology, Mesra, Ranchi, Jharkhand, 835215, India</p>
                             </div>
                             <div class="indiv-desc col-md-12 col-sm-6">
-                                <a href=""> <i class="fa fa-envelope fa-4x"></i></a>
-                                <p> EMAIL: bitotsav@bitmesra.ac.in <br> Phone: +91 79030 02489</p>
+                                <a href="mailto:pantheon@bitmesra.ac.in"> <i class="fa fa-envelope fa-4x"></i></a>
+                                <p> pantheon@bitmesra.ac.in </p>
                             </div>
                             <div class="indiv-desc-follow-us">
                                 Follow Us
                                 <br>
-                                <a href="#"><i class="fab fa-facebook-square fa-2x"></i></a>
-                                <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
+                                <a href="https://www.facebook.com/bitmesra.pantheon" target="_blank"><i
+                                        class="fab fa-facebook-square fa-2x"></i></a>
+                                <a href="https://www.instagram.com/pantheon_techfest" target="_blank"><i
+                                        class="fab fa-instagram fa-2x"></i></a>
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     <div class="for-small">
-                        <p> EMAIL: bitotsav@bitmesra.ac.in</p>
-                        <p>Phone: +91 79030 02489</p>
-                        <p>Follow Us <i class="fab fa-facebook-square"></i> <i class="fab fa-instagram"></i></p>
+                        <p> EMAIL: pantheon@bitmesra.ac.in</p>
                     </div>
 
                 </div>
