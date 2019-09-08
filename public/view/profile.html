@@ -85,58 +85,58 @@
                     <div id="profile-content">
                         <p><span>Name</span></p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Name" disabled>
+                            <input id="userName" type="text" name="" placeholder="Name" disabled>
                             <span class="symbol-input">
                                 <i class="fas fa-user" aria-hidden="true"></i>
                             </span>
                         </div>
                         <p>Pantheon Id</p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Pantheon Id" disabled>
+                            <input id="userPanId" type="text" name="" placeholder="Pantheon Id" disabled>
                             <span class="symbol-input">
-                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <i class="far fa-id-badge" aria-hidden="true"></i>
                             </span>
                         </div>
                         <p>Email</p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Email" disabled>
+                            <input id="userEmail" type="text" name="" placeholder="Email" disabled>
                             <span class="symbol-input">
-                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
                             </span>
                         </div>
                         <p>Phone</p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Phone" disabled>
+                            <input id="userPhone" id="name" type="text" name="" placeholder="Phone" disabled>
                             <span class="symbol-input">
-                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <i class="fas fa-mobile" aria-hidden="true"></i>
                             </span>
                         </div>
                         <p>Institute Roll Number</p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Institute Roll Number" disabled>
+                            <input id="userClgId" type="text" name="" placeholder="Institute Roll Number" disabled>
                             <span class="symbol-input">
-                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <i class="fas fa-id-card" aria-hidden="true"></i>
                             </span>
                         </div>
                         <p>Institute Name</p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Institute Name" disabled>
+                            <input id="userClgName" type="text" name="" placeholder="Institute Name" disabled>
                             <span class="symbol-input">
-                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <i class="fas fa-university" aria-hidden="true"></i>
                             </span>
                         </div>
                         <p>Institute City</p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Institute City" disabled>
+                            <input id="userClgCity" type="text" name="" placeholder="Institute City" disabled>
                             <span class="symbol-input">
-                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <i class="fas fa-city" aria-hidden="true"></i>
                             </span>
                         </div>
                         <p>Institute State</p>
                         <div class="wrap-input">
-                            <input type="text" name="name" placeholder="Institute State" disabled>
+                            <input id="userClgState" type="text" name="" placeholder="Institute State" disabled>
                             <span class="symbol-input">
-                                <i class="fas fa-user" aria-hidden="true"></i>
+                                <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                             </span>
                         </div>
                     </div>
@@ -145,16 +145,186 @@
             <li>
                 <div class="content_wrapper">
                     <h2 class="text-color">Instruction Details</h2>
+
                 </div>
             </li>
             <li>
                 <div class="content_wrapper">
                     <h2 class="text-color">Team details</h2>
+                    <div id="noTeam">
+                        <p>You are not registered in any team yet.</p>
+                        <button id="teamRegistrationButton">Team Registration</button>
+
+                        <div id="teamRegistrationForm">
+                            <p>Fill the following details to create one.</p>
+                            <div class="profile-content">
+                                <form action="#" onsubmit="">
+                                    <p>Team Name</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Choose a funky team name">
+                                        <span class="symbol-input">
+                                            <i class="fas fa-user-tag" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p>Team Size</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Team size can be 6-8">
+                                        <span class="symbol-input">
+                                            <i class="fas fa-users" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                    <p>Pantheon Id of Member1 (Team Leader)</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Pantheon id of team leader"
+                                            disabled>
+                                        <span class="symbol-input">
+                                            <i class="far fa-id-badge" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p>Email Id of Member1 (Team Leader)</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Email id of team leader" disabled>
+                                        <span class="symbol-input">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                    <p>Pantheon Id of Member2</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Pantheon id (do not include PA)">
+                                        <span class="symbol-input">
+                                            <i class="far fa-id-badge" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p>Email Id of Member2</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Email">
+                                        <span class="symbol-input">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                    <p>Pantheon Id of Member3</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Pantheon id (do not include PA)">
+                                        <span class="symbol-input">
+                                            <i class="far fa-id-badge" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p>Email Id of Member3</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Email">
+                                        <span class="symbol-input">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                    <p>Pantheon Id of Member4</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Pantheon id (do not include PA)">
+                                        <span class="symbol-input">
+                                            <i class="far fa-id-badge" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p>Email Id of Member4</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Email">
+                                        <span class="symbol-input">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                    <p>Pantheon Id of Member5</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Pantheon id (do not include PA)">
+                                        <span class="symbol-input">
+                                            <i class="far fa-id-badge" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p>Email Id of Member5</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Email">
+                                        <span class="symbol-input">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                    <p>Pantheon Id of Member6</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Pantheon id (do not include PA)">
+                                        <span class="symbol-input">
+                                            <i class="far fa-id-badge" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <p>Email Id of Member6</p>
+                                    <div class="wrap-input">
+                                        <input id="" type="text" name="" placeholder="Email">
+                                        <span class="symbol-input">
+                                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+
+                                    <button type="submit">Register</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="teamDetails">
+                        <div class="profile-content">
+
+                            <p>Team Name</p>
+                            <div class="wrap-input">
+                                <input id="teamName" type="text" name="" placeholder="Team Name" disabled>
+                                <span class="symbol-input">
+                                    <i class="fas fa-user-tag" aria-hidden="true"></i>
+                                </span>
+                            </div>
+
+                            <p>Team Id</p>
+                            <div class="wrap-input">
+                                <input id="teamId" type="text" name="" placeholder="Team Id (not included TA)" disabled>
+                                <span class="symbol-input">
+                                    <i class="far fa-id-badge" aria-hidden="true"></i>
+                                </span>
+                            </div>
+
+                            <p>Team Size</p>
+                            <div class="wrap-input">
+                                <input id="teamSize" type="text" name="" placeholder="Team Size" disabled>
+                                <span class="symbol-input">
+                                    <i class="fas fa-users" aria-hidden="true"></i>
+                                </span>
+                            </div>
+
+                            <p>Team Members</p>
+                            <table>
+                                <tr>
+                                    <th>Pantheon Id</th>
+                                    <th>Email</th>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
             </li>
             <li>
                 <div class="content_wrapper">
                     <h2 class="text-color">Events details</h2>
+                    <div id="noEvents">
+                        <p>You have not registered for any Flagship events!</p>
+                    </div>
+                    <div id="eventsDetails">
+                        <p>Following are the Flagship events in which your team is regsitered!</p>
+                        <table>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Event Id</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </li>
         </ul>
