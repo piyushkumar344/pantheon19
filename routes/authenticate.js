@@ -30,22 +30,23 @@ router.post(
         next();
     },
     (req, res, next) => {
+        if (req.body.password !== req.body.confPassword) {
+            return res.json({
+                status: 401,
+                message: "Passwords doesn't match"
+            });
+        }
         //check whether already registered
         userData.findOne({ email: req.body.email }, (err, user) => {
-            if (err) return res.json({ status: 500, message: "error on the server" });
+            if (err) return res.json({ status: 500, message: "Error on the server" });
             else if (user)
-                return res.json({ status: 415, message: "user already exits" });
+                return res.json({ status: 415, message: "User already exits" });
             else next();
         });
     },
     (req, res) => {
         //continue registration
-        if (req.body.password != req.body.confPassword) {
-            return res.json({
-                status: 401,
-                message: "Passwords doesn't match"
-            });
-        } else if (req.body.email && req.body.password && req.body.confPassword) {
+        if (req.body.email && req.body.password && req.body.confPassword) {
             bcrypt.hash(req.body.password, 8, (err, hashedPassword) => {
                 if (err) {
                     return res.json({ status: 500, message: "Internal server error" });
@@ -113,7 +114,8 @@ router.post("/verify", verifyToken, (req, res) => {
             gender,
             clgName,
             clgCity,
-            clgState
+            clgState,
+            clgId
         } = req.body;
 
         if (
@@ -123,7 +125,8 @@ router.post("/verify", verifyToken, (req, res) => {
             !gender ||
             !clgName ||
             !clgCity ||
-            !clgState
+            !clgState || 
+            !clgId
         ) {
             return res.json({ status: 422, message: "Missing Data Fields" });
         }
@@ -134,13 +137,24 @@ router.post("/verify", verifyToken, (req, res) => {
         clgName = clgName.toString().trim();
         clgCity = clgCity.toString().trim();
         clgState = clgState.toString().trim();
+        clgId = clgId.toString().trim();
+        try {
+            gender = Number(gender);
+            if (!gender) {
+                throw "Invalid Gender";
+            }
+        } catch (e) {
+            return res.json({ status: 422, message: e });
+        }
 
         if (!emailOTP) {
             return res.json({ status: 422, message: "Invalid OTP" });
         }
-
         if (name === "") {
             return res.json({ status: 422, message: "Empty Name" });
+        }
+        if (clgName === "" || clgCity === "" || clgState === "" || clgId === "") {
+            return res.json({ status: 422, message: "Missing College Details" });
         }
         if (!isMobilePhone(phoneNo)) {
             return res.json({ status: 422, message: "Invalid Phone Number" });
@@ -151,9 +165,11 @@ router.post("/verify", verifyToken, (req, res) => {
 
         try {
             emailOTP = Number(emailOTP);
-        }
-        catch (e) {
-            return res.json({ status: 422, message: "Invalid OTP" });
+            if (!emailOTP) {
+                throw "Invalid OTP";
+            }
+        } catch (e) {
+            return res.json({ status: 422, message: e });
         }
         // Validate OTPs
         if (user.emailOTP !== emailOTP) {
@@ -170,6 +186,7 @@ router.post("/verify", verifyToken, (req, res) => {
         user.clgCity = clgCity;
         user.clgState = clgState;
         user.isVerified = true;
+        user.emailOTP = -1;
         let pantheonId = -1;
 
         panIdCounter.findOne({ find: "pantheonId" }, async (err, response) => {
@@ -178,25 +195,24 @@ router.post("/verify", verifyToken, (req, res) => {
                 response.count = pantheonId;
                 await response.save(err => {
                     if (err) {
-                        console.log("1 ", err);
+                        console.log(err);
                         return res.json({ status: 500, message: "Internal server error" });
                     }
                 });
                 user.pantheonId = pantheonId;
                 await user.save(err => {
                     if (err) {
-                        console.log("2 ", err);
+                        console.log(err);
                         return res.json({ status: 500, message: "Internal server error" });
                     }
                     return res.json({
                         status: 200,
                         isVerfied: true,
                         token: req.headers["x-access-token"],
-                        pantheonId: pantheonId
                     });
                 });
             } else {
-                console.log("3", err);
+                console.log(err);
                 return res.json({ status: 500, message: "Internal server error " });
             }
         });
@@ -209,11 +225,16 @@ router.post(
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.json({
-                status: 422,
-                message: "Invalid " + errors.errors[0].param
-            });
-        } else next();
+            if (errors.errors[0].param == "email") {
+                return res.json({ status: 422, message: "Invalid email address" });
+            } else {
+                return res.json({
+                    status: 422,
+                    message: "Invalid password, password length must be greater than 5."
+                });
+            }
+        }
+        next();
     },
     (req, res) => {
         if (req.body.email && req.body.password) {
@@ -228,7 +249,6 @@ router.post(
                             return res.json({ status: 500, message: "Internal server error" });
                         }
                         if (result) {
-
                             let token = jwt.sign({ id: user._id }, config.secret, {
                                 expiresIn: 86400
                             });
@@ -251,7 +271,6 @@ router.post(
                                 res.json({
                                     status: 200,
                                     isVerfied: false,
-                                    id: user._id,
                                     token: token
                                 });
 
@@ -272,27 +291,37 @@ router.post(
     }
 );
 
-router.post("/forgotPassword", (req, res) => {
-    userData.findOne({ email: req.body.email }, async (err, user) => {
-        if (err) {
-            res.json({ status: 500, msg: "Internal Server Error" });
-        } else {
-            const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            user.emailOTP = emailOTP;
-            await user.save(err => {
-                if (err) {
-                    return res.json({
-                        status: 500,
-                        message: "Internal server error"
-                    });
-                }
-            });
-
-            //email
-            sendEmail(emailOTP);
+router.post("/forgotPassword",
+    [check("email").isEmail()],
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.json({ status: 422, message: "Invalid email address" });
         }
+        next();
+    }, (req, res) => {
+        let email = req.body.email.toString().trim();
+        userData.findOne({ email: req.body.email }, async (err, user) => {
+            if (err) {
+                res.json({ status: 500, msg: "Internal Server Error" });
+            } else {
+                const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
+                user.emailOTP = emailOTP;
+                await user.save(err => {
+                    if (err) {
+                        return res.json({
+                            status: 500,
+                            message: "Internal server error"
+                        });
+                    }
+                });
+                res.json({status: 200, msg: "OTP sent to your email address"});
+
+                //email
+                sendEmail(emailOTP);
+            }
+        });
     });
-});
 
 router.post(
     "/changePassword",
@@ -312,14 +341,26 @@ router.post(
         next();
     },
     (req, res, next) => {
+        let emailOTP = req.body.emailOTP;
+        if(!emailOTP) {
+            return res.json({status: 422, msg: "Missing email OTP"});
+        }
+        try {
+            emailOTP = Number(emailOTP);
+            if(!emailOTP) {
+                throw "Invalid email OTP";
+            }
+        } catch(e) {
+            return res.json({status: 422, msg: e});
+        }
         userData.findOne({ email: req.body.email }, (err, user) => {
             if (err) {
                 return res.json({ status: 500, msg: "Internal Server Error" });
             }
-            if (user.emailOTP !== req.body.emailOTP) {
+            if (user.emailOTP !== emailOTP) {
                 return res.json({ status: 400, msg: "Wrong otp , please try again" });
             } else if (req.body.password !== req.body.confPassword) {
-                return res.json({ status: 400, msg: "password didnt matched" });
+                return res.json({ status: 400, msg: "Password does not match" });
             } else {
                 bcrypt.hash(req.body.password, 8, (err, hashedPassword) => {
                     if (err) {

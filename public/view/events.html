@@ -19,9 +19,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <link href="../css/events.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/preloader.css">
 </head>
 
 <body>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
     <main>
         <div id="container">
             <canvas id="rays"></canvas>
@@ -84,8 +88,7 @@
                         <div class="col-lg-3 col-md-6 card-container">
                             <div class="card card-flip">
                                 <div class="front card-block">
-                                    <img src="../images/informal.jpg" alt="event1" width="250px"
-                                        height="300px" />
+                                    <img src="../images/informal.jpg" alt="event1" width="250px" height="300px" />
                                 </div>
                                 <div class="back card-block">
                                     <p class="back-text">Are you done quizzing and testing your aptitude. These Informal
@@ -98,8 +101,7 @@
                         <div class="col-lg-3 col-md-6 card-container">
                             <div class="card card-flip">
                                 <div class="front card-block">
-                                    <img src="../images/flagship.jpg" alt="event1" width="250px"
-                                        height="300px" />
+                                    <img src="../images/flagship.jpg" alt="event1" width="250px" height="300px" />
                                 </div>
                                 <div class="back card-block">
                                     <p class="back-text">These events are akin to the giant killers. These will not only
@@ -114,7 +116,8 @@
                         <div class="col-lg-3 col-md-6 card-container">
                             <div class="card card-flip">
                                 <div class="front card-block">
-                                    <img class="img-fluid" src="../images/lectures.jpg" alt="event1" style="width: 100%;height:100%" />
+                                    <img class="img-fluid" src="../images/lectures.jpg" alt="event1"
+                                        style="width: 100%;height:100%" />
                                 </div>
                                 <div class="back card-block">
                                     <p class="back-text">Enlightening lectures encompassing topics that will leave you
@@ -139,6 +142,8 @@
 
     <script src="../js/lib/gl-matrix-min.js"></script>
     <script src="../js/events.js"></script>
+    <script src="../js/preloader.js"></script>
+
 </body>
 
 </html>

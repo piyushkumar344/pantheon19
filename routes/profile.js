@@ -11,6 +11,7 @@ const verifyToken = require("../middlewares/verifyToken");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
 const mongoose = require("mongoose");
+const { isEmail } = require('validator');
 
 router.get("/user", verifyToken, (req, res) => {
     const userId = req.userId;
@@ -67,6 +68,15 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
         });
     }
 
+    let memberDataInBody = req.body.membersData;
+
+    if (!memberDataInBody || memberDataInBody instanceof Array === false) {
+        return res.json({
+            status: 400,
+            message: "Members Data Missing"
+        });
+    }
+
     //checking if team name has minimum 4 characters
     const teamName = req.body.teamName
         .toString()
@@ -83,11 +93,16 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
     let teamSize = req.body.teamSize;
     try {
         teamSize = Number(teamSize);
+        if (!teamSize) {
+            throw "Team Size Should be a number";
+        }
+        if (teamSize % 1 !== 0) {
+            throw "Team Size should be a integer";
+        }
     } catch (e) {
-        return res.json({ status: 422, message: "Team Size Should be a number" });
+        return res.json({ status: 422, message: e });
     }
 
-    teamSize = Math.floor(teamSize);
     if (teamSize > 8 || teamSize < 6) {
         return res.json({
             status: 422,
@@ -98,6 +113,25 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
     let membersData = [];
     for (let i = 0; i < teamSize; i++) {
         const obj = req.body.membersData[i];
+        let panId = obj.pantheonId, emailId = obj.email;
+        if (!panId || !emailId) {
+            return res.json({ status: 422, msg: `Missing Data of member ${i + 1}` });
+        }
+        try {
+            panId = Number(panId);
+            if (!panId) {
+                throw `Invalid credentials of member ${i + 1}`;
+            }
+            if (panId % 1 !== 0) {
+                throw `Invalid credentials of member ${i + 1}`;
+            }
+            emailId = emailId.toString().trim();
+            if (!isEmail(emailId)) {
+                throw `Invalid credentials of member ${i + 1}`;
+            }
+        } catch (e) {
+            return res.json({ status: 422, msg: e });
+        }
         membersData.push(obj);
     }
 
@@ -218,12 +252,24 @@ router.post("/eventRegister", verifyToken, async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
         if (!user) return res.json({ status: 400, msg: " No such user exist " });
-        else if (!user.isTeamLeader)
+        else if (!user.isTeamLeader) {
             return res.json({
                 status: 400,
                 msg: " Only team leader can register for an event "
             });
-        const eventId = Number(req.body.eventId);
+        }
+        let eventId = req.body.eventId;
+        try {
+            eventId = Number(req.body.eventId);
+            if (!eventId) {
+                throw "Event Id must be an integer";
+            }
+            if (eventId % 2 !== 1) {
+                throw "Event Id must be an integer";
+            }
+        } catch (e) {
+            return res.json({ status: 422, msg: e });
+        }
         const event = await EventModel.findOne({ eventId: eventId });
 
         if (!event) {
@@ -239,7 +285,7 @@ router.post("/eventRegister", verifyToken, async (req, res) => {
         team.eventsRegistered.push({ eventId: event.eventId, eventName: event.eventName });
         await team.save();
 
-        return res.json({ status: 200, msg: " Successfully Registered" });
+        return res.json({ status: 200, msg: "Successfully Registered" });
     } catch (err) {
         return res.json({ status: 500, msg: "Internal Server Error" });
     }
@@ -249,18 +295,30 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
         if (!user) return res.json({ status: 400, msg: " No such user exist " });
-        else if (!user.isTeamLeader)
+        else if (!user.isTeamLeader) {
             return res.json({
                 status: 400,
                 msg: " Only team leader can register for an event "
             });
-        const eventId = Number(req.body.eventId);
+        }
+        let eventId = req.body.eventId;
+        try {
+            eventId = Number(req.body.eventId);
+            if (!eventId) {
+                throw "Event Id must be an integer";
+            }
+            if (eventId % 2 !== 1) {
+                throw "Event Id must be an integer";
+            }
+        } catch (e) {
+            return res.json({ status: 422, msg: e });
+        }
         const event = await EventModel.findOne({ eventId: eventId });
         if (!event) {
-            return res.json({ status: 400, msg: " No such event exist" });
+            return res.json({ status: 400, msg: "No such event exist" });
         }
         const team = await TeamModel.findById(user.teamMongoId);
-        var index = -1;
+        let index = -1;
         for (let i = 0; i < team.eventsRegistered.length; i++) {
             if (team.eventsRegistered[i].eventId === eventId) {
                 index = i;
