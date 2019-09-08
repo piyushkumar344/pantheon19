@@ -1,5 +1,7 @@
 const url = "http://localhost:4000/";
 
+
+
 $("#signOutLink").click(function () {
     localStorage.setItem("token", "");
     window.location.href = "login2.html";

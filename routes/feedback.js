@@ -1,9 +1,10 @@
 const express = require("express");
 const FeedbackModel = require('../models/feedback');
 const { isEmail, isLength } = require('validator');
+const validateCaptcha = require('../middlewares/validateCaptcha');
 const router = express.Router();
 
-router.post('/sendFeedback', (req, res) => {
+router.post('/sendFeedback', validateCaptcha, (req, res) => {
 
     if (!req.body.name) {
         return res.json({

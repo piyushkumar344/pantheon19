@@ -1,6 +1,8 @@
 let url = "http://192.168.158.230:4000/auth";
 
 
+
+
 $("#sotp").hide();
 $("#sotp1").hide();
 $("#sname").hide();
@@ -29,94 +31,90 @@ function verifyForm() {
     $('#scollege').hide();
 
     let email = $('#email').val().trim();
-    let otp= $('#eotp').val();
-    let name= $('#name').val().trim();
+    let otp = $('#eotp').val();
+    let name = $('#name').val().trim();
     let mobile = $('#mobile').val().trim();
     let gender = $("input:radio[ name=gen]:checked").val();
-    let college= $("input:radio[ name=college]:checked").val();
-    let collegename= $('#clgname').val().trim();
-    let collegecity= $('#clgcity').val().trim();
-    let collegestate= $('#clgstate').val().trim();
-    let collegeroll= $('#clgroll').val().trim();
-    
-    
-    
-    if(otp ===""){
+    let college = $("input:radio[ name=college]:checked").val();
+    let collegename = $('#clgname').val().trim();
+    let collegecity = $('#clgcity').val().trim();
+    let collegestate = $('#clgstate').val().trim();
+    let collegeroll = $('#clgroll').val().trim();
+
+
+
+    if (otp === "") {
         $("#sotp").show();
         return;
     }
-    if(otp.length!=6)
-    {
+    if (otp.length != 6) {
         $('#sotp1').show();
         return;
     }
-    
-    if(name ===""){
+
+    if (name === "") {
         $('#sname').show();
         return;
     }
 
-    if(mobile ===""){
+    if (mobile === "") {
         $('#smobile').show();
         return;
     }
-    if(mobile.length!=10)
-    {
+    if (mobile.length != 10) {
         $('#smobile1').show();
         return;
     }
-    if(isNaN(mobile)){
+    if (isNaN(mobile)) {
         $('#smobile2').show();
         return;
     }
 
 
-    if(gender===undefined)
-    {
+    if (gender === undefined) {
         $('#sgender').show();
         return;
     }
-    if(college===undefined)
-    {
+    if (college === undefined) {
         $('#scollege').show();
         return;
     }
 
-    if(collegename===""){
+    if (collegename === "") {
         $('#sclgname').show();
-         return;
+        return;
     }
 
-    if(collegecity===""){
+    if (collegecity === "") {
         $('#sclgcity').show();
-         return;
+        return;
     }
-    if(collegestate===""){
+    if (collegestate === "") {
         $('#sclgstate').show();
         return;
     }
 
-    if(collegeroll===""){
+    if (collegeroll === "") {
         $('#sclgroll').show();
         return;
     }
 
     $("#btnSubmit").attr("disabled", true);
 
-    
+
     $.ajax({
         url: url + "/verify",
         method: "POST",
         data: {
             email: email,
-            otp : otp,
-            name : name,
+            otp: otp,
+            name: name,
             mobile: mobile,
             gender: gender,
-            collegename : collegename,
+            collegename: collegename,
             collegecity: collegecity,
             collegestate: collegestate,
-            collegeroll:collegeroll
+            collegeroll: collegeroll
         },
         crossDomain: true,
         success: function (res) {
@@ -147,21 +145,21 @@ function verifyForm() {
 
 
 function autoFill() {
-    $('#clgname').val("Birla Institute of Technology") ;
-    $('#clgcity').val("Ranchi") ;
-    $('#clgstate').val("Jharkhand") ;
+    $('#clgname').val("Birla Institute of Technology");
+    $('#clgcity').val("Ranchi");
+    $('#clgstate').val("Jharkhand");
 
-    $( "#clgname" ).prop( "disabled", true );
-    $( "#clgcity" ).prop( "disabled", true );
-    $( "#clgstate" ).prop( "disabled", true );
+    $("#clgname").prop("disabled", true);
+    $("#clgcity").prop("disabled", true);
+    $("#clgstate").prop("disabled", true);
 }
 
 function erase() {
-    $( "#clgname" ).prop( "disabled", false );
-    $( "#clgcity" ).prop( "disabled", false );
-    $( "#clgstate" ).prop( "disabled", false );
+    $("#clgname").prop("disabled", false);
+    $("#clgcity").prop("disabled", false);
+    $("#clgstate").prop("disabled", false);
 
-    $('#clgname').val("") ;
-    $('#clgcity').val("") ;
-    $('#clgstate').val("") ;
+    $('#clgname').val("");
+    $('#clgcity').val("");
+    $('#clgstate').val("");
 }
