@@ -1,9 +1,27 @@
 const url = "http://localhost:4000/";
 
+var teamName = $("#teamNameFill").val().toString().trim().toLowerCase();
+var teamSize = Number($("#teamSizeFill").val());
+for (var i = teamSize; i < 8; i++) {
+    $(`#teamMember${i}Pan`).prop('disabled', true);
+    $(`#teamMember${i}Email`).prop('disabled', true);
+}
+
+$("#teamSizeFill").change(function () {
+    for (var i = 1; i < 8; i++) {
+        $(`#teamMember${i}Pan`).prop('disabled', false);
+        $(`#teamMember${i}Email`).prop('disabled', false);
+    }
+    teamSize = Number($("#teamSizeFill").val());
+    for (var i = teamSize; i < 8; i++) {
+        $(`#teamMember${i}Pan`).prop('disabled', true);
+        $(`#teamMember${i}Email`).prop('disabled', true);
+    }
+});
+
 function userDetail() {
     $("#teamDetails").hide();
     $("#noTeam").hide();
-    $("#teamRegistrationForm").hide();
     $("#noEvents").hide();
     $("#eventsDetails").hide();
 
@@ -12,7 +30,7 @@ function userDetail() {
         method: "GET",
         headers: {
             //access token from local storage
-            'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNzE0NWVlOTdlYzc2MzZjMDI2NzllZSIsImlhdCI6MTU2Nzg5NTMwNiwiZXhwIjoxNTY3OTgxNzA2fQ.Z1wowe_VpH0v83fuBgltiAceNe6S325-eZuQpLM5gz0"
+            'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNzQ5ZjIzY2NmODE0MmNmOGUxZjgxMSIsImlhdCI6MTU2NzkyNDM4OCwiZXhwIjoxNTY4MDEwNzg4fQ.XjznOhy36CZoACj2pP1sByC6bbtUrWaVLu1O4C33Klw"
         },
         cors: true,
         success: function (res) {
@@ -28,7 +46,7 @@ function userDetail() {
             $("#userClgCity").val(res.user.clgCity);
             $("#userClgState").val(res.user.clgState);
 
-            //if a team is reistered then show team details
+            //if a team is registered then show team details
             if (res.user.teamName) {
                 $("#teamName").val(res.user.teamName);
                 $("#teamId").val(res.user.teamId);
@@ -45,11 +63,10 @@ function userDetail() {
             //if there is no team then show the form for team registration
             else {
                 $("#noTeam").show();
-
-                $("#teamRegistrationButton").click(function () {
-                    console.log("clicked!");
-                    $("#teamRegistrationForm").toggle("slow");
-                });
+                $("#teamMember0Pan").val(res.user.pantheonId);
+                $("#teamMember0Email").val(res.user.email);
+                $("#teamMember0Pan").prop('disabled', true);
+                $("#teamMember0Email").prop('disabled', true);
             }
 
 
@@ -58,14 +75,14 @@ function userDetail() {
 
                 let trHTML = '';
                 $.each(res.user.eventsRegistered, function (i, item) {
-                    trHTML += '<tr><td>' + "Event" + (i+1) + '</td><td>' + item.eventId + '</td></tr>';
+                    trHTML += '<tr><td>' + "Event" + (i + 1) + '</td><td>' + item.eventId + '</td></tr>';
                 });
                 $('#eventsDetails table').append(trHTML);
 
                 $("#eventsDetails").show();
             }
             //if no events are there show it
-            else{
+            else {
                 $("#noEvents").show();
             }
 
