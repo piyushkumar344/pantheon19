@@ -7,6 +7,7 @@ const authentication = require('./routes/authenticate')
 const cors = require('cors');
 const profile = require('./routes/profile');
 const event = require('./routes/events');
+const feedback = require('./routes/feedback');
 //db connection
 connect();
 
@@ -18,10 +19,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/auth', authentication);
 app.use('/profile', profile);
 app.use('/event', event);
+app.use('/', feedback);
 
 //routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/view', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 //port connection

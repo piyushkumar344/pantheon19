@@ -19,7 +19,7 @@ body, html {
 }
 
 .pimg1 {
-    background-image: linear-gradient( rgba(31, 30, 30, 0.918),rgba(29, 28, 28, 0.699)),url('images/illuminati-cover1.jpg');
+    background-image: linear-gradient( rgba(31, 30, 30, 0.918),rgba(29, 28, 28, 0.699)),url('../images/illuminati-cover1.jpg');
     min-height: 100%;
 }
 
@@ -151,7 +151,7 @@ body, html {
     color:whitesmoke;
 }
 #detail{
-    background-image:url('images/illuminati-cover2.jpg');
+    background-image:url('../images/illuminati-cover2.jpg');
     height: auto; 
     background-attachment: fixed;
     background-position: center;
@@ -160,7 +160,7 @@ body, html {
 }
 #rules{
     color: whitesmoke;
-    background-image: linear-gradient( rgba(31, 30, 30, 0.76),rgba(29, 28, 28, 0.699)),url('images/judge.jpg');
+    background-image: linear-gradient( rgba(31, 30, 30, 0.76),rgba(29, 28, 28, 0.699)),url('../images/judge.jpg');
 }
 
 li.rulelist:before {

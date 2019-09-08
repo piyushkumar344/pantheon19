@@ -1,5 +1,10 @@
 const url = "http://localhost:4000/";
 
+$("#signOutLink").click(function () {
+    localStorage.setItem("token", "");
+    window.location.href = "login2.html";
+});
+
 var teamName = $("#teamNameFill").val().toString().trim().toLowerCase();
 var teamSize = Number($("#teamSizeFill").val());
 for (var i = teamSize; i < 8; i++) {
@@ -29,8 +34,7 @@ function userDetail() {
         url: url + "profile/user",
         method: "GET",
         headers: {
-            //access token from local storage
-            'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkNzQ5ZjIzY2NmODE0MmNmOGUxZjgxMSIsImlhdCI6MTU2NzkyNDM4OCwiZXhwIjoxNTY4MDEwNzg4fQ.XjznOhy36CZoACj2pP1sByC6bbtUrWaVLu1O4C33Klw"
+            'x-access-token': localStorage.getItem("token")
         },
         cors: true,
         success: function (res) {
@@ -38,7 +42,7 @@ function userDetail() {
 
             //show user details accordingly
             $("#userName").val(res.user.name);
-            $("#userPanId").val(res.user.pantheonId);
+            $("#userPanId").val("PA-"+res.user.pantheonId);
             $("#userEmail").val(res.user.email);
             $("#userPhone").val(res.user.phoneNo);
             $("#userClgId").val(res.user.clgId);
@@ -49,7 +53,7 @@ function userDetail() {
             //if a team is registered then show team details
             if (res.user.teamName) {
                 $("#teamName").val(res.user.teamName);
-                $("#teamId").val(res.user.teamId);
+                $("#teamId").val("TA-"+res.user.teamId);
                 $("#teamSize").val(res.user.teamSize);
 
                 let trHTML = '';
@@ -57,7 +61,6 @@ function userDetail() {
                     trHTML += '<tr><td>' + item.pantheonId + '</td><td>' + item.email + '</td></tr>';
                 });
                 $('#teamDetails table').append(trHTML);
-
                 $("#teamDetails").show();
             }
             //if there is no team then show the form for team registration
@@ -68,7 +71,6 @@ function userDetail() {
                 $("#teamMember0Pan").prop('disabled', true);
                 $("#teamMember0Email").prop('disabled', true);
             }
-
 
             //show events details accordingly
             if (res.user.eventsRegistered) {
@@ -89,8 +91,10 @@ function userDetail() {
         },
         error: function (err) {
             console.log(err);
+
         }
     });
 }
 
 userDetail();
+

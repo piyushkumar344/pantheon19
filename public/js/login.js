@@ -1,4 +1,4 @@
-let url = "http://192.168.158.230:4000/auth";
+let url = "http://localhost:4000/auth";
 
 $("#lEmail").hide();
 $("#lPassword").hide();
@@ -44,24 +44,23 @@ function loginForm() {
         success: function (res) {
             console.log(res);
             if (res.status !== 200) {
-                alert(res.message);
+                $("#btnSignIn").attr("disabled", false);
+                $("#errMsg").text(res.message);
             }
             else if (res.status === 200) {
                 if (res.isVerfied === false) {
-                    console.log("user not verified");
-                    var token = res.token;
-                    localStorage.token = token;
-                    window.location = "notverified.html";
+                    localStorage.setItem("token", res.token);
+                    window.location = "verify.html";
                 }
                 else {
-                    console.log("user verified");
-                    window.location = "verified.html";
+                    localStorage.setItem("token", res.token);
+                    window.location = "profile.html";
                 }
             }
         },
         error: function (err) {
             $("#btnSignIn").attr("disabled", false);
-            console.log(err);
+            $("#errMsg").text(err);
         }
     });
 }
