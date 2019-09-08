@@ -37,31 +37,16 @@ footer .row {
 /* Medium devices (landscape tablets, 768px and up) */
 
 @media only screen and (min-width: 768px) {
-    footer {
-        position: absolute;
+    #placeBottom {
+        position: fixed;
+        height: 200px;
         bottom: 0;
         width: 100%;
     }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
-
-@media only screen and (min-width: 992px) {
-    footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-
-@media only screen and (min-width: 1200px) {
-    footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
+.card-block{
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 }
 
 .card-block .btn-outline-primary {

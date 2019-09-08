@@ -1,5 +1,7 @@
 const url = "http://localhost:4000/";
 
+
+
 $("#signOutLink").click(function () {
     localStorage.setItem("token", "");
     window.location.href = "login2.html";
@@ -57,10 +59,10 @@ function userDetail() {
                 $("#teamSize").val(res.user.teamSize);
 
                 let trHTML = '';
-                $.each(res.user.teamMembers, function (i, item) {
-                    trHTML += '<tr><td>' + item.pantheonId + '</td><td>' + item.email + '</td></tr>';
-                });
-                $('#teamDetails table').append(trHTML);
+                for(let i=0;i<res.user.teamMembers.length;i++){
+                    trHTML +=`<tr><th scope="row">${i+1}</th><td>PA-${res.user.teamMembers[i].pantheonId}</td><td>${res.user.teamMembers[i].email}</td></tr>`;
+                }
+                $('#teamTable').append(trHTML);
                 $("#teamDetails").show();
             }
             //if there is no team then show the form for team registration
@@ -76,10 +78,11 @@ function userDetail() {
             if (res.user.eventsRegistered) {
 
                 let trHTML = '';
-                $.each(res.user.eventsRegistered, function (i, item) {
-                    trHTML += '<tr><td>' + "Event" + (i + 1) + '</td><td>' + item.eventId + '</td></tr>';
-                });
-                $('#eventsDetails table').append(trHTML);
+                for(let i=0;i<res.user.eventsRegistered.length;i++)
+                {
+                    trHTML+=`<tr><th scope="row">${res.user.eventsRegistered[i].eventId}</th><td>${res.user.eventsRegistered[i].eventName}</td><td><button class="btn btn-success">Register</button></td><td><button class="btn btn-danger">Deregister</button></td></tr>`
+                }
+                $('#eventTable').append(trHTML);
 
                 $("#eventsDetails").show();
             }

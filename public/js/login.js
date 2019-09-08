@@ -1,5 +1,30 @@
 let url = "http://localhost:4000/auth";
 
+$.ajax({
+    url: url + "/getUserState",
+    method: "GET",
+    headers: {
+        'x-access-token': localStorage.getItem("token")
+    },
+    crossDomain: true,
+    success: function (res) {
+        console.log(res);
+        if (res.status !== 200) {
+            // window.location = "login2.html";
+        }
+        else if (res.status === 200) {
+            console.log(res);
+            window.location = "profile.html";
+        }
+    },
+    error: function (err) {
+        console.log(err);
+    }
+});
+
+
+
+
 $("#lEmail").hide();
 $("#lPassword").hide();
 $("#lCaptcha").hide();
