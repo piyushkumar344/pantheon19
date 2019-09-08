@@ -13,7 +13,9 @@
 body{
     font-family: 'Poppins', sans-serif !important;
     overflow-x: hidden;
-    background: url('../images/sado.jpg') no-repeat center center fixed;
+    background-image: url('../images/sado.jpg');
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .events-main-heading {

@@ -101,7 +101,7 @@
     },
     {
         "id": "111",
-        "eventName": "PROFESSOR’S CUT",
+        "eventName": "PROFESSOR'S CUT",
         "club": "IEI Civil",
         "venue": "Classroom",
         "duration": "1.5 hrs",
@@ -131,7 +131,7 @@
     },
     {
         "id": "114",
-        "eventName": " CIRCUIT CHASERS",
+        "eventName": "CIRCUIT CHASERS",
         "club": "ECESoc",
         "venue": "",
         "duration": "2hrs",
@@ -211,7 +211,7 @@
     },
     {
         "id": "122",
-        "eventName": "INVESTOR’S HAT",
+        "eventName": "INVESTOR'S HAT",
         "club": "EDC",
         "venue": "LH1",
         "duration": "2- 3 hrs ",

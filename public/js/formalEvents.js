@@ -23,7 +23,7 @@ function eventsTemplate(events, i) {
     return (`
         <div class="col-md-6 col-lg-3 mb-4 events-container">
 
-        <img class="img-fluid" src="../images/events/${events.eventName}.png" data-toggle="modal"
+        <img class="img-fluid" src="./images/events/${events.eventName}.png" data-toggle="modal"
         data-target="#event${i}Modal" alt="event ${i+1} poster">
 
         <div class="modal fade" id="event${i}Modal" tabindex="-1" role="dialog"
@@ -51,7 +51,7 @@ function eventsTemplate(events, i) {
                             </div>
 
                             <div class="col-md-6">
-                                <img class="img-fluid modal-image zoom" src="../images/events/${events.eventName}.png"
+                                <img class="img-fluid modal-image zoom" src="./images/events/${events.eventName}.png"
                                     alt="${events.eventName}">
                             </div>
                         </div>
