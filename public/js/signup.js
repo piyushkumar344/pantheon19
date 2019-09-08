@@ -1,4 +1,4 @@
-let url = "http://192.168.158.230:8000/auth";
+let url = "http://localhost:4000/auth";
 
 $("#sEmail").hide();
 $("#sPassword").hide();
@@ -57,10 +57,20 @@ function signupForm() {
         crossDomain: true,
         success: function (res) {
             console.log(res);
+            if(res.status!==200){
+                $("#btnSignUp").attr("disabled", false);
+                $("#errMsg").text(res.message);
+            }
+            else if(res.status === 200){
+                if(res.isVerified === false){
+                    localStorage.setItem("token", res.token);
+                    window.location = "verify.html";
+                }
+            }
         },
-        error: function (xhr, status) {
+        error: function (err) {
             $("#btnSignUp").attr("disabled", false);
-            console.log(status);
+            $("#errMsg").text(err);
         }
     });
 }

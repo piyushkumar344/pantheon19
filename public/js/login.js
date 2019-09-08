@@ -1,4 +1,4 @@
-let url = "http://192.168.158.230:4000/auth";
+let url = "http://localhost:4000/auth";
 
 $("#lEmail").hide();
 $("#lPassword").hide();
