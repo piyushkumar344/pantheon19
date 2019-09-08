@@ -259,12 +259,13 @@ router.post("/eventRegister", verifyToken, async (req, res) => {
             });
         }
         let eventId = req.body.eventId;
+        console.log(eventId);
         try {
             eventId = Number(req.body.eventId);
             if (!eventId) {
                 throw "Event Id must be an integer";
             }
-            if (eventId % 2 !== 1) {
+            if (eventId % 1 !== 0) {
                 throw "Event Id must be an integer";
             }
         } catch (e) {
@@ -307,7 +308,7 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
             if (!eventId) {
                 throw "Event Id must be an integer";
             }
-            if (eventId % 2 !== 1) {
+            if (eventId % 1 !== 0) {
                 throw "Event Id must be an integer";
             }
         } catch (e) {
