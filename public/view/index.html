@@ -8,17 +8,11 @@
     <link rel="stylesheet" href="../css/lib/bootstrap.min.css">
     <link href="../css/rotate.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles/style.css" type="text/css">
-    <link rel="stylesheet" href="../css/lib/animate.min.css">
-    <link rel="stylesheet" href="../css/lib/animate.css">
     <title>Pantheon'19</title>
     <link rel="icon" href="../images/title.png" type="image/icon type">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css
     ">
-    <script src="../js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
 
 </head>
 
@@ -98,8 +92,8 @@
 
 
             <div id="overlay">
-                <img id="first-img" src="../images/PantheonLogo.png" class="img-fluid wow flipInX" alt="Pantheon Logo"
-                    style="position:relative; width: 50vw; top:10vh;" data-wow-duration=2.5s data-wow-delay=2.5s>
+                <img id="first-img" src="../images/PantheonLogo.png" class="img-fluid" alt="Pantheon Logo"
+                    style="position:relative; width: 50vw; top:10vh;">
                 <img id="planet-img" src="../images/under.png" class="img-fluid" alt="" srcset=""
                     style="width:60vw; position: absolute; left: 25%; bottom: 0;">
             </div>
@@ -268,12 +262,12 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <form>
+                        <form id="feedbackForm">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text fa fa-user"></span>
                                 </div>
-                                <input type="text" class="form-control" id="uname" placeholder="ENTER YOUR NAME"
+                                <input type="text" class="form-control" id="feedbackName" placeholder="ENTER YOUR NAME"
                                     name="name" required>
                             </div>
 
@@ -282,7 +276,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
-                                <input type="text" class="form-control" id="email" placeholder=" ENTER YOUR EMAIL"
+                                <input type="text" class="form-control" id="feedbackEmail" placeholder=" ENTER YOUR EMAIL"
                                     name="email" required>
                             </div>
                             <br>
@@ -290,12 +284,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text fa fa-envelope"></span>
                                 </div>
-                                <textarea type="text" class="form-control" id="textarea1"
+                                <textarea type="text" class="form-control" id="feedbackMessage"
                                     placeholder="ENTER YOUR MESSAGE" rows="4" name="message" required></textarea>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-success" name="submit">SEND</button> &nbsp &nbsp
-                            <button type="reset" class="btn btn-success" name="submit">RESET</button>
+                            <p id="feedbackErrMsg"></p>
+                            <input id="feedbackSendButton" type="submit" class="btn btn-success" name="submit">&nbsp &nbsp
+                            <button id="feedbackResetButton" type="reset" class="btn btn-success" name="submit">RESET</button>
                         </form>
                     </div>
 
@@ -381,6 +376,7 @@
     <script src="../js/lib/gl-matrix-min.js"></script>
     <script src="../js/rotate.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/feedback.js"></script>
 
     <script>
         (function ($) {
