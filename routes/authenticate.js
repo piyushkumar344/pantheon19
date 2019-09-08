@@ -303,7 +303,7 @@ router.post("/forgotPassword",
         let email = req.body.email.toString().trim();
         userData.findOne({ email: req.body.email }, async (err, user) => {
             if (err) {
-                res.json({ status: 500, msg: "Internal Server Error" });
+                res.json({ status: 500, message: "Internal Server Error" });
             } else {
                 const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
                 user.emailOTP = emailOTP;
@@ -315,7 +315,7 @@ router.post("/forgotPassword",
                         });
                     }
                 });
-                res.json({status: 200, msg: "OTP sent to your email address"});
+                res.json({status: 200, message: "OTP sent to your email address"});
 
                 //email
                 sendEmail(emailOTP);
@@ -343,7 +343,7 @@ router.post(
     (req, res, next) => {
         let emailOTP = req.body.emailOTP;
         if(!emailOTP) {
-            return res.json({status: 422, msg: "Missing email OTP"});
+            return res.json({status: 422, message: "Missing email OTP"});
         }
         try {
             emailOTP = Number(emailOTP);
@@ -351,30 +351,30 @@ router.post(
                 throw "Invalid email OTP";
             }
         } catch(e) {
-            return res.json({status: 422, msg: e});
+            return res.json({status: 422, message: e});
         }
         userData.findOne({ email: req.body.email }, (err, user) => {
             if (err) {
-                return res.json({ status: 500, msg: "Internal Server Error" });
+                return res.json({ status: 500, message: "Internal Server Error" });
             }
             if (user.emailOTP !== emailOTP) {
-                return res.json({ status: 400, msg: "Wrong otp , please try again" });
+                return res.json({ status: 400, message: "Wrong otp , please try again" });
             } else if (req.body.password !== req.body.confPassword) {
-                return res.json({ status: 400, msg: "Password does not match" });
+                return res.json({ status: 400, message: "Password does not match" });
             } else {
                 bcrypt.hash(req.body.password, 8, (err, hashedPassword) => {
                     if (err) {
-                        return res.json({ status: 500, msg: "Internal Server Error" });
+                        return res.json({ status: 500, message: "Internal Server Error" });
                     }
                     user.password = hashedPassword;
                     user.emailOTP = -1;
                     user.save(err => {
                         if (err) {
-                            return res.json({ status: 500, msg: "Internal Server Error" });
+                            return res.json({ status: 500, message: "Internal Server Error" });
                         } else {
                             return res.json({
                                 status: 200,
-                                msg: " Password succesfully changed"
+                                message: " Password succesfully changed"
                             });
                         }
                     });

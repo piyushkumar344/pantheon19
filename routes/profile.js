@@ -115,7 +115,7 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
         const obj = req.body.membersData[i];
         let panId = obj.pantheonId, emailId = obj.email;
         if (!panId || !emailId) {
-            return res.json({ status: 422, msg: `Missing Data of member ${i + 1}` });
+            return res.json({ status: 422, message: `Missing Data of member ${i + 1}` });
         }
         try {
             panId = Number(panId);
@@ -130,7 +130,7 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
                 throw `Invalid credentials of member ${i + 1}`;
             }
         } catch (e) {
-            return res.json({ status: 422, msg: e });
+            return res.json({ status: 422, message: e });
         }
         membersData.push(obj);
     }
@@ -251,11 +251,11 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
 router.post("/eventRegister", verifyToken, async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
-        if (!user) return res.json({ status: 400, msg: " No such user exist " });
+        if (!user) return res.json({ status: 400, message: " No such user exist " });
         else if (!user.isTeamLeader) {
             return res.json({
                 status: 400,
-                msg: " Only team leader can register for an event "
+                message: " Only team leader can register for an event "
             });
         }
         let eventId = req.body.eventId;
@@ -268,37 +268,37 @@ router.post("/eventRegister", verifyToken, async (req, res) => {
                 throw "Event Id must be an integer";
             }
         } catch (e) {
-            return res.json({ status: 422, msg: e });
+            return res.json({ status: 422, message: e });
         }
         const event = await EventModel.findOne({ eventId: eventId });
 
         if (!event) {
-            return res.json({ status: 400, msg: " No such event exist" });
+            return res.json({ status: 400, message: " No such event exist" });
         }
         const team = await TeamModel.findById(user.teamMongoId);
         let totalEvents = team.eventsRegistered.length;
         for (let i = 0; i < totalEvents; i++) {
             if (team.eventsRegistered[i].eventId === eventId) {
-                return res.json({ status: 304, msg: " Event already registered" });
+                return res.json({ status: 304, message: " Event already registered" });
             }
         }
         team.eventsRegistered.push({ eventId: event.eventId, eventName: event.eventName });
         await team.save();
 
-        return res.json({ status: 200, msg: "Successfully Registered" });
+        return res.json({ status: 200, message: "Successfully Registered" });
     } catch (err) {
-        return res.json({ status: 500, msg: "Internal Server Error" });
+        return res.json({ status: 500, message: "Internal Server Error" });
     }
 });
 
 router.post("/eventDeregister", verifyToken, async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
-        if (!user) return res.json({ status: 400, msg: " No such user exist " });
+        if (!user) return res.json({ status: 400, message: " No such user exist " });
         else if (!user.isTeamLeader) {
             return res.json({
                 status: 400,
-                msg: " Only team leader can register for an event "
+                message: " Only team leader can register for an event "
             });
         }
         let eventId = req.body.eventId;
@@ -311,11 +311,11 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
                 throw "Event Id must be an integer";
             }
         } catch (e) {
-            return res.json({ status: 422, msg: e });
+            return res.json({ status: 422, message: e });
         }
         const event = await EventModel.findOne({ eventId: eventId });
         if (!event) {
-            return res.json({ status: 400, msg: "No such event exist" });
+            return res.json({ status: 400, message: "No such event exist" });
         }
         const team = await TeamModel.findById(user.teamMongoId);
         let index = -1;
@@ -330,10 +330,10 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
         }
         await team.save();
 
-        return res.json({ status: 200, msg: "Successfully Deregistered" });
+        return res.json({ status: 200, message: "Successfully Deregistered" });
     } catch (err) {
         console.log(err)
-        return res.json({ status: 500, msg: "Internal Server Error" });
+        return res.json({ status: 500, message: "Internal Server Error" });
     }
 });
 
