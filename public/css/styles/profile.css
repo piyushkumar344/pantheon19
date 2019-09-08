@@ -1,10 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@font-face {
+    font-family: "formation-bold";
+    src: url("../../fonts/Formation UltraBold.ttf") format("opentype");
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-  }
-  #particles-js{
+}
+
+.content_wrapper h2 {
+    font-family: "formation-bold" !important;
+}
+
+.ul-tabs li {
+    font-family: "formation-bold" !important;
+}
+
+#instruction-detail li {
+    list-style-type: square;
+}
+
+#particles-js {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -12,7 +30,8 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-  body {
+
+body {
     font-family: 'Montserrat', sans-serif !important;
     color: #50555a;
     /* padding: 10px 20px; */
@@ -140,7 +159,7 @@
     position: relative;
 }
 
-.profile-content .wrap-input input,select {
+.profile-content .wrap-input input, select {
     height: 50px;
     border-radius: 25px;
     padding: 0 30px 0 60px;
@@ -183,7 +202,6 @@
 #noTeam input[type="text"]:disabled {
     background: #b3b0af;
 }
-
 
 /* 
  * Scoll bar 
