@@ -303,8 +303,13 @@ router.post("/forgotPassword",
         let email = req.body.email.toString().trim();
         userData.findOne({ email: req.body.email }, async (err, user) => {
             if (err) {
-                res.json({ status: 500, message: "Internal Server Error" });
-            } else {
+                return res.json({ status: 500, message: "Internal Server Error" });
+            } 
+            else if(!user)
+            {
+                return res.json({ status: 500, message: "Email id does not exist" });
+            }
+            else {
                 const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
                 user.emailOTP = emailOTP;
                 await user.save(err => {
@@ -356,6 +361,10 @@ router.post(
         userData.findOne({ email: req.body.email }, (err, user) => {
             if (err) {
                 return res.json({ status: 500, message: "Internal Server Error" });
+            }
+            if(!user)
+            {
+                return res.json({ status : 500, message: "No user found"});
             }
             if (user.emailOTP !== emailOTP) {
                 return res.json({ status: 400, message: "Wrong otp , please try again" });
