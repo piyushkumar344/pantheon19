@@ -1,14 +1,19 @@
-const url = "http://localhost:4000/";
+const url = "http://localhost:4000";
 
 $("#feedbackForm").submit(function (e) {
     e.preventDefault();
-    const name = $("#feedbackName").val();
-    const email = $("#feedbackEmail").val();
-    const message = $("#feedbackMessage").val();
+    const name = $("#feedbackName").val().toString().trim();
+    const email = $("#feedbackEmail").val().toString().trim();
+    const message = $("#feedbackMessage").val().toString().trim();
+    const captchaToken = grecaptcha.getResponse();
 
-    console.log("hiii");
+    if (name === "" || email === "" || message === "" || captchaToken === "") {
+        $("#feedbackErrMsg").text("Missing Fields");
+        return false;
+    }
+
     $.ajax({
-        url: url + "sendFeedback",
+        url: url + "/sendFeedback",
         method: "POST",
         data: {
             name: name,
