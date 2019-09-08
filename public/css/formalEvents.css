@@ -1,17 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-
 @font-face {
     font-family: "product-sans-regular";
     src: url("../../fonts/Product Sans Regular.ttf") format("opentype");
 }
 
-@font-face {
-    font-family: "baron-neue";
-    src: url("../../fonts/baron-neue-regular.otf") format("opentype");
-}
-
-body{
-    font-family: 'Poppins', sans-serif !important;
+body {
+    font-family: 'product-sans-regular', sans-serif;
     overflow-x: hidden;
     background-image: url('../images/sado.jpg');
     background-attachment: fixed;
@@ -30,6 +23,8 @@ main .container img {
     width: 100%;
     cursor: pointer;
 }
+
+
 /* 
  * Footer
  */
@@ -43,50 +38,49 @@ main .container img {
     color: #fff;
 }
 
-.modal-footer{
+.modal-footer {
     display: block !important;
-    
 }
 
-.modal-footer h4{
-    color:rgb(146, 19, 61);
-    
+.modal-footer h4 {
+    color: rgb(146, 19, 61);
 }
 
-.modal-description{
-    color:rgb(146, 19, 61);
+.modal-description {
+    color: rgb(146, 19, 61);
     text-decoration: underline;
 }
 
-.modal-header{
-    background-color: rgba(130, 60, 196, 0.719);
+.modal-header {
+    background: #b92b27;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1565C0, #b92b27);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.modal-title{
-
-    color:black;
+.modal-title {
+    color: black;
     font-weight: bold;
 }
 
-
-
-.text-underline{
+.text-underline {
     text-decoration: underline;
-    color:rgb(146, 19, 61);
+    color: rgb(146, 19, 61);
+}
+
+.zoom {
+    transition: transform .1s;
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+    overflow: hidden;
 }
 
 
-.zoom {
-    transition: transform .1s; 
-    margin: 0 auto;
-  }
-  
-  .zoom:hover {
-    transform: scale(1.1); 
-    overflow: hidden;
-  }
-
-  
 /* 
  * Scoll bar 
 */

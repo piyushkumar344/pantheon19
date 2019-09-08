@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@font-face {
+    font-family: "product-regular";
+    src: url("../../fonts/Product\ Sans\ Regular.ttf") format("opentype");
+}
 
 body {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'product-regular', sans-serif;
     overflow-x: hidden;
     padding: 0;
     margin: 0;
@@ -16,6 +19,7 @@ canvas {
 .back-text {
     margin: 5%;
 }
+
 
 /* 
  * Footer
@@ -34,6 +38,7 @@ footer .row {
     margin-bottom: 0px;
 }
 
+
 /* Medium devices (landscape tablets, 768px and up) */
 
 @media only screen and (min-width: 992px) and (min-height: 900px) {
@@ -45,7 +50,7 @@ footer .row {
     }
 }
 
-.card-block{
+.card-block {
     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 }
 
@@ -61,6 +66,7 @@ footer .row {
 .card {
     margin: 20px 0;
 }
+
 
 /* Flip Cards CSS */
 

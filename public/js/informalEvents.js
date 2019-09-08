@@ -4,12 +4,12 @@ $.ajax({
     url: url1 + "/event/getInformalEvents",
     method: "GET",
     crossDomain: true,
-    success: function (res) {
+    success: function(res) {
         for (i = 0; i < res.length; i++) {
             $(".main1").append(eventsTemplate(res[i], i));
         }
     },
-    error: function (err) {
+    error: function(err) {
         console.log(err);
         alert(err);
     }
@@ -62,7 +62,7 @@ function eventsTemplate(events, i) {
 
                 </div>
                 <div class="modal-footer text-center ">
-                    <h4>Event coodinators </h4>
+                    <h4 class="text-underline">Event coodinators </h4>
                     <h6>${events.coordinators}</h6>
                 </div>
             </div>

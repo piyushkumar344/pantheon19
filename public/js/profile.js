@@ -1,7 +1,7 @@
 const url = "http://localhost:4000/";
 $("#errMsg").hide();
 
-$("#signOutLink").click(function() {
+$("#signOutLink").click(function () {
   localStorage.setItem("token", "");
   window.location.href = "login2.html";
 });
@@ -17,7 +17,7 @@ for (var i = teamSize; i < 8; i++) {
   $(`#teamMember${i}Email`).prop("disabled", true);
 }
 
-$("#teamSizeFill").change(function() {
+$("#teamSizeFill").change(function () {
   for (var i = 1; i < 8; i++) {
     $(`#teamMember${i}Pan`).prop("disabled", false);
     $(`#teamMember${i}Email`).prop("disabled", false);
@@ -42,7 +42,7 @@ function userDetail() {
       "x-access-token": localStorage.getItem("token")
     },
     cors: true,
-    success: function(res) {
+    success: function (res) {
 
       //show user details accordingly
       $("#userName").val(res.user.name);
@@ -64,7 +64,7 @@ function userDetail() {
         for (let i = 0; i < res.user.teamMembers.length; i++) {
           trHTML += `<tr><th scope="row">${i + 1}</th><td>PA-${
             res.user.teamMembers[i].pantheonId
-          }</td><td>${res.user.teamMembers[i].email}</td></tr>`;
+            }</td><td>${res.user.teamMembers[i].email}</td></tr>`;
         }
         $("#teamTable").append(trHTML);
         $("#teamDetails").show();
@@ -88,14 +88,21 @@ function userDetail() {
           "CODEZILLA",
           "EUREKA"
         ];
+        let flagshipLinks = [
+          "illuminati.html",
+          "droid_trooper.html",
+          "cube_de_cemento.html",
+          "codezilla.html",
+          "eureka.html"
+        ];
         for (let i = 0; i < 5; i++) {
           if (res.user.isTeamLeader === true) {
             let check = false;
             for (let j = 0; j < res.user.eventsRegistered.length; j++) {
               if (i + 1 === res.user.eventsRegistered[j].eventId) {
-                trHTML += `<tr><th scope="row">${i + 1}</th><td>${
+                trHTML += `<tr><th scope="row">${i + 1}</th><td><a class="flagshipLink" target="_blank" href="${flagshipLinks[i]}">${
                   eventArr[i]
-                }</td><td><button value=${i +
+                  }</a></td><td><button value=${i +
                   1} disabled onclick="registerEvent(event)" class="btn">Register</button></td><td><button value=${i +
                   1} onclick="deregisterEvent(event)" class="btn btn-danger">Withdraw</button></td></tr>`;
                 check = true;
@@ -104,16 +111,16 @@ function userDetail() {
             }
 
             if (!check) {
-              trHTML += `<tr><th scope="row">${i + 1}</th><td>${
+              trHTML += `<tr><th scope="row">${i + 1}</th><td><a class="flagshipLink" target="_blank" href="${flagshipLinks[i]}">${
                 eventArr[i]
-              }</td><td><button value=${i +
+                }</a></td><td><button value=${i +
                 1} onclick="registerEvent(event)" class="btn btn-success">Register</button></td><td><button value=${i +
                 1} onclick="deregisterEvent(event)" disabled class="btn">Withdraw</button></td></tr>`;
             }
           } else {
-            trHTML += `<tr><th scope="row">${i + 1}</th><td>${
+            trHTML += `<tr><th scope="row">${i + 1}</th><td><a class="flagshipLink" target="_blank" href="${flagshipLinks[i]}">${
               eventArr[i]
-            }</td><td><button value=${i +
+              }</a></td><td><button value=${i +
               1} class="btn" onclick="registerEvent(event)" disabled>Register</button></td><td><button value=${i +
               1} onclick="deregisterEvent(event)" disabled class="btn">Withdraw</button></td></tr>`;
           }
@@ -127,7 +134,7 @@ function userDetail() {
         $("#noEvents").show();
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.log(err);
     }
   });
@@ -141,7 +148,7 @@ function registerEvent(event) {
     content: "Are you sure you want register for this event?",
     theme: "supervan",
     buttons: {
-      Confirm: function() {
+      Confirm: function () {
         let eventId = Number(event.target.value);
         $.ajax({
           url: url + "profile/eventRegister",
@@ -153,7 +160,7 @@ function registerEvent(event) {
             eventId: eventId
           },
           crossDomain: true,
-          success: function(res) {
+          success: function (res) {
             if (res.status !== 200) {
               $("#errMsg").text(res.message);
             } else if (res.status === 200) {
@@ -171,12 +178,12 @@ function registerEvent(event) {
               }, 3000);
             }
           },
-          error: function(err) {
+          error: function (err) {
             $("#errMsg").text(err);
           }
         });
       },
-      Cancel: function() {
+      Cancel: function () {
         //do nothing
       }
     }
@@ -189,7 +196,7 @@ function deregisterEvent(event) {
     content: "Are you sure you want to withdraw from this event?",
     theme: "supervan",
     buttons: {
-      Confirm: function() {
+      Confirm: function () {
         let eventId = Number(event.target.value);
         $.ajax({
           url: url + "profile/eventDeregister",
@@ -201,7 +208,7 @@ function deregisterEvent(event) {
             eventId: eventId
           },
           crossDomain: true,
-          success: function(res) {
+          success: function (res) {
             if (res.status !== 200) {
               $("#errMsg").text(res.message);
             } else if (res.status === 200) {
@@ -219,12 +226,12 @@ function deregisterEvent(event) {
               }, 3000);
             }
           },
-          error: function(err) {
+          error: function (err) {
             $("#errMsg").text(err);
           }
         });
       },
-      Cancel: function() {
+      Cancel: function () {
         //do nothing
       }
     }
