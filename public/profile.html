@@ -56,7 +56,8 @@
                                 <a class="nav-link" href="events.html"><strong>Events</strong></a>
                             </li>
                             <li class="nav-item">
-                                <button id="signOutLink" class="nav-link btn btn-dark"><strong>Sign Out</strong></button>
+                                <button id="signOutLink" class="nav-link btn btn-dark"><strong>Sign
+                                        Out</strong></button>
                             </li>
                         </ul>
                     </ul>
@@ -414,11 +415,24 @@
                             </div>
 
                             <p>Team Members</p>
-                            <table>
+                            <br />
+                            <!-- <table>
                                 <tr>
                                     <th>Pantheon Id</th>
                                     <th>Email</th>
                                 </tr>
+                            </table> -->
+
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Pantheon Id</th>
+                                        <th scope="col">Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="teamTable">
+                                </tbody>
                             </table>
 
                         </div>
@@ -433,11 +447,17 @@
                     </div>
                     <div id="eventsDetails">
                         <p>Following are the Flagship events in which your team is regsitered!</p>
-                        <table>
-                            <tr>
-                                <th>Event Name</th>
-                                <th>Event Id</th>
-                            </tr>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Event Name</th>
+                                    <th scope="col">Registration Link</th>
+                                    <th scope="col">Deregistration Link</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eventTable">
+                            </tbody>
                         </table>
                     </div>
                 </div>
