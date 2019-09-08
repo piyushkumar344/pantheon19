@@ -29,6 +29,7 @@ router.post(
         }
         next();
     },
+    validateCaptcha,
     (req, res, next) => {
         if (req.body.password !== req.body.confPassword) {
             return res.json({
@@ -125,7 +126,7 @@ router.post("/verify", verifyToken, (req, res) => {
             !gender ||
             !clgName ||
             !clgCity ||
-            !clgState || 
+            !clgState ||
             !clgId
         ) {
             return res.json({ status: 422, message: "Missing Data Fields" });
@@ -236,6 +237,7 @@ router.post(
         }
         next();
     },
+    validateCaptcha,
     (req, res) => {
         if (req.body.email && req.body.password) {
             userData.findOne({ email: req.body.email }, (err, user) => {
@@ -299,14 +301,15 @@ router.post("/forgotPassword",
             return res.json({ status: 422, message: "Invalid email address" });
         }
         next();
-    }, (req, res) => {
+    },
+    validateCaptcha,
+    (req, res) => {
         let email = req.body.email.toString().trim();
         userData.findOne({ email: req.body.email }, async (err, user) => {
             if (err) {
                 return res.json({ status: 500, message: "Internal Server Error" });
-            } 
-            else if(!user)
-            {
+            }
+            else if (!user) {
                 return res.json({ status: 500, message: "Email id does not exist" });
             }
             else {
@@ -320,7 +323,7 @@ router.post("/forgotPassword",
                         });
                     }
                 });
-                res.json({status: 200, message: "OTP sent to your email address"});
+                res.json({ status: 200, message: "OTP sent to your email address" });
 
                 //email
                 sendEmail(emailOTP);
@@ -345,26 +348,26 @@ router.post(
         }
         next();
     },
+    validateCaptcha,
     (req, res, next) => {
         let emailOTP = req.body.emailOTP;
-        if(!emailOTP) {
-            return res.json({status: 422, message: "Missing email OTP"});
+        if (!emailOTP) {
+            return res.json({ status: 422, message: "Missing email OTP" });
         }
         try {
             emailOTP = Number(emailOTP);
-            if(!emailOTP) {
+            if (!emailOTP) {
                 throw "Invalid email OTP";
             }
-        } catch(e) {
-            return res.json({status: 422, message: e});
+        } catch (e) {
+            return res.json({ status: 422, message: e });
         }
         userData.findOne({ email: req.body.email }, (err, user) => {
             if (err) {
                 return res.json({ status: 500, message: "Internal Server Error" });
             }
-            if(!user)
-            {
-                return res.json({ status : 500, message: "No user found"});
+            if (!user) {
+                return res.json({ status: 500, message: "No user found" });
             }
             if (user.emailOTP !== emailOTP) {
                 return res.json({ status: 400, message: "Wrong otp , please try again" });
@@ -392,6 +395,31 @@ router.post(
         });
     }
 );
+
+router.get("/getUserState", verifyToken, (req, res) => {
+    const userMongoId = req.userId;
+    async function getState() {
+        try {
+            const user = await userData.findById(userMongoId);
+            if (!user) {
+                return res.json({ status: 400, auth: false, message: 'User not found!', verified: false });
+            }
+            if (user.isVerified) {
+                return res.json({ status: 200, auth: true, message: 'Token authenticated!', verified: true });
+            }
+            else {
+                return res.json({ status: 400, auth: true, message: 'Token authenticated!', verified: false, email: user.email });
+            }
+        }
+        catch (err) {
+            console.log(err);
+            return res.json({ status: 500, auth: false, message: 'Internal server error!', verified: false });
+        }
+    }
+    getState();
+});
+
+
 
 router.post("/logout", (req, res) => {
     return res.json({ status: 200, token: "" });
