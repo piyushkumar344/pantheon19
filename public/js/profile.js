@@ -44,7 +44,7 @@ function userDetail() {
 
             //show user details accordingly
             $("#userName").val(res.user.name);
-            $("#userPanId").val("PA-"+res.user.pantheonId);
+            $("#userPanId").val("PA-" + res.user.pantheonId);
             $("#userEmail").val(res.user.email);
             $("#userPhone").val(res.user.phoneNo);
             $("#userClgId").val(res.user.clgId);
@@ -55,12 +55,12 @@ function userDetail() {
             //if a team is registered then show team details
             if (res.user.teamName) {
                 $("#teamName").val(res.user.teamName);
-                $("#teamId").val("TA-"+res.user.teamId);
+                $("#teamId").val("TA-" + res.user.teamId);
                 $("#teamSize").val(res.user.teamSize);
 
                 let trHTML = '';
-                for(let i=0;i<res.user.teamMembers.length;i++){
-                    trHTML +=`<tr><th scope="row">${i+1}</th><td>PA-${res.user.teamMembers[i].pantheonId}</td><td>${res.user.teamMembers[i].email}</td></tr>`;
+                for (let i = 0; i < res.user.teamMembers.length; i++) {
+                    trHTML += `<tr><th scope="row">${i + 1}</th><td>PA-${res.user.teamMembers[i].pantheonId}</td><td>${res.user.teamMembers[i].email}</td></tr>`;
                 }
                 $('#teamTable').append(trHTML);
                 $("#teamDetails").show();
@@ -78,9 +78,12 @@ function userDetail() {
             if (res.user.eventsRegistered) {
 
                 let trHTML = '';
-                for(let i=0;i<res.user.eventsRegistered.length;i++)
-                {
-                    trHTML+=`<tr><th scope="row">${res.user.eventsRegistered[i].eventId}</th><td>${res.user.eventsRegistered[i].eventName}</td><td><button class="btn btn-success">Register</button></td><td><button class="btn btn-danger">Deregister</button></td></tr>`
+                for (let i = 0; i < res.user.eventsRegistered.length; i++) {
+                    if (res.user.isLeader === true) {
+                        trHTML += `<tr><th scope="row">${res.user.eventsRegistered[i].eventId}</th><td>${res.user.eventsRegistered[i].eventName}</td><td><button class="btn btn-success">Register</button></td><td><button class="btn btn-danger">Deregister</button></td></tr>`;
+                    } else {
+                        trHTML += `<tr><th scope="row">${res.user.eventsRegistered[i].eventId}</th><td>${res.user.eventsRegistered[i].eventName}</td><td><button class="btn btn-success" disabled>Register</button></td><td><button disabled class="btn btn-danger">Deregister</button></td></tr>`;
+                    }
                 }
                 $('#eventTable').append(trHTML);
 
