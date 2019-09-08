@@ -1,5 +1,10 @@
 const url = "http://localhost:4000/";
 
+$("#signOutLink").click(function () {
+    localStorage.setItem("token", "");
+    window.location.href = "login2.html";
+});
+
 var teamName = $("#teamNameFill").val().toString().trim().toLowerCase();
 var teamSize = Number($("#teamSizeFill").val());
 for (var i = teamSize; i < 8; i++) {
@@ -86,8 +91,10 @@ function userDetail() {
         },
         error: function (err) {
             console.log(err);
+
         }
     });
 }
 
 userDetail();
+
