@@ -67,10 +67,11 @@ function loginForm() {
         },
         crossDomain: true,
         success: function (res) {
-            console.log(res);
             if (res.status !== 200) {
-                $("#btnSignIn").attr("disabled", false);
                 $("#errMsg").text(res.message);
+                setTimeout(function() {
+                    window.location.reload(true);
+                }, 600);
             }
             else if (res.status === 200) {
                 if (res.isVerfied === false) {
@@ -84,8 +85,10 @@ function loginForm() {
             }
         },
         error: function (err) {
-            $("#btnSignIn").attr("disabled", false);
             $("#errMsg").text(err);
+            setTimeout(function() {
+                window.location.reload(true);
+            }, 600);
         }
     });
 }

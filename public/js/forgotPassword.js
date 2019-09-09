@@ -33,8 +33,10 @@ function forgotPassword() {
         crossDomain: true,
         success: function (res) {
             if (res.status !== 200) {
-                $("#btnForgotPassword").attr("disabled", false);
                 $("#errMsg").text(res.message);
+                setTimeout(function() {
+                    window.location.reload(true);
+                }, 600);
             }
             else if (res.status === 200) {
                 $("#errMsg").css({ "color": "green" });
@@ -43,12 +45,14 @@ function forgotPassword() {
                 setTimeout(() => {
                     localStorage.setItem("token", res.token);
                     window.location = "changePassword.html";
-                }, 2000);
+                }, 1500);
             }
         },
         error: function (err) {
-            $("#btnForgotPassword").attr("disabled", false);
-            $("#errMsg").text(err);
+            $("#errMsg").text(res.message);
+            setTimeout(function () {
+                window.location.reload(true);
+            }, 600);
         }
     });
 }
