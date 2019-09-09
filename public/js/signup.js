@@ -56,21 +56,24 @@ function signupForm() {
         },
         crossDomain: true,
         success: function (res) {
-            console.log(res);
-            if(res.status!==200){
-                $("#btnSignUp").attr("disabled", false);
+            if (res.status !== 200) {
                 $("#errMsg").text(res.message);
+                setTimeout(function() {
+                    window.location.reload(true);
+                }, 600);
             }
-            else if(res.status === 200){
-                if(res.isVerified === false){
+            else if (res.status === 200) {
+                if (res.isVerified === false) {
                     localStorage.setItem("token", res.token);
                     window.location = "verify.html";
                 }
             }
         },
         error: function (err) {
-            $("#btnSignUp").attr("disabled", false);
-            $("#errMsg").text(err);
+            $("#errMsg").text(res.message);
+            setTimeout(function() {
+                window.location.reload(true);
+            }, 600);
         }
     });
 }

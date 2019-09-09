@@ -11,7 +11,7 @@ function changePassword() {
     let captchaToken = grecaptcha.getResponse();
     let password = $('#password').val();
     let confPassword = $('#confPassword').val();
-    let emailOTP= $('#OTP').val();
+    let emailOTP = $('#OTP').val();
 
     $("#lEmail").hide();
     $("#lCaptcha").hide();
@@ -34,20 +34,17 @@ function changePassword() {
         return;
     }
 
-    if(password === "")
-    {
+    if (password === "") {
         $('#lpassword').show();
         return;
     }
 
-    if(confPassword === "")
-    {
+    if (confPassword === "") {
         $('#lConfPassword').show();
         return;
     }
 
-    if(emailOTP === "")
-    {
+    if (emailOTP === "") {
         $('#lOTP').show();
         return;
     }
@@ -68,8 +65,10 @@ function changePassword() {
         success: function (res) {
             console.log(res);
             if (res.status !== 200) {
-                $("#btnChangePassword").attr("disabled", false);
                 $("#errMsg").text(res.message);
+                setTimeout(function () {
+                    window.location.reload(true);
+                }, 600);
             }
             else if (res.status === 200) {
                 if (res.isVerfied === false) {
@@ -83,8 +82,10 @@ function changePassword() {
             }
         },
         error: function (err) {
-            $("#btnChangePassword").attr("disabled", false);
-            $("#errMsg").text(err);
+            $("#errMsg").text(res.message);
+            setTimeout(function () {
+                window.location.reload(true);
+            }, 600);
         }
     });
 }
