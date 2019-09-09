@@ -29,7 +29,7 @@ const teamSchema = new Schema({
         required: true
     },
     teamId:{
-        type: String,
+        type: Number,
         required: true
     },
     teamSize:{

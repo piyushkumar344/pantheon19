@@ -188,10 +188,10 @@
                 <div class="content_wrapper">
                     <h2 class="text-color">Team details</h2>
                     <div id="noTeam">
-                        <p>You are not registered in any team yet. Fill the following details to create one.</p>
+                        <p id="noRegTeam">You are not registered in any team yet. Fill the following details to create one.</p>
                         <br>
                         <div id="teamRegistrationForm" class="profile-content">
-                            <form action="" onsubmit="">
+                            <form action="#" onsubmit=event.preventDefault()>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p>Team Name</p>
@@ -390,8 +390,9 @@
                                 </div>
 
                                 <br>
-
-                                <button class="btn btn-outline-primary" type="submit">Register</button>
+                                <p id="errMsg" style="color: red;"></p>
+                                <br>
+                                <button class="btn btn-outline-primary" type="submit" id="teamRegisterBtn">Register</button>
                             </form>
                         </div>
                     </div>
