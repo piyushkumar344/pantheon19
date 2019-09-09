@@ -24,7 +24,7 @@
             time = 0;
             count = 0;
 
-            for (var i = 0; i < arc; i++) {
+            for (let i = 0; i < arc; i++) {
                 parts[i] = {
                     x: Math.ceil(Math.random() * w),
                     y: Math.ceil(Math.random() * h),
@@ -39,7 +39,7 @@
         function particles() {
             ctx.clearRect(0, 0, w, h);
             // canvas.addEventListener('mousemove', MouseMove, false);
-            for (var i = 0; i < arc; i++) {
+            for (let i = 0; i < arc; i++) {
                 var li = parts[i];
                 var distanceFactor = DistanceBetween(mouse, parts[i]);
                 var distanceFactor = Math.max(Math.min(15 - (distanceFactor / 10), 10), 1);
