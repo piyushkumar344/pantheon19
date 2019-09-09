@@ -5,7 +5,7 @@ $(document).ready(function () {
     var highest = 0;
     var absoluteSide = "";
 
-    for (var i = 0; i < front.length; i++) {
+    for (let i = 0; i < front.length; i++) {
         if (front[i].offsetHeight > back[i].offsetHeight) {
             if (front[i].offsetHeight > highest) {
                 highest = front[i].offsetHeight;
@@ -107,7 +107,7 @@ var starfield = function() {
     var stars = [];
     
     function _init() {
-        for(var i = 0, len = numOfStars; i < len; i++) {
+        for(let i = 0, len = numOfStars; i < len; i++) {
             stars.push(new star());
         }
     }    
@@ -117,7 +117,7 @@ var starfield = function() {
     this.draw = function() {
         ctx.translate(halfw, halfh);
         
-        for(var i = 0, len = stars.length; i < len; i++) {
+        for(let i = 0, len = stars.length; i < len; i++) {
             var currentStar = stars[i];
             
             currentStar.draw();

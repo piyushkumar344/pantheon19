@@ -12,18 +12,18 @@ var teamName = $("#teamNameFill")
   .trim()
   .toLowerCase();
 var teamSize = Number($("#teamSizeFill").val());
-for (var i = teamSize; i < 8; i++) {
+for (let i = teamSize; i < 8; i++) {
   $(`#teamMember${i}Pan`).prop("disabled", true);
   $(`#teamMember${i}Email`).prop("disabled", true);
 }
 
 $("#teamSizeFill").change(function () {
-  for (var i = 1; i < 8; i++) {
+  for (let i = 1; i < 8; i++) {
     $(`#teamMember${i}Pan`).prop("disabled", false);
     $(`#teamMember${i}Email`).prop("disabled", false);
   }
   teamSize = Number($("#teamSizeFill").val());
-  for (var i = teamSize; i < 8; i++) {
+  for (let i = teamSize; i < 8; i++) {
     $(`#teamMember${i}Pan`).prop("disabled", true);
     $(`#teamMember${i}Email`).prop("disabled", true);
   }

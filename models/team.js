@@ -9,10 +9,6 @@ const teamMemberSchema = new Schema({
     email:{
         type: String,
         required: true
-    },
-    memberName: {
-        type: String,
-        // required: true
     }
 });
 
