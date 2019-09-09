@@ -167,7 +167,7 @@ router.post("/verify", verifyToken, (req, res) => {
             return res.json({ status: 422, message: "Phone Number must be of 10 digits" });
         }
         for (let i = 0; i < 10; i++) {
-            if (phoneNo[i] <= '0' || phonNo[i] >= '9') {
+            if (phoneNo[i] < '0' || phoneNo[i] > '9') {
                 return res.json({ status: 422, message: "Phone Number must contain only digits" });
             }
         }

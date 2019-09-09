@@ -9,7 +9,6 @@ $.ajax({
     },
     crossDomain: true,
     success: function (res) {
-        console.log(res);
         if (res.status !== 200 && !res.email) {
             window.location = "login2.html";
         }
@@ -22,6 +21,7 @@ $.ajax({
         }
     },
     error: function (err) {
+        console.log(err);
         window.location = "login2.html";
     }
 });
@@ -145,14 +145,13 @@ function verifyForm() {
         },
         crossDomain: true,
         success: function (res) {
-            console.log(res);
             if (res.status !== 200) {
                 $("#btnSubmit").attr("disabled", false);
                 $("#errMsg").text(res.message);
             }
             else if (res.status === 200) {
-                $("#errMsg").text("*Successfully verified!");
                 $("#errMsg").css({ "color": "green"});
+                $("#errMsg").text("*Successfully verified!");
                 setTimeout(function() {
                     window.location = "profile.html";
                 }, 1500);
