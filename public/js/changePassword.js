@@ -74,11 +74,11 @@ function changePassword() {
             else if (res.status === 200) {
                 if (res.isVerfied === false) {
                     localStorage.setItem("token", res.token);
-                    window.location = "login2.html";
+                    window.location = "login.html";
                 }
                 else {
                     localStorage.setItem("token", res.token);
-                    window.location = "login2.html";
+                    window.location = "login.html";
                 }
             }
         },

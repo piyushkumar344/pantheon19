@@ -10,7 +10,7 @@ $.ajax({
     crossDomain: true,
     success: function (res) {
         if (res.status !== 200 && !res.email) {
-            window.location = "login2.html";
+            window.location = "login.html";
         }
         else if (res.status === 200) {
             console.log(res);
@@ -22,7 +22,7 @@ $.ajax({
     },
     error: function (err) {
         console.log(err);
-        window.location = "login2.html";
+        window.location = "login.html";
     }
 });
 

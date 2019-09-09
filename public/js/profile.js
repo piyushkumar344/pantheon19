@@ -3,7 +3,7 @@ $("#errMsg").hide();
 
 $("#signOutLink").click(function () {
   localStorage.setItem("token", "");
-  window.location.href = "login2.html";
+  window.location.href = "login.html";
 });
 
 var teamName = $("#teamNameFill")
