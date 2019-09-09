@@ -18,7 +18,8 @@ $("#feedbackForm").submit(function (e) {
         data: {
             name: name,
             email: email,
-            message: message
+            message: message,
+            captchaToken: captchaToken
         },
         crossDomain: true,
         success: function (res) {
@@ -47,6 +48,9 @@ $("#feedbackForm").submit(function (e) {
 });
 
 $("#feedbackResetButton").on("click", () => {
-    $("#feedbackErrMsg").hide();
+    $("#feedbackName").val("");
+    $("#feedbackEmail").val("");
+    $("#feedbackMessage").val("");
+    $("feedbackErrMsg").text("");
 });
 
