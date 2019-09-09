@@ -132,6 +132,8 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
         } catch (e) {
             return res.json({ status: 422, message: e });
         }
+        obj.pantheonId = panId;
+        obj.email = emailId;
         membersData.push(obj);
     }
 
@@ -259,7 +261,6 @@ router.post("/eventRegister", verifyToken, async (req, res) => {
             });
         }
         let eventId = req.body.eventId;
-        console.log(eventId);
         try {
             eventId = Number(req.body.eventId);
             if (!eventId) {
