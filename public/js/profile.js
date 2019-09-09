@@ -79,7 +79,7 @@ function userDetail() {
       }
 
       //show events details accordingly
-      if (res.user.eventsRegistered) {
+      if (res.user.teamId) {
         let trHTML = "";
         let eventArr = [
           "ILLUMINATI",
