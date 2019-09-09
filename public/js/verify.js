@@ -1,6 +1,30 @@
 let url = "http://192.168.158.230:4000/auth";
 
 
+$.ajax({
+    url: url + "/getUserState",
+    method: "GET",
+    headers: {
+        'x-access-token': localStorage.getItem("token")
+    },
+    crossDomain: true,
+    success: function (res) {
+        if (res.status !== 200 && !res.email) {
+            window.location = "login2.html";
+        }
+        else if (res.status === 200) {
+            console.log(res);
+            window.location = "profile.html";
+        }
+        else {
+            $("#email").val(res.email);
+        }
+    },
+    error: function (err) {
+        console.log(err);
+        window.location = "login2.html";
+    }
+});
 
 
 $("#sotp").hide();
@@ -31,7 +55,7 @@ function verifyForm() {
     $('#scollege').hide();
 
     let email = $('#email').val().trim();
-    let otp = $('#eotp').val();
+    let otp = $('#eotp').val().trim();
     let name = $('#name').val().trim();
     let mobile = $('#mobile').val().trim();
     let gender = $("input:radio[ name=gen]:checked").val();
@@ -61,7 +85,7 @@ function verifyForm() {
         $('#smobile').show();
         return;
     }
-    if (mobile.length != 10) {
+    if (mobile.length !== 10) {
         $('#smobile1').show();
         return;
     }
@@ -107,37 +131,35 @@ function verifyForm() {
         method: "POST",
         data: {
             email: email,
-            otp: otp,
+            emailOTP: otp,
             name: name,
-            mobile: mobile,
+            phoneNo: mobile,
             gender: gender,
-            collegename: collegename,
-            collegecity: collegecity,
-            collegestate: collegestate,
-            collegeroll: collegeroll
+            clgName: collegename,
+            clgCity: collegecity,
+            clgState: collegestate,
+            clgId: collegeroll
+        },
+        headers: {
+            'x-access-token': localStorage.getItem("token")
         },
         crossDomain: true,
         success: function (res) {
-            console.log(res);
             if (res.status !== 200) {
-                alert(res.message);
+                $("#btnSubmit").attr("disabled", false);
+                $("#errMsg").text(res.message);
             }
             else if (res.status === 200) {
-                if (res.isVerfied == false) {
-                    console.log("user not verified");
-                    var token = res.token;
-                    //localStorage.id = id;
-                    localStorage.setItem("token", token);
-                    window.location = "notverified.html";
-                }
-                else {
-                    console.log("user verified");
-                    window.location = "verified.html";
-                }
+                $("#errMsg").css({ "color": "green"});
+                $("#errMsg").text("*Successfully verified!");
+                setTimeout(function() {
+                    window.location = "profile.html";
+                }, 1500);
             }
         },
         error: function (err) {
             $("#btnSubmit").attr("disabled", false);
+            $("#errMsg").text(err);
             console.log(err);
         }
     });

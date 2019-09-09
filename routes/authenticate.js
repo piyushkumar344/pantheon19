@@ -14,7 +14,7 @@ const sendEmail = require('../middlewares/sendEmail');
 //routes
 router.post(
     "/register",
-    [check("email").isEmail(), check("password").isLength({ min: 6 })],
+    [check("email").isEmail(), check("password").isLength({ min: 6, max: 15 })],
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -144,6 +144,9 @@ router.post("/verify", verifyToken, (req, res) => {
             if (!gender) {
                 throw "Invalid Gender";
             }
+            if (gender % 1 !== 0) {
+                throw "Invalid Gender";
+            }
         } catch (e) {
             return res.json({ status: 422, message: e });
         }
@@ -160,7 +163,16 @@ router.post("/verify", verifyToken, (req, res) => {
         if (!isMobilePhone(phoneNo)) {
             return res.json({ status: 422, message: "Invalid Phone Number" });
         }
-        if (gender > 1) {
+        if (phoneNo.length !== 10) {
+            return res.json({ status: 422, message: "Phone Number must be of 10 digits" });
+        }
+        for (let i = 0; i < 10; i++) {
+            if (phoneNo[i] < '0' || phoneNo[i] > '9') {
+                return res.json({ status: 422, message: "Phone Number must contain only digits" });
+            }
+        }
+
+        if (gender > 2 || gender <= 0) {
             return res.json({ status: 422, message: "Invalid Gender" });
         }
 
@@ -186,6 +198,7 @@ router.post("/verify", verifyToken, (req, res) => {
         user.clgName = clgName;
         user.clgCity = clgCity;
         user.clgState = clgState;
+        user.clgId = clgId;
         user.isVerified = true;
         user.emailOTP = -1;
         let pantheonId = -1;
@@ -222,7 +235,7 @@ router.post("/verify", verifyToken, (req, res) => {
 
 router.post(
     "/login",
-    [check("email").isEmail(), check("password").isLength({ min: 5 })],
+    [check("email").isEmail(), check("password").isLength({ min: 6, max: 15 })],
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -333,7 +346,7 @@ router.post("/forgotPassword",
 
 router.post(
     "/changePassword",
-    [check("email").isEmail(), check("password").isLength({ min: 6 })],
+    [check("email").isEmail(), check("password").isLength({ min: 6, max: 15 })],
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
