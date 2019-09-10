@@ -80,7 +80,7 @@ function changePassword() {
         },
         error: function (err) {
             $("#errMsg").text(res.message);
-            $("#btnChangePassword").attr("disabled", true);
+            $("#btnChangePassword").attr("disabled", false);
             grecaptcha.reset();
         }
     });

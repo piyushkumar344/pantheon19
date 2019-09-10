@@ -58,7 +58,7 @@ function signupForm() {
         success: function (res) {
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
-                $("#btnSignUp").attr("disabled", true);
+                $("#btnSignUp").attr("disabled", false);
                 grecaptcha.reset();
             }
             else if (res.status === 200) {
@@ -70,7 +70,7 @@ function signupForm() {
         },
         error: function (err) {
             $("#errMsg").text(res.message);
-            $("#btnSignUp").attr("disabled", true);
+            $("#btnSignUp").attr("disabled", false);
             grecaptcha.reset();
         }
     });

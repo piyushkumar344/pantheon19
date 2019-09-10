@@ -66,7 +66,7 @@ function loginForm() {
         success: function (res) {
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
-                $("#btnSignIn").attr("disabled", true);
+                $("#btnSignIn").attr("disabled", false);
                 grecaptcha.reset();
             }
             else if (res.status === 200) {
@@ -82,7 +82,7 @@ function loginForm() {
         },
         error: function (err) {
             $("#errMsg").text(err);
-            $("#btnSignIn").attr("disabled", true);
+            $("#btnSignIn").attr("disabled", false);
             grecaptcha.reset();
         }
     });

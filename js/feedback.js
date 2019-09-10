@@ -12,6 +12,8 @@ $("#feedbackForm").submit(function (e) {
         return false;
     }
 
+    $("#feedbackSendButton").prop("disabled", true);
+
     $.ajax({
         url: url + "/sendFeedback",
         method: "POST",
@@ -25,9 +27,11 @@ $("#feedbackForm").submit(function (e) {
         success: function (res) {
             if (res.status !== 200) {
                 grecaptcha.reset();
+                $("#feedbackSendButton").prop("disabled", false);
                 $("#feedbackErrMsg").text(res.message);
             }
             else if (res.status === 200) {
+                $("#feedbackSendButton").prop("disabled", false);
                 $("#feedbackErrMsg").text(res.message);
                 setTimeout(function () {
                     $("#feedbackErrMsg").text("");
@@ -41,6 +45,7 @@ $("#feedbackForm").submit(function (e) {
         error: function (err) {
             $("#feedbackErrMsg").text(err);
             grecaptcha.reset();
+            $("#feedbackSendButton").prop("disabled", false);
             $("#feedbackErrMsg").fadeOut(3000);
         }
     });
