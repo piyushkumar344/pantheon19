@@ -210,14 +210,12 @@ router.post("/verify", verifyToken, (req, res) => {
                 response.count = pantheonId;
                 await response.save(err => {
                     if (err) {
-                        console.log(err);
                         return res.json({ status: 500, message: "Internal server error" });
                     }
                 });
                 user.pantheonId = pantheonId;
                 await user.save(err => {
                     if (err) {
-                        console.log(err);
                         return res.json({ status: 500, message: "Internal server error" });
                     }
                     return res.json({
@@ -227,7 +225,6 @@ router.post("/verify", verifyToken, (req, res) => {
                     });
                 });
             } else {
-                console.log(err);
                 return res.json({ status: 500, message: "Internal server error " });
             }
         });
@@ -431,7 +428,6 @@ router.get("/getUserState", verifyToken, (req, res) => {
             }
         }
         catch (err) {
-            console.log(err);
             return res.json({ status: 500, auth: false, message: 'Internal server error!', verified: false });
         }
     }

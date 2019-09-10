@@ -16,7 +16,6 @@ function validateCaptcha(req, res, next) {
             }
         })
         .catch(function (error) {
-            console.log(error);
             return res.json({ status: 500, message: "Server Error" });
         });
 }

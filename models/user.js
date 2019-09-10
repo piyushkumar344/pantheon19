@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema({
-    name:{
+    name: {
         type: String,
         // required: true
     },
@@ -46,13 +45,13 @@ const userSchema = new Schema({
     },
     pantheonId: {
         type: Number,
-        default:-1
+        default: -1
     },
-    teamMongoId:{
+    teamMongoId: {
         type: String,
         default: null
     },
-    isTeamLeader:{
+    isTeamLeader: {
         type: Boolean,
         default: false
     },

@@ -28,14 +28,14 @@ const sendEmail = (emailOTP, email) => {
               <p>With Regards,<br>Pantheon Tech Team</p>
               <img width="240" height="150" src="cid:img1@tech.ac" />`,
         attachments: [{
-            filename: 'pantheonLogo.png',
-            path: path.join(__dirname, 'pantheonLogo.png'),
+            filename: 'pantheonLogo.jpeg',
+            path: path.join(__dirname, 'pantheonLogo.jpeg'),
             cid: 'img1@tech.ac'
         }]
     };
     transport.sendMail(message, function (err, info) {
         if (err) {
-            console.log(err);
+            return;
         } else {
             console.log("Email Sent");
         }

@@ -1,16 +1,10 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const config = require("../config");
 const UserModel = require("../models/user");
 const TeamModel = require("../models/team");
 const EventModel = require("../models/event");
-const PanIdCounter = require("../models/panIdCounter");
 const TeamIdCounter = require("../models/teamIdCounter");
 const verifyToken = require("../middlewares/verifyToken");
-const { check, validationResult } = require("express-validator");
 const router = express.Router();
-const mongoose = require("mongoose");
 const { isEmail } = require('validator');
 
 router.get("/user", verifyToken, (req, res) => {
@@ -243,7 +237,6 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
             );
             return res.json({ status: 200, message: "Team registration complete!" });
         } catch (e) {
-            console.log(e);
             return res.json({ status: 500, message: "Internal server error" });
         }
     }
@@ -334,7 +327,6 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
 
         return res.json({ status: 200, message: "Successfully Deregistered" });
     } catch (err) {
-        console.log(err)
         return res.json({ status: 500, message: "Internal Server Error" });
     }
 });
