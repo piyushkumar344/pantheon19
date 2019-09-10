@@ -34,6 +34,7 @@ function forgotPassword() {
         success: function (res) {
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
+                $("#btnForgotPassword").attr("disabled", true);
                 grecaptcha.reset();
             }
             else if (res.status === 200) {
@@ -48,6 +49,7 @@ function forgotPassword() {
         },
         error: function (err) {
             $("#errMsg").text(res.message);
+            $("#btnForgotPassword").attr("disabled", true);
             grecaptcha.reset();
         }
     });

@@ -24,6 +24,7 @@ $("#feedbackForm").submit(function (e) {
         crossDomain: true,
         success: function (res) {
             if (res.status !== 200) {
+                grecaptcha.reset();
                 $("#feedbackErrMsg").text(res.message);
             }
             else if (res.status === 200) {
@@ -34,10 +35,12 @@ $("#feedbackForm").submit(function (e) {
                 $("#feedbackName").val("");
                 $("#feedbackEmail").val("");
                 $("#feedbackMessage").val("");
+                grecaptcha.reset();
             }
         },
         error: function (err) {
             $("#feedbackErrMsg").text(err);
+            grecaptcha.reset();
             $("#feedbackErrMsg").fadeOut(3000);
         }
     });
@@ -52,4 +55,3 @@ $("#feedbackResetButton").on("click", () => {
     $("#feedbackMessage").val("");
     $("feedbackErrMsg").text("");
 });
-

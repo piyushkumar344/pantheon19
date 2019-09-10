@@ -65,6 +65,7 @@ function changePassword() {
         success: function (res) {
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
+                $("#btnChangePassword").attr("disabled", false);
                 grecaptcha.reset();
             }
             else if (res.status === 200) {
@@ -79,6 +80,7 @@ function changePassword() {
         },
         error: function (err) {
             $("#errMsg").text(res.message);
+            $("#btnChangePassword").attr("disabled", true);
             grecaptcha.reset();
         }
     });
