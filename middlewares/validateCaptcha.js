@@ -9,7 +9,6 @@ function validateCaptcha(req, res, next) {
     }
     axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${response}`)
         .then(function (response) {
-            console.log(response.data);
             if (response && response.data.success) {
                 next();
             } else {

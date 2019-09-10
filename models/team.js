@@ -47,6 +47,14 @@ const teamSchema = new Schema({
     points:{
         type: Number,
         default: 0
+    },
+    dummy1: {
+        type: String,
+        defaut: null
+    },
+    dummy2: {
+        type: String,
+        default: null
     }
 });
 

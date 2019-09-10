@@ -47,7 +47,8 @@ router.post(
     },
     (req, res) => {
         //continue registration
-        if (req.body.email && req.body.password && req.body.confPassword) {
+        let email = req.body.email.toString().trim();
+        if (email && req.body.password && req.body.confPassword) {
             bcrypt.hash(req.body.password, 8, (err, hashedPassword) => {
                 if (err) {
                     return res.json({ status: 500, message: "Internal server error" });
@@ -56,7 +57,7 @@ router.post(
                 const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
                 userData.create(
                     {
-                        email: req.body.email,
+                        email: email,
                         password: hashedPassword,
                         emailOTP
                     },
@@ -75,7 +76,7 @@ router.post(
                         });
                         res.json({ status: 200, isVerified: false, token: token });
 
-                        sendEmail(emailOTP);
+                        sendEmail(emailOTP, email);
                     }
                 );
             });
@@ -252,8 +253,9 @@ router.post(
     },
     validateCaptcha,
     (req, res) => {
-        if (req.body.email && req.body.password) {
-            userData.findOne({ email: req.body.email }, (err, user) => {
+        let email = req.body.email.toString().trim();
+        if (email && req.body.password) {
+            userData.findOne({ email: email }, (err, user) => {
                 if (err) {
                     return res.json({ status: 500, message: "Internal server error" });
                 } else if (!user) {
@@ -289,7 +291,7 @@ router.post(
                                     token: token
                                 });
 
-                                sendEmail(emailOTP);
+                                sendEmail(emailOTP, email);
                             })
                         } else {
                             return res.json({
@@ -318,30 +320,34 @@ router.post("/forgotPassword",
     validateCaptcha,
     (req, res) => {
         let email = req.body.email.toString().trim();
-        userData.findOne({ email: req.body.email }, async (err, user) => {
-            if (err) {
-                return res.json({ status: 500, message: "Internal Server Error" });
-            }
-            else if (!user) {
-                return res.json({ status: 500, message: "Email id does not exist" });
-            }
-            else {
-                const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
-                user.emailOTP = emailOTP;
-                await user.save(err => {
-                    if (err) {
-                        return res.json({
-                            status: 500,
-                            message: "Internal server error"
-                        });
-                    }
-                });
-                res.json({ status: 200, message: "OTP sent to your email address" });
+        if (email) {
+            userData.findOne({ email: email }, async (err, user) => {
+                if (err) {
+                    return res.json({ status: 500, message: "Internal Server Error" });
+                }
+                else if (!user) {
+                    return res.json({ status: 500, message: "Email id does not exist" });
+                }
+                else {
+                    const emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
+                    user.emailOTP = emailOTP;
+                    await user.save(err => {
+                        if (err) {
+                            return res.json({
+                                status: 500,
+                                message: "Internal server error"
+                            });
+                        }
+                    });
+                    res.json({ status: 200, message: "OTP sent to your email address" });
 
-                //email
-                sendEmail(emailOTP);
-            }
-        });
+                    //email
+                    sendEmail(emailOTP, email);
+                }
+            });
+        } else {
+            return res.json({ status: 404, message: "Missing required details" });
+        }
     });
 
 router.post(

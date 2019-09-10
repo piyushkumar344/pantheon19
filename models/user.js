@@ -55,6 +55,14 @@ const userSchema = new Schema({
     isTeamLeader:{
         type: Boolean,
         default: false
+    },
+    dummy1: {
+        type: String,
+        defaut: null
+    },
+    dummy2: {
+        type: String,
+        default: null
     }
 });
 

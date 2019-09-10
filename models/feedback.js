@@ -13,6 +13,9 @@ const feedbackSchema = new schema({
     message:{
         type: String,
         required: true
+    },
+    dummy1: {
+        type: String
     }
 });
 
