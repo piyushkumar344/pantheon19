@@ -1,4 +1,4 @@
-const url = "http://localhost:4000/";
+const url = "http://pantheonbit.com/api/";
 $("#errMsg").hide();
 
 $("#signOutLink").click(function() {
@@ -58,7 +58,7 @@ $("#teamRegisterBtn").click(() => {
     buttons: {
       Confirm: function() {
         $.ajax({
-          url: url + "profile/teamRegister",
+          url: url + "/profile/teamRegister",
           method: "POST",
           headers: {
             "x-access-token": localStorage.getItem("token")
@@ -104,7 +104,7 @@ function userDetail() {
   $("#eventsDetails").hide();
 
   $.ajax({
-    url: url + "profile/user",
+    url: url + "/profile/user",
     method: "GET",
     headers: {
       "x-access-token": localStorage.getItem("token")
@@ -221,7 +221,7 @@ function registerEvent(event) {
       Confirm: function() {
         let eventId = Number(event.target.value);
         $.ajax({
-          url: url + "profile/eventRegister",
+          url: url + "/profile/eventRegister",
           method: "POST",
           headers: {
             "x-access-token": localStorage.getItem("token")
@@ -269,7 +269,7 @@ function deregisterEvent(event) {
       Confirm: function() {
         let eventId = Number(event.target.value);
         $.ajax({
-          url: url + "profile/eventDeregister",
+          url: url + "/profile/eventDeregister",
           method: "POST",
           headers: {
             "x-access-token": localStorage.getItem("token")

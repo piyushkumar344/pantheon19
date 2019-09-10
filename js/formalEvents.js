@@ -1,4 +1,4 @@
-let url1 = "http://localhost:4000";
+let url1 = "http://pantheonbit.com/api";
 
 $.ajax({
     url: url1 + "/event/getFormalEvents",

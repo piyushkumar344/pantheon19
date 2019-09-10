@@ -1,4 +1,4 @@
-let url = "http://localhost:4000/auth"; //please change
+let url = "http://pantheonbit.com/api/auth"; //please change
 
 $("#lEmail").hide();
 $("#lCaptcha").hide();

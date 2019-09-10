@@ -1,4 +1,4 @@
-let url = "http://localhost:4000/auth";
+let url = "http://pantheonbit.com/api/auth";
 
 
 $.ajax({
