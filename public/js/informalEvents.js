@@ -1,4 +1,4 @@
-let url1 = "http://192.168.158.230:4000";
+let url1 = "http://localhost:4000";
 
 $.ajax({
     url: url1 + "/event/getInformalEvents",
