@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@font-face {
+    font-family: "formation-bold";
+    src: url("../../fonts/Formation UltraBold.ttf") format("opentype");
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.content_wrapper h2 {
+    font-family: "formation-bold" !important;
+}
+
+.ul-tabs li {
+    font-family: "formation-bold" !important;
+}
+
+#instruction-detail li {
+    list-style-type: square;
+}
+
+#particles-js {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif !important;
+    color: #50555a;
+    /* padding: 10px 20px; */
+    background-color: rgb(0, 0, 0);
+    background-image: url('../../images/profilebg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    background-attachment: fixed;
+}
+
+.text-color {
+    color: #46a1de;
+    transition-duration: .5s;
+}
+
+.wrapper {
+    margin: 0 auto;
+}
+
+.tabs {
+    background-color: #46a1de;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+}
+
+.tabs>li {
+    transition-duration: .25s;
+    display: table-cell;
+    list-style: none;
+    text-align: center;
+    padding: 20px 20px 25px 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: white;
+}
+
+.tabs>li:before {
+    z-index: -1;
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 120%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    transition-duration: .25s;
+    border-radius: 5px 5px 0 0;
+}
+
+.tabs>li:hover:before {
+    -webkit-transform: translateY(70%);
+    transform: translateY(70%);
+}
+
+.tabs>li.active {
+    color: #50555a;
+}
+
+.tabs>li.active:before {
+    transition-duration: .5s;
+    background-color: white;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.tab_content {
+    background-color: #fff;
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.tab_content>li {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    list-style: none;
+}
+
+.tab_content>li .content_wrapper {
+    text-align: center;
+    border-radius: 5px;
+    width: 100%;
+    padding: 45px 40px 40px 40px;
+    background-color: white;
+}
+
+.content_wrapper h2 {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+    font-weight: 300;
+}
+
+.content_wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.footer-copyright {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    color: #fff;
+}
+
+/* content */
+
+.profile-content .wrap-input {
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+}
+
+.profile-content .wrap-input input, select {
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 60px;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    font-family: Montserrat-Bold;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #686866;
+    outline: none;
+    border: none;
+}
+
+.profile-content p {
+    margin-bottom: 0;
+    margin-top: 25px;
+    font-weight: bolder;
+}
+
+.profile-content .symbol-input {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+    pointer-events: none;
+    color: #aaaaaa;
+    font-size: 15px;
+}
+
+.symbol-input i {
+    color: black;
+}
+
+#noTeam input[type="text"]:disabled {
+    background: #b3b0af;
+}
+
+/* 
+ * Scoll bar 
+*/
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #212529;
+}
+
+.for-small {
+    display: none;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 0.8em;
+}
