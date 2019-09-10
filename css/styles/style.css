@@ -1,18 +1,7 @@
 /* Sidear */
-
-@font-face {
-    font-family: "baron-neue";
-    src: url("../../fonts/baron-neue-regular.otf") format("opentype");
-}
-
 @font-face {
     font-family: "formation-bold";
     src: url("../../fonts/Formation UltraBold.ttf") format("opentype");
-}
-
-@font-face {
-    font-family: "product-sans";
-    src: url("../../fonts/Product Sans Italic.ttf") format("opentype");
 }
 
 @font-face {
@@ -21,17 +10,9 @@
 }
 
 body {
-    font-family: "product-sans";
+    font-family: "product-regular";
     font-weight: 400;
     /* font-family: 'Baloo Bhai', cursive; */
-}
-
-#appContent {
-    /* opacity: 0;
-    visibility: hidden; */
-    /* visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.8s linear; */
 }
 
 /* Preloader */
@@ -259,6 +240,11 @@ body {
     top: 66%;
 }
 
+.text-right i:hover {
+    color: red !important;
+    transition: 0.5s;
+}
+
 .sidenav {
     height: 100%;
     width: 210px;
@@ -421,8 +407,6 @@ section {
     text-decoration: none;
 } */
 
-.footer 
-
 .footer-desc {
     display: flex;
     flex-direction: column;
@@ -432,7 +416,7 @@ section {
     font-size: 0.85em;
     padding-left: 60px;
     padding-right: 60px;
-    font-family: "product-sans";
+    font-family: "product-regular";
 }
 
 .footer-desc a {
@@ -456,6 +440,10 @@ section {
     align-items: center;
     margin-top: 40px;
     color: #fff;
+}
+
+.g-recaptcha > div {
+    width: 100% !important;
 }
 
 /* .footer div div i {

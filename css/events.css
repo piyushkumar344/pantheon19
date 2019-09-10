@@ -20,7 +20,6 @@ canvas {
     margin: 5%;
 }
 
-
 /* 
  * Footer
  */
@@ -38,7 +37,6 @@ footer .row {
     margin-bottom: 0px;
 }
 
-
 /* Medium devices (landscape tablets, 768px and up) */
 
 @media only screen and (min-width: 992px) and (min-height: 900px) {
@@ -51,7 +49,16 @@ footer .row {
 }
 
 .card-block {
-    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    background: #8360c3;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2ebf91, #8360c3);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.back-text {
+    color: black;
 }
 
 .card-block .btn-outline-primary {
@@ -66,7 +73,6 @@ footer .row {
 .card {
     margin: 20px 0;
 }
-
 
 /* Flip Cards CSS */
 
@@ -106,7 +112,6 @@ footer .row {
 .card-container:hover .card-flip {
     transform: rotateY(180deg);
 }
-
 
 /* 
  * Scoll bar 

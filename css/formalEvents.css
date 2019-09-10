@@ -24,7 +24,6 @@ main .container img {
     cursor: pointer;
 }
 
-
 /* 
  * Footer
  */
@@ -38,7 +37,18 @@ main .container img {
     color: #fff;
 }
 
+.modal-body {
+    background: #D3CCE3;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
 .modal-footer {
+    background: #FC5C7D;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     display: block !important;
 }
 
@@ -52,12 +62,10 @@ main .container img {
 }
 
 .modal-header {
-    background: #b92b27;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1565C0, #b92b27);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1565C0, #b92b27);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #9CECFB;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .modal-title {
@@ -79,7 +87,6 @@ main .container img {
     transform: scale(1.1);
     overflow: hidden;
 }
-
 
 /* 
  * Scoll bar 

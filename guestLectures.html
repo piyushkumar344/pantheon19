@@ -2,12 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Sign In | Pantheon'19</title>
+    <title>Guest Lectures | Pantheon'19</title>
     <link rel="icon" href="./images/title.ico" type="image/icon type">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="./css/login.css">
 
     <link rel="stylesheet" href="./css/lib/bootstrap.min.css">
     <!-- jQuery library -->
@@ -22,19 +20,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 
-    <!-- Google Recaptcha -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+    <link rel="stylesheet" href="./css/formalEvents.css">
     <link rel="stylesheet" href="./css/preloader.css">
 
 </head>
 
 <body>
-
     <div id="preloader">
         <div id="loader"></div>
     </div>
-
     <header>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background: transparent !important;">
             <div class="container">
@@ -63,58 +57,26 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="signup.html"><strong>Sign Up</strong></a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html"><strong>Sign In</strong></a>
+                            </li>
                         </ul>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
     <main>
         <div class="container">
-            <div class="form-container sign-in-container">
-                <form action="#" onsubmit=event.preventDefault()>
-                    <h1 style="font-weight: bolder">Sign In</h1>
-                    <div class="input-wrap">
-                        <div>
-                            <span>Email</span>
-                        </div>
-                        <div class="field-wrap" style="display: inline">
-                            <span class="fas fa-user"></span>
-                            <input type="email" id="email" />
-                        </div>
-                        <hr style="border: 1px solid black">
-                        <p id="lEmail" style="color : red">Email is required</p>
-                    </div>
-
-                    <div class="input-wrap">
-                        <div>
-                            <span>Password</span>
-                        </div>
-                        <div class="field-wrap" style="display: inline">
-                            <span class="fas fa-lock"></span>
-                            <input minlength="6" maxlength="15" type="password" id="password" />
-                        </div>
-                        <hr style="border: 1px solid black">
-                        <p id="lPassword" style="color : red">Password is required</p>
-                    </div>
-
-                    <div class="input-wrap">
-                        <div class="g-recaptcha" data-sitekey="6LfTprIUAAAAAEWATbkWhGxOolQEZ2jRPzAFXKdB"></div>
-                        <p id="lCaptcha" style="color : red">Captcha is required</p>
-                    </div>
-
-
-                    <a href="forgotPassword.html">Forgot your password?</a>
-                    <br>
-
-                    <p id="errMsg" style="color: red;"></p>
-                    <button onclick="loginForm()" id="btnSignIn">Sign In</button>
-                </form>
+            <div class="row events-main-heading">
+                <h1>Guest Lectures</h1>
             </div>
-        </div>
+            <div class="row main1" id="main1" style="color: white; display: block; text-align: center">
+                To Be Added Soon
+            </div>
+
     </main>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <footer>
         <div class="row">
             <div class="col-sm-12 footer-copyright">
@@ -124,11 +86,7 @@
         </div>
     </footer>
 
-    <script>
-
-    </script>
     <script src="./js/lib/jquery-3.4.1.min.js"></script>
-    <script src='./js/login.js'></script>
     <script src="./js/preloader.js"></script>
 
 </body>

@@ -1,5 +1,4 @@
-let url = "http://pantheonbit.com/api/auth";
-
+let url = "https://pantheonbit.com/api/auth";
 
 $.ajax({
     url: url + "/getUserState",

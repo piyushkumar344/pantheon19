@@ -1,4 +1,4 @@
-const url = "http://pantheonbit.com/api/";
+const url = "https://pantheonbit.com/api/";
 $("#errMsg").hide();
 
 $("#signOutLink").click(function() {

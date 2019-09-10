@@ -1,4 +1,4 @@
-let url1 = "http://pantheonbit.com/api";
+let url1 = "https://pantheonbit.com/api";
 
 $.ajax({
     url: url1 + "/event/getFormalEvents",
@@ -44,7 +44,7 @@ function eventsTemplate(events, i) {
                                 <br>
                                 <h4> <span class="text-underline">Venue:</span> &nbsp ${events.venue} </h4>
                                 <br>
-                                <h4> <span class="text-underline">Duration:</span> &nbsp ${events.duration} </h4>
+                                <h4> <span class="text-underline">Timing:</span> &nbsp ${events.timing} </h4>
                                 <br>
                                 <h4> <span class="text-underline">Team Size:</span> &nbsp ${events.teamSize} </h4>
                                 <br>
@@ -59,11 +59,9 @@ function eventsTemplate(events, i) {
                     <br>
                     <h4 class="text-center modal-description">Description</h4>
                     <p>${events.description}</p>
+                    <h4 class="text-underline text-center">Event coodinator</h4>
+                    <h6 class="text-center">${events.coordinators}</h6>
 
-                </div>
-                <div class="modal-footer text-center ">
-                    <h4 class="text-underline">Event coodinator</h4>
-                    <h6>${events.coordinators}</h6>
                 </div>
             </div>
         </div>

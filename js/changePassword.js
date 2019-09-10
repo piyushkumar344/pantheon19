@@ -1,4 +1,4 @@
-let url = "http://pantheonbit.com/api/auth"; //please change 
+let url = "https://pantheonbit.com/api/auth"; //please change 
 
 $("#lEmail").hide();
 $("#lCaptcha").hide();
