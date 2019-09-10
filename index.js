@@ -16,6 +16,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/api', (req, res , next) => {
+    next();
+});
 app.use('/auth', authentication);
 app.use('/profile', profile);
 app.use('/event', event);
