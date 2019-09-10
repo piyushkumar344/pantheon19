@@ -3,7 +3,13 @@ $(function () {
         source: collegeList,
         minLength: 3
     });
+    $("#clgstate").autocomplete({
+        source: states,
+        minLength: 2
+    });
 });
+
+var states = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Chandigarh", "Dadra and Nagar Haveli", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Orissa", "Punjab", "Pondicherry", "Rajasthan", "Sikkim", "Tamil Nadu", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"];
 
 var collegeList = ["A. D. Patel Institute of Technology",
     "A.K.G. Engineering College",

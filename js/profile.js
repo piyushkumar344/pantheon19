@@ -205,7 +205,6 @@ function userDetail() {
       }
     },
     error: function(err) {
-      console.log(err);
     }
   });
 }

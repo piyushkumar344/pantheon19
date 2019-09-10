@@ -23,7 +23,6 @@ $("#feedbackForm").submit(function (e) {
         },
         crossDomain: true,
         success: function (res) {
-            console.log(res);
             if (res.status !== 200) {
                 $("#feedbackErrMsg").text(res.message);
             }

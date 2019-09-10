@@ -90,12 +90,7 @@ function loop() {
 
     viewMtx = ComputeViewMtx(angle);
 
-    //console.log('---');
-    //console.log(projMtx);
-    //console.log(viewMtx);
-
     mat4.multiply(viewProjMtx, projMtx, viewMtx);
-    //console.log(viewProjMtx);
 
     n.beginPath();
     n.rect(0, 0, c.width, c.height);

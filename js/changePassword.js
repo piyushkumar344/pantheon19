@@ -63,29 +63,23 @@ function changePassword() {
         },
         crossDomain: true,
         success: function (res) {
-            console.log(res);
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
-                setTimeout(function () {
-                    window.location.reload(true);
-                }, 600);
+                grecaptcha.reset();
             }
             else if (res.status === 200) {
-                if (res.isVerfied === false) {
-                    localStorage.setItem("token", res.token);
-                    window.location = "login.html";
-                }
-                else {
-                    localStorage.setItem("token", res.token);
-                    window.location = "login.html";
-                }
+                $("#errMsg").css({ "color": "green" });
+                $("#errMsg").text("*Password changed Successfully");
+                localStorage.setItem("token", res.token);
+
+                setTimeout(() => {
+                    window.location = "changePassword.html";
+                }, 1500);
             }
         },
         error: function (err) {
             $("#errMsg").text(res.message);
-            setTimeout(function () {
-                window.location.reload(true);
-            }, 600);
+            grecaptcha.reset();
         }
     });
 }

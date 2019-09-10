@@ -58,9 +58,7 @@ function signupForm() {
         success: function (res) {
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
-                setTimeout(function() {
-                    window.location.reload(true);
-                }, 600);
+                grecaptcha.reset();
             }
             else if (res.status === 200) {
                 if (res.isVerified === false) {

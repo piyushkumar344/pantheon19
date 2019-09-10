@@ -34,25 +34,21 @@ function forgotPassword() {
         success: function (res) {
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
-                setTimeout(function() {
-                    window.location.reload(true);
-                }, 600);
+                grecaptcha.reset();
             }
             else if (res.status === 200) {
                 $("#errMsg").css({ "color": "green" });
                 $("#errMsg").text("An OTP has been sent to your registered email id");
+                localStorage.setItem("token", res.token);
 
                 setTimeout(() => {
-                    localStorage.setItem("token", res.token);
                     window.location = "changePassword.html";
                 }, 1500);
             }
         },
         error: function (err) {
             $("#errMsg").text(res.message);
-            setTimeout(function () {
-                window.location.reload(true);
-            }, 600);
+            grecaptcha.reset();
         }
     });
 }

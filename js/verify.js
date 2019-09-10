@@ -12,7 +12,6 @@ $.ajax({
             window.location = "login.html";
         }
         else if (res.status === 200) {
-            console.log(res);
             window.location = "profile.html";
         }
         else {
@@ -20,8 +19,6 @@ $.ajax({
         }
     },
     error: function (err) {
-        console.log(err);
-        window.location = "login.html";
     }
 });
 
@@ -159,7 +156,6 @@ function verifyForm() {
         error: function (err) {
             $("#btnSubmit").attr("disabled", false);
             $("#errMsg").text(err);
-            console.log(err);
         }
     });
 }

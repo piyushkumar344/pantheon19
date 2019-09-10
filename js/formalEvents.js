@@ -10,8 +10,7 @@ $.ajax({
         }
     },
     error: function(err) {
-        console.log(err);
-        alert(err);
+        alert("Some Error Occured, while fetching Events");
     }
 
 
