@@ -3,11 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const connect = require('./db/mongoose_connection')
 const app = express();
-const authentication = require('./routes/authenticate')
 const cors = require('cors');
-const profile = require('./routes/profile');
-const event = require('./routes/events');
-const feedback = require('./routes/feedback');
+const controller = require('./routes/controller');
 //db connection
 connect();
 
@@ -16,13 +13,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/api', (req, res , next) => {
-    next();
-});
-app.use('/auth', authentication);
-app.use('/profile', profile);
-app.use('/event', event);
-app.use('/', feedback);
+app.use('/api', controller);
+
 
 //routes
 // app.get('/', (req, res) => {
