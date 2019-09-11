@@ -41,7 +41,7 @@ body, html {
 
 .section {
     text-align: center;
-    padding: 50px 80px;
+    padding: 20px 0;
 }
 
 .section-light {
@@ -68,7 +68,7 @@ body, html {
 .ptext .border {
     background-color: #111;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
 }
 
 .ptext .border.trans {

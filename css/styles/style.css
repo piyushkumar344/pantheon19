@@ -512,14 +512,6 @@ section {
     background-color: #212529;
 }
 
-.for-small {
-    display: none;
-    color: white;
-    text-align: center;
-    margin: 0 auto;
-    font-size: 0.8em;
-}
-
 /*responsive section*/
 
 /* Extra small devices (phones, 600px and down) */
@@ -536,12 +528,9 @@ section {
     .for-large {
         display: none;
     }
-    .for-small {
-        display: block;
-    }
     .footer-copyright {
         margin-top: 0;
-        font-size: 0.8em;
+        font-size: 0.6em;    
     }
     #first-img {
         width: 90vw !important;
@@ -634,6 +623,9 @@ section {
     #planet-img {
         width: 80vw !important;
         left: 15% !important;
+    }
+    .section-description {
+        font-size: 0.6em;
     }
 }
 
