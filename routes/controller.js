@@ -7,8 +7,8 @@ const feedback = require('./feedback');
 const portalDown = require('./../middlewares/portaldown');
 
 
-router.use('/auth', authentication);
-router.use('/profile', profile);
+router.use('/auth', portalDown, authentication);
+router.use('/profile', portalDown, profile);
 router.use('/event', event);
 router.use('/', feedback);
 
