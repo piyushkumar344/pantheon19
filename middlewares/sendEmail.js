@@ -8,9 +8,7 @@ const sendEmail = (emailOTP, email) => {
         auth: {
             user: config.email.username,
             pass: config.email.password
-        },
-        secure: true,
-        pool: true
+        }
     });
 
     const message = {
