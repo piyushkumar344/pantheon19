@@ -13,7 +13,7 @@ router.get("/user", verifyToken, (req, res) => {
         try {
             const userFound = await UserModel.findById(userId)
             if (!userFound) {
-                res.json({
+                return res.json({
                     status: 422,
                     message: "No such user Found"
                 });

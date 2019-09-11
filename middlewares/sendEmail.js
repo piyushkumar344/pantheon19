@@ -33,8 +33,10 @@ const sendEmail = (emailOTP, email) => {
     };
     transport.sendMail(message, function (err, info) {
         if (err) {
+            console.log(err);
             return;
         } else {
+            console.log(info);
             console.log("Email Sent");
         }
     });
