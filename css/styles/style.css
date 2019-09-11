@@ -630,6 +630,13 @@ section {
     }
 }
 
+@media only screen and (max-width: 550px) {
+    #planet-img {
+        width: 80vw !important;
+        left: 15% !important;
+    }
+}
+
 .icon-icon {
     padding: 0.4rem;
     margin-bottom: 0 !important;

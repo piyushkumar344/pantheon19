@@ -22,7 +22,8 @@ function forgotPassword() {
     }
 
     $("#btnForgotPassword").attr("disabled", true);
-
+    $('.rotator').addClass('spinner');
+    
     $.ajax({
         url: url + "/forgotPassword",
         method: "POST",
@@ -32,6 +33,7 @@ function forgotPassword() {
         },
         crossDomain: true,
         success: function (res) {
+            $('.rotator').removeClass('spinner');
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
                 $("#btnForgotPassword").attr("disabled", false);
@@ -48,6 +50,7 @@ function forgotPassword() {
             }
         },
         error: function (err) {
+            $('.rotator').removeClass('spinner');
             $("#errMsg").text(res.message);
             $("#btnForgotPassword").attr("disabled", false);
             grecaptcha.reset();

@@ -53,6 +53,7 @@ function loginForm() {
     }
 
     $("#btnSignIn").attr("disabled", true);
+    $('.rotator').addClass('spinner');
 
     $.ajax({
         url: url + "/login",
@@ -64,6 +65,7 @@ function loginForm() {
         },
         crossDomain: true,
         success: function (res) {
+            $('.rotator').removeClass('spinner');
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
                 $("#btnSignIn").attr("disabled", false);
@@ -81,6 +83,7 @@ function loginForm() {
             }
         },
         error: function (err) {
+            $('.rotator').removeClass('spinner');
             $("#errMsg").text(err);
             $("#btnSignIn").attr("disabled", false);
             grecaptcha.reset();

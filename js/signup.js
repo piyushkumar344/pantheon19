@@ -44,6 +44,7 @@ function signupForm() {
     }
 
     $("#btnSignUp").attr("disabled", true);
+    $('.rotator').addClass('spinner');
 
     $.ajax({
         url: url + "/register",
@@ -56,6 +57,7 @@ function signupForm() {
         },
         crossDomain: true,
         success: function (res) {
+            $('.rotator').removeClass('spinner');
             if (res.status !== 200) {
                 $("#errMsg").text(res.message);
                 $("#btnSignUp").attr("disabled", false);
@@ -69,6 +71,7 @@ function signupForm() {
             }
         },
         error: function (err) {
+            $('.rotator').removeClass('spinner');
             $("#errMsg").text(res.message);
             $("#btnSignUp").attr("disabled", false);
             grecaptcha.reset();

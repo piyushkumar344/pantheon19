@@ -124,7 +124,6 @@ main .input-wrap hr {
     color: #fff;
 }
 
-
 /* 
  * Scoll bar 
 */
@@ -152,4 +151,22 @@ main .input-wrap hr {
     text-align: center;
     margin: 0 auto;
     font-size: 0.8em;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-top: 2px solid white;
+    border-right: 2px solid transparent;
+    animation: spinner .6s linear infinite;
 }

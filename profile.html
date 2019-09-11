@@ -69,7 +69,7 @@
     <div class="wrapper container">
         <ul class="tabs ul-tabs">
             <li class="active">Profile</li>
-            <li>Instruction</li>
+            <li id="instruction-field">Instruction</li>
             <li>Team</li>
             <li>Events</li>
         </ul>
@@ -168,35 +168,37 @@
                 <div class="content_wrapper">
                     <h2 class="text-color">Instructions</h2>
                     <ul id="instruction-detail" style="text-align: left !important; color: black">
-                        <li><strong>Note that the team once created will not be modified.</strong></li>
+                        <li><strong>Note: Team once created, will not be modified.</strong></li>
 
                         <br><br>
 
 
-                        <li>Each of the team member must have completed their Individual registration before registering
-                            for any event. Once you complete your individual registration, you will receive a
+                        <li>Each of the team members must have completed their registration before registering
+                            for any event. Once you complete your registration, you will receive a
                             Pantheon ID which you need to enter here for registering a team.</li>
                         <li>Every user can be a part of only one team.</li>
                         <li>A user can either Create/Join a team.</li>
                         <li>To create a team, head over to "Team" tab. If you create the team, you will be the team
-                            leader. A team can consists of 6-8 members. Choose a funky but unique team name.</li>
-                        <li>Otherwise ask your friend to add you in their team.</li>
-
+                            leader and will be able to register in events on behalf of the team. A team can only consist
+                            of 6-8 members. Choose a funky but unique team name. Otherwise, ask your friend to add you
+                            to their team..</li>
+                        <li>After registering your team, the Events tab will be unlocked and you will be provided with a
+                            unique Team ID.</li>
                         <br><br>
 
-                        <li>There is onsite registration for participation in all Formal and Informal events.</li>
-                        <li>The registration for each flagship events is separate. The links for the same can be found
+                        <li>There is onsite registration for participation in all Formal and Informal Events.</li>
+                        <li>The registration for each flagship event is separate. The links for the same can be found
                             on the "Events" tab.</li>
                         <li>The team members may belong to the same or different colleges.
                             Upon winning an event, the team will be awarded some points based on the event.</li>
-                        <li>Points are awarded for both Formal/Informal and Flagship events. If the team members
-                            participate and win, the points will be added to their overall team score.
+                        <li>Points are awarded to the top 3 Teams for all Formal, Informal and Flagship events. If the team members participate and win, the points will be added to their overall team score.
                         </li>
+                        <li>The overall winner will be the team scoring maximum points.</li>
 
                         <br><br>
 
-                        <li>The overall winner will be the team scoring maximum points.</li>
-                            
+                        <li>The Last Date for registering a Team is 26<sup>th</sup> September. ( Dates are tentative )</li>
+                        <li>If you have any query or run into some error, Mail us at - info@pantheonbit.com</li>
 
                     </ul>
                 </div>
@@ -205,7 +207,8 @@
                 <div class="content_wrapper">
                     <h2 class="text-color">Team details</h2>
                     <div id="noTeam">
-                        <p id="noRegTeam">You are not registered in any team yet. Fill the following details to create one.</p>
+                        <p id="noRegTeam">You are not registered in any team yet. Fill the following details to create
+                            one.</p>
                         <br>
                         <div id="teamRegistrationForm" class="profile-content">
                             <form action="#" onsubmit=event.preventDefault()>
@@ -409,7 +412,8 @@
                                 <br>
                                 <p id="errMsg" style="color: red;"></p>
                                 <br>
-                                <button class="btn btn-outline-primary" type="submit" id="teamRegisterBtn">Register</button>
+                                <button class="btn btn-outline-primary" type="submit"
+                                    id="teamRegisterBtn">Register</button>
                             </form>
                         </div>
                     </div>
@@ -476,7 +480,7 @@
                 <div class="content_wrapper">
                     <h2 class="text-color">Events details</h2>
                     <div id="noEvents">
-                        <p>You must Join/Create a team to register for Flagship events!</p>
+                        <p>You must Join/Create a team to register for Flagship events.</p>
                     </div>
                     <div id="eventsDetails">
                         <div class="table-responsive">
