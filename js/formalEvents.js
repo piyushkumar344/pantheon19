@@ -39,8 +39,6 @@ function eventsTemplate(events, i) {
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4 class="oganisingClubs"> <span class="text-underline">Organising Club:</span> &nbsp ${events.club} </h4>
-                                <br>
                                 <h4> <span class="text-underline">Venue:</span> &nbsp ${events.venue} </h4>
                                 <br>
                                 <h4> <span class="text-underline">Timing:</span> &nbsp ${events.timing} </h4>

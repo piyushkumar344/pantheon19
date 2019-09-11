@@ -66,7 +66,11 @@ function signupForm() {
             else if (res.status === 200) {
                 if (res.isVerified === false) {
                     localStorage.setItem("token", res.token);
-                    window.location = "verify.html";
+                    $("#errMsg").css({ color: "green" });
+                    $("#errMsg").text("Successfully Registered");
+                    setTimeout(function() {
+                        window.location = "verify.html";
+                    }, 1500);
                 }
             }
         },
