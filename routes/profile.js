@@ -37,12 +37,14 @@ router.get("/user", verifyToken, (req, res) => {
                 return res.json({ status: 200, user: user });
             }
             const teamDetails = await TeamModel.findById(teamMongoId);
+            if (!teamDetails) {
+                return res.json({ status: 200, user: user });
+            }
             user.teamName = teamDetails.teamName;
             user.teamId = teamDetails.teamId;
             user.teamSize = teamDetails.teamSize;
             user.teamMembers = teamDetails.teamMembers;
             user.eventsRegistered = teamDetails.eventsRegistered;
-
             return res.json({ status: 200, user: user });
 
         } catch (e) {
@@ -204,7 +206,7 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
             }
 
             let newTeam = new TeamModel({ teamName, teamSize });
-
+            newTeam.leaderId = userId;
             newTeam.teamMembers = membersData;
 
             //increment team id couter
@@ -356,27 +358,28 @@ router.post("/deleteTeam", verifyToken, (req, res) => {
                     message: "Only team leader can delete the team!"
                 });
             }
-            const teamSize = userFound.teamSize;
             const teamDetails = await TeamModel.findById(teamMongoId);
             if (!teamDetails) {
                 return res.json({ status: 422, message: "Team Doesn't Exist" });
             }
+            if (teamDetails.leaderId !== userId) {
+                return res.json({ status: 422, message: "Not a leader of this Team" });
+            }
             if (!teamDetails.teamMembers) {
                 return res.json({ status: 422, message: "Empty Team" });
             }
+            const teamSize = teamDetails.teamSize;
             let panIds = [];
             for (let i = 0; i < teamSize; i++) {
                 panIds.push(teamDetails.teamMembers[i].pantheonId);
             }
-
             const modifiedUsers = await UserModel.updateMany(
                 { pantheonId: { $in: panIds } },
                 { $set: { teamMongoId: null } }
             );
+            const NotaTeamLeader = await UserModel.updateOne({ pantheonId: userFound.pantheonId }, { isTeamLeader: false });
 
-            const NotaTeamLeader = await UserModel.findOneAndUpdate({ pantheonId: userFound.pantheonId }, { isTeamLeader: false });
-
-            const teamDeleted = await TeamModel.findOneAndDelete({ _id: teamMongoId });
+            const teamDeleted = await TeamModel.deleteOne({ _id: teamMongoId });
 
             return res.json({
                 status: 200,

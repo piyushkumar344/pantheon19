@@ -48,6 +48,10 @@ const teamSchema = new Schema({
         type: Number,
         default: 0
     },
+    leaderId: {
+        type: String,
+        required: true
+    },
     dummy1: {
         type: String,
         defaut: null
