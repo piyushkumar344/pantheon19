@@ -4,30 +4,17 @@ const path = require("path");
 
 const sendEmail = (emailOTP, email) => {
     let transport = nodemailer.createTransport({
-        host: "smtp.office365.com",
-        port: 587,
-        secure: false,
+        service: 'gmail',
         auth: {
             user: config.email.username,
             pass: config.email.password
         },
-        tls: {
-            ciphers: 'SSLv3',
-            rejectUnauthorized: false
-        },
-        requireTLS: true
-    });
-
-    transport.verify(function (error, success) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log("Server is ready to take our messages", success);
-        }
+        secure: true,
+        pool: true
     });
 
     const message = {
-        from: "info@pantheonbit.com",
+        from: "pantheonbitfest@gmail.com",
         to: email,
         subject: "Pantheon Email Verification", // Subject line
         html: `
@@ -35,14 +22,14 @@ const sendEmail = (emailOTP, email) => {
               <p>Your Email Otp is: ${emailOTP}</p>
 
               <p>For any queries or help regarding Pantheon<br>
-              Mail us at - info@pantheonbit.com
+              Mail us at - pantheonbitfest@gmail.com
               </p>
 
-              <p>With Regards,<br>Pantheon Tech Team</p>
+              <p>With Regards,<br>Pantheon Team</p>
               <img width="240" height="150" src="cid:img1@tech.ac" />`,
         attachments: [{
-            filename: 'pantheonLogo.jpeg',
-            path: path.join(__dirname, 'pantheonLogo.jpeg'),
+            filename: 'pantheonLogo.png',
+            path: path.join(__dirname, 'pantheonLogo.png'),
             cid: 'img1@tech.ac'
         }]
     };
