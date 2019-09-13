@@ -4,10 +4,25 @@ const path = require("path");
 
 const sendEmail = (emailOTP, email) => {
     let transport = nodemailer.createTransport({
-        service: "gmail",
+        host: "smtp.office365.com",
+        port: 587,
+        secure: false,
         auth: {
             user: config.email.username,
             pass: config.email.password
+        },
+        tls: {
+            ciphers: 'SSLv3',
+            rejectUnauthorized: false
+        },
+        requireTLS: true
+    });
+
+    transport.verify(function (error, success) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("Server is ready to take our messages", success);
         }
     });
 
