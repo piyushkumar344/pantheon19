@@ -2,55 +2,59 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const teamMemberSchema = new Schema({
-    pantheonId:{
+    pantheonId: {
         type: Number,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true
     }
 });
 
 const eventRegisteredSchema = new Schema({
-    eventId:{
+    eventId: {
         type: Number,
         required: true
     },
-    eventName:{
+    eventName: {
         type: String,
         // required: true
     }
 });
 
 const teamSchema = new Schema({
-    teamName:{
+    teamName: {
         type: String,
         required: true
     },
-    teamId:{
+    teamId: {
         type: Number,
         required: true
     },
-    teamSize:{
+    teamSize: {
         type: Number,
         required: true
     },
-    teamMembers:{
+    teamMembers: {
         type: [teamMemberSchema],
         default: []
     },
-    eventsRegistered:{
+    eventsRegistered: {
         type: [eventRegisteredSchema],
         default: []
     },
-    points:{
+    points: {
         type: Number,
         default: 0
     },
     leaderId: {
         type: String,
         required: true
+    },
+    teamVerified: {
+        type: Boolean,
+        default: false
     },
     dummy1: {
         type: String,
@@ -62,5 +66,5 @@ const teamSchema = new Schema({
     }
 });
 
-const Team = mongoose.model('teams',teamSchema);
+const Team = mongoose.model('teams', teamSchema);
 module.exports = Team;
