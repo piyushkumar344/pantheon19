@@ -45,6 +45,10 @@ function eventsTemplate(events, i) {
                                 <br>
                                 <h4> <span class="text-underline">Team Size:</span> &nbsp ${events.teamSize} </h4>
                                 <br>
+                                <h4> <span class="text-underline">Day:</span> &nbsp ${events.day} </h4>
+                                <br>
+                                <h4> <span class="text-underline">Points:</span> &nbsp 100-80-60 </h4>
+                                <br>
                             </div>
 
                             <div class="col-md-6">
