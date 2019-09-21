@@ -99,10 +99,10 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
         return res.json({ status: 422, message: e });
     }
 
-    if (teamSize > 8 || teamSize < 6) {
+    if (teamSize > 8 || teamSize < 5) {
         return res.json({
             status: 422,
-            message: "Team Size Should be between 6 and 8 members"
+            message: "Team Size Should be between 5 and 8 members"
         });
     }
 
