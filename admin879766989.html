@@ -78,15 +78,15 @@
                 <input type="submit" value="Get Details">
             </form>
 
-            <div id="teamMembers">
+            <div style="color: white" id="teamMembers">
 
             </div>
 
-            <form id="teamVerify" style="display: inline-block; width: 100px">
+            <form id="teamReject" style="display: inline-block; width: 100px">
                 <input class="btn btn-danger" type="submit" value="Reject">
             </form>
 
-            <form id="teamReject" style="display: inline-block; width: 100px">
+            <form id="teamVerify" style="display: inline-block; width: 100px">
                 <input class="btn btn-success" type="submit" value="Verify">
             </form>
         </div>
@@ -108,7 +108,7 @@
 
     <script>
 
-        var url = "http://localhost:4000/api/admin"
+        var url = "https://pantheonbit.com/api/admin"
         $("#teamDetails").submit(function (e) {
             e.preventDefault();
             $.ajax({
@@ -117,11 +117,15 @@
                 headers: {
                     'x-access-token': localStorage.getItem("token")
                 },
+                data: {
+                    teamId: $("#teamId").val()
+                },
                 crossDomain: true,
                 success: function (res) {
                     if (res.status !== 200) {
                         return alert(res.message);
                     }
+                    console.log(res);
                     $("#teamMembers").append(`<p>Team Name - ${res.teamName}</p>`);
                     $("#teamMembers").append(`<p>Team Id - <span id="teamDetailsId">${res.teamId}</span></p>`);
                     $("#teamMembers").append(`<p>Members List</p>`);
@@ -130,7 +134,7 @@
                     }
                 },
                 error: function (err) {
-                    alert(err);
+                    alert(err.message);
                 }
             });
         });
@@ -138,7 +142,7 @@
         $("#teamVerify").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: url + "/teamVerify",
+                url: url + "/verifyTeam",
                 method: "POST",
                 headers: {
                     'x-access-token': localStorage.getItem("token")
@@ -151,7 +155,7 @@
                     alert(res.message);
                 },
                 error: function (err) {
-                    alert(err);
+                    alert(err.message);
                 }
             });
         });
@@ -159,7 +163,7 @@
         $("#teamReject").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: url + "/teamReject",
+                url: url + "/rejectTeam",
                 method: "POST",
                 headers: {
                     'x-access-token': localStorage.getItem("token")
@@ -172,7 +176,7 @@
                     alert(res.message);
                 },
                 error: function (err) {
-                    alert(err);
+                    alert(err.message);
                 }
             });
         });
