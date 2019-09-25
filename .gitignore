@@ -1,9 +1,22 @@
+# Environment
 .vscode
+
+# Node
 /node_modules
 package-lock.json
+
+# Config Files
 config.js
+
+# Experiment Files
 try.*
+
+# Server Files
 pantheon@*
+
+# Scripts and Logs
 *.sh
 *.log
+
+# Database Query Scripts
 dbquery/

@@ -5,7 +5,7 @@
         "club": "ACM",
         "venue": " Lab 4",
         "timing": "9:00AM-12:00PM",
-        "teamSize": "",
+        "teamSize": "1-3",
         "description": "The primary objective of a bug hunt is to hunt for the ultimate bug and find the output of the code. use your programming and problem-solving skills to find bugs and solve a series of cryptic code statements in order to arrive at the final destination for the ultimate prize",
         "coordinators": " Hemant Chowdhury: 7632002227, Sumit Jain : 9709026600",
         "day": "1"

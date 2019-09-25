@@ -14,12 +14,12 @@
         "id": 2,
         "eventName": "COMIC QUIZ",
         "club": "Literary Society",
-        "venue": "Room 235",
-        "timing": "3.00PM-5.00PM",
-        "teamSize": "2",
+        "venue": "Room 237",
+        "timing": "10.00AM-12.00PM",
+        "teamSize": "1",
         "description": "A fun-filled quiz that combines the best of childhood memories with the vast universe of Comics, Anime and Cartoon characters.",
         "coordinators": "Nishant-9065842628, Deepansh-9425766883",
-        "day":"2"
+        "day":"1"
     },
     {
         "id": 3,
@@ -36,12 +36,12 @@
         "id": 4,
         "eventName": "BHADAAS",
         "club": "Literary Society",
-        "venue": "Room 237",
-        "timing": "10.00AM-12.00PM",
-        "teamSize": "1",
+        "venue": "Room 235",
+        "timing": "3.00PM-5.00PM",
+        "teamSize": "2",
         "description": "क्या आपको अपनी भाषण शैली पर पूर्ण विश्वास है? क्या आपके अंदर किसी भी विषय पर अपने विचारों से सबको सहमत करने का सामर्थ्य है?क्या आपके अंदर अपने से भिन्न विचार रखने वालों को अपनी तार्किक क्षमता से परास्त करने की प्रबल आकांक्षा है? यदि हाँ,तो आपको अपने विचार रखने और आपकी तार्किक क्षमता को परखने के लिए एक सुअवसर देने जा रहा है एक मंच जिसका नाम है \"भड़ास\"।",
         "coordinators": "Vishesh-7889896493, Aditya Narayan-9128898223",
-        "day":"1"
+        "day":"2"
     },
     {
         "id": 5,
