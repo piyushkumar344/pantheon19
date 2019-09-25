@@ -4,19 +4,36 @@ const mongoose = require("mongoose");
 const panUsers = require("../models/user");
 const team = require("../models/team");
 
-router.post("/teamDetails", (req, res) => {
-  const teamId = req.body.teamId;
-  panUsers.find({ teamMongoId: teamId }, (err, users) => {
-    var userMap = [];
+router.post("/teamDetails", async (req, res) => {
+  const teamzId = req.body.teamId;
+  if (!teamzId) {
+    return res.json({ status: 200, message: "invalid team id" });
+  }
 
-    users.forEach(function(user) {
-      userMap.push(user);
-    });
+  try {
+    const teamzz = await team.findOne({ teamId: teamzId });
+    const teamMongoId = teamzz._id;
+    const teamName = teamzz.teamName;
+    const teamSize = teamzz.teamSize;
+    const teamId = teamzz.teamId;
+    const users = await panUsers.find({ teamMongoId: teamMongoId })
+      let members = [];
 
-    console.log(userMap)
-  });
+      for (let i = 0; i < users.length; i++) {
+        const memDetails = {
+          name: users[i].name,
+          email: users[i].email,
+          clgId: users[i].clgId,
+          pantheonId: users[i].pantheonId
+        };
 
-  res.send("in trial")
+        members.push(memDetails);
+    }
+    return res.json({ status: 200, teamName, teamSize, teamId, members });
+
+  } catch (err) {
+    return res.json({ status: 400, message: "server error" });
+  }
 });
 
 router.post("/verifyTeam", (req, res) => {
