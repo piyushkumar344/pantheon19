@@ -3,8 +3,9 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const panUsers = require("../models/user");
 const team = require("../models/team");
+const adminAuth = require('./../middlewares/adminAuth');
 
-router.post("/teamDetails", (req, res) => {
+router.post("/teamDetails", adminAuth, (req, res) => {
     const teamId = req.body.teamId;
     panUsers.find({ teamMongoId: teamId }, (err, users) => {
         var userMap = [];
@@ -19,8 +20,11 @@ router.post("/teamDetails", (req, res) => {
     res.send("in trial")
 });
 
-router.post("/verifyTeam", (req, res) => {
-    const id = req.teamId;
+router.post("/verifyTeam", adminAuth, (req, res) => {
+    const id = req.body.teamId;
+    if (!id) {
+        return res.json({ status: 422, message: "No Team Id Given" });
+    }
     async function teamVerify() {
         try {
             let team = await TeamModel.findOne({ teamId: id });
@@ -34,8 +38,11 @@ router.post("/verifyTeam", (req, res) => {
     teamVerify();
 });
 
-router.post("/deverifyTeam", (req, res) => {
-    const id = req.teamId;
+router.post("/rejectTeam", adminAuth, (req, res) => {
+    const id = req.body.teamId;
+    if (!id) {
+        return res.json({ status: 422, message: "No Team Id Given" });
+    }
     async function teamReject() {
         try {
             let team = await TeamModel.findOne({ teamId: id });
@@ -60,7 +67,7 @@ router.get("/leaderboard", (req, res) => {
                 find({ 'teamVerified': true }).
                 sort({ points: -1 }).
                 select({ _id: 0, teamName: 1, teamId: 1, points: 1 });
-                console.log("abc");
+            console.log("abc");
             return res.send({ status: 200, leaderboard: leaderboard });
         }
         catch (e) {
