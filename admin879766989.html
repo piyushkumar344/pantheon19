@@ -113,14 +113,14 @@
             e.preventDefault();
             $.ajax({
                 url: url + "/teamDetails",
-                method: "GET",
+                method: "POST",
                 headers: {
                     'x-access-token': localStorage.getItem("token")
                 },
                 crossDomain: true,
                 success: function (res) {
                     if (res.status !== 200) {
-                        return alert(res.msg);
+                        return alert(res.message);
                     }
                     $("#teamMembers").append(`<p>Team Name - ${res.teamName}</p>`);
                     $("#teamMembers").append(`<p>Team Id - <span id="teamDetailsId">${res.teamId}</span></p>`);
@@ -148,7 +148,7 @@
                 },
                 crossDomain: true,
                 success: function (res) {
-                    alert(res.msg);
+                    alert(res.message);
                 },
                 error: function (err) {
                     alert(err);
@@ -169,7 +169,7 @@
                 },
                 crossDomain: true,
                 success: function (res) {
-                    alert(res.msg);
+                    alert(res.message);
                 },
                 error: function (err) {
                     alert(err);
