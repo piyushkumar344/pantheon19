@@ -7,17 +7,46 @@ const team = require("../models/team");
 router.post("/teamDetails", (req, res) => {
   const teamId = req.body.teamId;
   panUsers.find({ teamMongoId: teamId }, (err, users) => {
-    var userMap=[];
+    var userMap = [];
 
     users.forEach(function(user) {
-      userMap.push(user)
+      userMap.push(user);
     });
 
-    console.log(userMap);
+    console.log(userMap)
   });
 
-  
-  res.send("in trial phase")
+  res.send("in trial")
+});
+
+router.post("/verifyTeam", (req, res) => {
+  const id = req.teamId;
+  async function teamVerify() {
+    try {
+      let team = await TeamModel.findOne({ teamId: id });
+      team.teamVerified = true;
+      let teamUpdate = team.save();
+      return res.json({ status: 200, message: "Team Verified Successfully" });
+    } catch (e) {
+      return res.json({ status: 500, message: "Error on the server!" });
+    }
+  }
+  teamVerify();
+});
+
+router.post("/deverifyTeam", (req, res) => {
+  const id = req.teamId;
+  async function teamReject() {
+    try {
+      let team = await TeamModel.findOne({ teamId: id });
+      team.teamVerified = false;
+      let teamUpdate = team.save();
+      return res.json({ status: 200, message: "Team Verified Successfully" });
+    } catch (e) {
+      return res.json({ status: 500, message: "Error on the server!" });
+    }
+  }
+  teamReject();
 });
 
 router.post("/verifyTeam", (req, res) => {});
