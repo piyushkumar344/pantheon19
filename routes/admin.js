@@ -56,10 +56,11 @@ router.post("/deverifyTeam", (req, res) => { });
 router.get("/leaderboard", (req, res) => {
     async function getLeaderboard() {
         try {
-            const leaderboard = teamModel.
+            const leaderboard = await team.
                 find({ 'teamVerified': true }).
                 sort({ points: -1 }).
                 select({ _id: 0, teamName: 1, teamId: 1, points: 1 });
+                console.log("abc");
             return res.send({ status: 200, leaderboard: leaderboard });
         }
         catch (e) {
