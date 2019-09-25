@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Formal Events | Pantheon'19</title>
+    <link rel="icon" href="./images/title.ico" type="image/icon type">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./css/lib/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="./js/lib/jquery-3.4.1.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="./js/lib/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="./js/lib/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/preloader.css">
+
+    <style>
+        body {
+            background-image: url('./images/team-bg.jpg');
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="background: transparent !important;">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="./images/bitLogo.png" alt="BIT Logo" width="50" height="50">
+                </a>
+                <div style="border-left: 2px solid white; height: 50px; margin-right: 10px"></div>
+                <a class="navbar-brand" href="index.html">
+                    <img src="./images/PantheonLogo.png" alt="Pantheon Logo" width="140" height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+                    style="color: black">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html"><strong>Home</strong></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="events.html"><strong>Events</strong></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="signup.html"><strong>Sign Up</strong></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.html"><strong>Sign In</strong></a>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <form id="teamDetails">
+                <label for="teamId" style="color: white">Team Id</label>
+                <input id="teamId" type="text" name="teamId" placeholder="TeamId">
+                <input type="submit" value="Get Details">
+            </form>
+
+            <div id="teamMembers">
+
+            </div>
+
+            <form id="teamVerify" style="display: inline-block; width: 100px">
+                <input class="btn btn-danger" type="submit" value="Reject">
+            </form>
+
+            <form id="teamReject" style="display: inline-block; width: 100px">
+                <input class="btn btn-success" type="submit" value="Verify">
+            </form>
+        </div>
+    </main>
+
+    <script src="./js/lib/jquery-3.4.1.min.js"></script>
+    <script src="./js/formalEvents.js"></script>
+    <script>
+        (function ($) {
+            'use strict';
+            $(window).on('load', function () {
+                setTimeout(function () {
+                    var preLoder = $("#preloader");
+                    preLoder.delay(200).fadeOut(500);
+                }, 1000);
+            });
+        })(jQuery)
+    </script>
+
+    <script>
+
+        var url = "http://localhost:4000/api/admin"
+        $("#teamDetails").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: url + "/teamDetails",
+                method: "GET",
+                headers: {
+                    'x-access-token': localStorage.getItem("token")
+                },
+                crossDomain: true,
+                success: function (res) {
+                    if (res.status !== 200) {
+                        return alert(res.msg);
+                    }
+                    $("#teamMembers").append(`<p>Team Name - ${res.teamName}</p>`);
+                    $("#teamMembers").append(`<p>Team Id - <span id="teamDetailsId">${res.teamId}</span></p>`);
+                    $("#teamMembers").append(`<p>Members List</p>`);
+                    for (var i = 0; i < res.teamSize; i++) {
+                        $("#teamMembers").append(`<p>${res.members[i].name} ${res.members[i].pantheonId} ${res.members[i].email} ${res.members[i].clgId}</p>`);
+                    }
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+
+        $("#teamVerify").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: url + "/teamVerify",
+                method: "POST",
+                headers: {
+                    'x-access-token': localStorage.getItem("token")
+                },
+                data: {
+                    teamId: $("#teamDetailsId").text()
+                },
+                crossDomain: true,
+                success: function (res) {
+                    alert(res.msg);
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+
+        $("#teamReject").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: url + "/teamReject",
+                method: "POST",
+                headers: {
+                    'x-access-token': localStorage.getItem("token")
+                },
+                data: {
+                    teamId: $("#teamDetailsId").text()
+                },
+                crossDomain: true,
+                success: function (res) {
+                    alert(res.msg);
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
