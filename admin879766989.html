@@ -26,6 +26,22 @@
         body {
             background-image: url('./images/team-bg.jpg');
         }
+
+        table {
+            border-spacing: 5px;
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 15px;
+        }
     </style>
 </head>
 
@@ -71,23 +87,30 @@
         </nav>
     </header>
     <main>
-        <div class="container">
+        <div class="container" style="color: white; display: block; margin: 0 auto; text-align: center">
             <form id="teamDetails">
-                <label for="teamId" style="color: white">Team Id</label>
+                <label for="teamId">Team Id</label>
                 <input id="teamId" type="text" name="teamId" placeholder="TeamId">
-                <input type="submit" value="Get Details">
+                <input type="submit" value="Get Details" id="detailButton">
             </form>
-
-            <div style="color: white" id="teamMembers">
+            <div id="teamDetails">
 
             </div>
+            <table id="teamMembers">
+                <tr>
+                    <th>Name</th>
+                    <th>Pan ID</th>
+                    <th>Email</th>
+                    <th>Roll No</th>
+                </tr>
+            </table>
 
             <form id="teamReject" style="display: inline-block; width: 100px">
-                <input class="btn btn-danger" type="submit" value="Reject">
+                <input id="rejectButton" class="btn btn-danger" type="submit" value="Reject">
             </form>
 
             <form id="teamVerify" style="display: inline-block; width: 100px">
-                <input class="btn btn-success" type="submit" value="Verify">
+                <input id="verifyButton" class="btn btn-success" type="submit" value="Verify">
             </form>
         </div>
     </main>
@@ -111,6 +134,7 @@
         var url = "https://pantheonbit.com/api/admin"
         $("#teamDetails").submit(function (e) {
             e.preventDefault();
+            $("#detailButton").prop("disabled", true);
             $.ajax({
                 url: url + "/teamDetails",
                 method: "POST",
@@ -126,12 +150,14 @@
                         return alert(res.message);
                     }
                     console.log(res);
-                    $("#teamMembers").append(`<p>Team Name - ${res.teamName}</p>`);
-                    $("#teamMembers").append(`<p>Team Id - <span id="teamDetailsId">${res.teamId}</span></p>`);
-                    $("#teamMembers").append(`<p>Members List</p>`);
+                    $("#teamDetails").append(`<p>Team Name - ${res.teamName}</p>`);
+                    $("#teamDetails").append(`<p>Team Size - ${res.teamSize}</p>`);
+                    $("#teamDetails").append(`<p>Team Id - <span id="teamDetailsId">${res.teamId}</span></p>`);
+                    $("#teamDetailss").append(`<p>Members List</p>`);
                     for (var i = 0; i < res.teamSize; i++) {
-                        $("#teamMembers").append(`<p>${res.members[i].name} ${res.members[i].pantheonId} ${res.members[i].email} ${res.members[i].clgId}</p>`);
+                        $("#teamMembers").append(`<tr><td>${res.members[i].name}</td><td>${res.members[i].pantheonId}</td><td>${res.members[i].email}</td><td>${res.members[i].clgId}</td></tr>`);
                     }
+                    $("#detailButton").prop("disabled", false);
                 },
                 error: function (err) {
                     alert(err.message);
@@ -141,6 +167,7 @@
 
         $("#teamVerify").submit(function (e) {
             e.preventDefault();
+            $("#verifyButton").prop("disabled", true);
             $.ajax({
                 url: url + "/verifyTeam",
                 method: "POST",
@@ -153,15 +180,18 @@
                 crossDomain: true,
                 success: function (res) {
                     alert(res.message);
+                    location.reload(true);
                 },
                 error: function (err) {
                     alert(err.message);
+                    location.reload(true);
                 }
             });
         });
 
         $("#teamReject").submit(function (e) {
             e.preventDefault();
+            $("#rejectButton").prop("disabled", true);
             $.ajax({
                 url: url + "/rejectTeam",
                 method: "POST",
@@ -174,9 +204,11 @@
                 crossDomain: true,
                 success: function (res) {
                     alert(res.message);
+                    location.reload(true);
                 },
                 error: function (err) {
                     alert(err.message);
+                    location.reload(true);
                 }
             });
         });
