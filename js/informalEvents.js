@@ -47,7 +47,7 @@ function eventsTemplate(events, i) {
                                 <br>
                                 <h4> <span class="text-underline">Day:</span> &nbsp ${events.day} </h4>
                                 <br>
-                                <h4> <span class="text-underline">Points:</span> &nbsp 50-30-20 </h4>
+                                <h4> <span class="text-underline">Points:</span> &nbsp 80-60-40 </h4>
                                 <br>
                             </div>
 
