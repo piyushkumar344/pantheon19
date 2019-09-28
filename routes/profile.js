@@ -55,7 +55,7 @@ router.get("/user", verifyToken, (req, res) => {
     getUser();
 });
 
-router.post("/teamRegister", verifyToken, closeRegistration, (req, res, next) => {
+router.post("/teamRegister", verifyToken, (req, res, next) => {
     // Data Validation
 
     if (!req.body.teamName || !req.body.teamSize) {
@@ -334,7 +334,7 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
     }
 });
 
-router.post("/deleteTeam", verifyToken, closeRegistration, (req, res) => {
+router.post("/deleteTeam", verifyToken, (req, res) => {
     const userId = req.userId;
     async function deleteTeam() {
         try {

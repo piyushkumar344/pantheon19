@@ -47,7 +47,6 @@ router.post("/verifyTeam", adminAuth, (req, res) => {
     async function teamVerify() {
         try {
             let team = await TeamModel.findOne({ 'teamId': id });
-            console.log
             team.teamVerified = true;
             let teamUpdate = team.save();
             return res.json({ status: 200, message: "Team Verified Successfully" });
@@ -83,7 +82,6 @@ router.get("/leaderboard", (req, res) => {
                 find({ 'teamVerified': true }).
                 sort({ points: -1 }).
                 select({ _id: 0, teamName: 1, teamId: 1, points: 1 });
-            console.log("abc");
             return res.send({ status: 200, leaderboard: leaderboard });
         }
         catch (e) {

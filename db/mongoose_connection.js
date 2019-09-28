@@ -11,7 +11,7 @@ function connect() {
     });
 
     mongoose.connection.on('error', function (error) {
-        console.log("Database connection error %s", error);
+        console.log("Database connection error");
     });
 
     mongoose.connection.on('reconnected', function () {
