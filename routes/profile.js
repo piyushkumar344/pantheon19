@@ -4,6 +4,7 @@ const TeamModel = require("../models/team");
 const EventModel = require("../models/event");
 const TeamIdCounter = require("../models/teamIdCounter");
 const verifyToken = require("../middlewares/verifyToken");
+const closeRegistration = require("../middlewares/closeRegistration.js");
 const router = express.Router();
 const { isEmail } = require('validator');
 
@@ -54,7 +55,7 @@ router.get("/user", verifyToken, (req, res) => {
     getUser();
 });
 
-router.post("/teamRegister", verifyToken, (req, res, next) => {
+router.post("/teamRegister", verifyToken, closeRegistration, (req, res, next) => {
     // Data Validation
 
     if (!req.body.teamName || !req.body.teamSize) {
@@ -333,7 +334,7 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
     }
 });
 
-router.post("/deleteTeam", verifyToken, (req, res) => {
+router.post("/deleteTeam", verifyToken, closeRegistration, (req, res) => {
     const userId = req.userId;
     async function deleteTeam() {
         try {
