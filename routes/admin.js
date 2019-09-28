@@ -2,8 +2,10 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const panUsers = require("../models/user");
-const team = require("../models/team");
+const Notification = require("../models/notification");
+const TeamModel = require("../models/team");
 const adminAuth = require('./../middlewares/adminAuth');
+const webadminAuth = require("./../middlewares/webadminAuth");
 
 router.post("/teamDetails", adminAuth, async (req, res) => {
     const teamzId = req.body.teamId;
@@ -12,7 +14,7 @@ router.post("/teamDetails", adminAuth, async (req, res) => {
     }
 
     try {
-        const teamzz = await team.findOne({ teamId: teamzId });
+        const teamzz = await TeamModel.findOne({ teamId: teamzId });
         const teamMongoId = teamzz._id;
         const teamName = teamzz.teamName;
         const teamSize = teamzz.teamSize;
@@ -38,13 +40,14 @@ router.post("/teamDetails", adminAuth, async (req, res) => {
 });
 
 router.post("/verifyTeam", adminAuth, (req, res) => {
-    const id = req.body.teamId;
+    const id = Number(req.body.teamId);
     if (!id) {
         return res.json({ status: 422, message: "No Team Id Given" });
     }
     async function teamVerify() {
         try {
-            let team = await TeamModel.findOne({ teamId: id });
+            let team = await TeamModel.findOne({ 'teamId': id });
+            console.log
             team.teamVerified = true;
             let teamUpdate = team.save();
             return res.json({ status: 200, message: "Team Verified Successfully" });
@@ -56,31 +59,27 @@ router.post("/verifyTeam", adminAuth, (req, res) => {
 });
 
 router.post("/rejectTeam", adminAuth, (req, res) => {
-    const id = req.body.teamId;
+    const id = Number(req.body.teamId);
     if (!id) {
         return res.json({ status: 422, message: "No Team Id Given" });
     }
     async function teamReject() {
         try {
-            let team = await TeamModel.findOne({ teamId: id });
+            let team = await TeamModel.findOne({ 'teamId': id });
             team.teamVerified = false;
             let teamUpdate = team.save();
-            return res.json({ status: 200, message: "Team Verified Successfully" });
+            return res.json({ status: 200, message: "Team Rejected Successfully" });
         } catch (e) {
-            return res.json({ status: 500, message: "Error on the server!" });
+            return res.json({ status: 500, message: "Errosr on the server!" });
         }
     }
     teamReject();
 });
 
-router.post("/verifyTeam", (req, res) => { });
-
-router.post("/deverifyTeam", (req, res) => { });
-
 router.get("/leaderboard", (req, res) => {
     async function getLeaderboard() {
         try {
-            const leaderboard = await team.
+            const leaderboard = await TeamModel.
                 find({ 'teamVerified': true }).
                 sort({ points: -1 }).
                 select({ _id: 0, teamName: 1, teamId: 1, points: 1 });
@@ -94,11 +93,30 @@ router.get("/leaderboard", (req, res) => {
     getLeaderboard();
 });
 
+router.post("/addPoints", webadminAuth, (req, res) => {
+    const teamId = req.body.teamId;
+    const points = req.body.points;
+
+
+});
+
+router.post("/pushMessage", webadminAuth, (req, res) => {
+    const title = req.body.title;
+    const message = req.body.message;
+
+    const notification = new Notification({
+        title,
+        message
+    });
+    notification.save((err, notif) => {
+        if (err) {
+            return res.json({ status: 500, message: err });
+        }
+        res.json({ status: 200, message: "Notification Pushed" });
+    });
+});
+
 router.post("/eventWinners", (req, res) => { });
-
-router.post("/notification", (req, res) => { });
-
-router.get("/notifications", (req, res) => { });
 
 router.post("/updateEvents", (req, res) => { });
 
