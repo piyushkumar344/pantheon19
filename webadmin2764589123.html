@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Events Team Admin Page | Pantheon'19</title>
+    <title>Web Team Admin Page | Pantheon'19</title>
     <link rel="icon" href="./images/title.ico" type="image/icon type">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,22 +25,6 @@
     <style>
         body {
             background-image: url('./images/team-bg.jpg');
-        }
-
-        table {
-            border-spacing: 5px;
-            width: 100%;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
-
-        th,
-        td {
-            padding: 15px;
         }
     </style>
 </head>
@@ -87,31 +71,36 @@
         </nav>
     </header>
     <main>
-        <div class="container" style="color: white; display: block; margin: 0 auto; text-align: center">
-            <form id="teamDetails">
-                <label for="teamId">Team Id</label>
-                <input id="teamId" type="text" name="teamId" placeholder="TeamId">
-                <input type="submit" value="Get Details" id="detailButton">
-            </form>
-            <div id="teamDetails">
-
+        <div class="container" style="color: white; display: block; margin: 0 auto 50px auto; text-align: center">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Notification System</h3>
+                    <br>
+                    <br>
+                    <form id="notifications">
+                        <input type="text" id="notTitle" placeholder="Message Title">
+                        <br>
+                        <br>
+                        <textarea rows="4" cols="50" id="notMessage" placeholder="Message"></textarea>
+                        <br>
+                        <input id="messageButton" type="submit" class="btn btn-success" value="Push Message">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h3>Points System</h3>
+                    <br>
+                    <br>
+                    <form id="points">
+                        <input type="text" id="teamId" placeholder="Team Id (No TA)">
+                        <br>
+                        <br>
+                        <input type="text" id="pointCount" placeholder="Points">
+                        <br>
+                        <br>
+                        <input id="pointButton" type="submit" class="btn btn-success" value="Update Points">
+                    </form>
+                </div>
             </div>
-            <table id="teamMembers">
-                <tr>
-                    <th>Name</th>
-                    <th>Pan ID</th>
-                    <th>Email</th>
-                    <th>Roll No</th>
-                </tr>
-            </table>
-
-            <form id="teamReject" style="display: inline-block; width: 100px">
-                <input id="rejectButton" class="btn btn-danger" type="submit" value="Reject">
-            </form>
-
-            <form id="teamVerify" style="display: inline-block; width: 100px">
-                <input id="verifyButton" class="btn btn-success" type="submit" value="Verify">
-            </form>
         </div>
     </main>
 
@@ -129,52 +118,20 @@
     </script>
 
     <script>
-
         var url = "https://pantheonbit.com/api/admin"
-        $("#teamDetails").submit(function (e) {
-            e.preventDefault();
-            $("#detailButton").prop("disabled", true);
-            $.ajax({
-                url: url + "/teamDetails",
-                method: "POST",
-                headers: {
-                    'x-access-token': localStorage.getItem("token")
-                },
-                data: {
-                    teamId: $("#teamId").val()
-                },
-                crossDomain: true,
-                success: function (res) {
-                    if (res.status !== 200) {
-                        return alert(res.message);
-                    }
-                    console.log(res);
-                    $("#teamDetails").append(`<p>Team Name - ${res.teamName}</p>`);
-                    $("#teamDetails").append(`<p>Team Size - ${res.teamSize}</p>`);
-                    $("#teamDetails").append(`<p>Team Id - <span id="teamDetailsId">${res.teamId}</span></p>`);
-                    $("#teamDetailss").append(`<p>Members List</p>`);
-                    for (var i = 0; i < res.teamSize; i++) {
-                        $("#teamMembers").append(`<tr><td>${res.members[i].name}</td><td>${res.members[i].pantheonId}</td><td>${res.members[i].email}</td><td>${res.members[i].clgId}</td></tr>`);
-                    }
-                    $("#detailButton").prop("disabled", false);
-                },
-                error: function (err) {
-                    alert(err.message);
-                }
-            });
-        });
 
-        $("#teamVerify").submit(function (e) {
+        $("#notifications").submit(function (e) {
             e.preventDefault();
-            $("#verifyButton").prop("disabled", true);
+            $("#messageButton").prop("disabled", true);
             $.ajax({
-                url: url + "/verifyTeam",
+                url: url + "/pushMessage",
                 method: "POST",
                 headers: {
                     'x-access-token': localStorage.getItem("token")
                 },
                 data: {
-                    teamId: $("#teamDetailsId").text()
+                    title: $("#notTitle").val(),
+                    message: $("#notMessage").val()
                 },
                 crossDomain: true,
                 success: function (res) {
@@ -188,17 +145,18 @@
             });
         });
 
-        $("#teamReject").submit(function (e) {
+        $("#points").submit(function (e) {
             e.preventDefault();
-            $("#rejectButton").prop("disabled", true);
+            $("#pointButton").prop("disabled", true);
             $.ajax({
-                url: url + "/rejectTeam",
+                url: url + "/addPoints",
                 method: "POST",
                 headers: {
                     'x-access-token': localStorage.getItem("token")
                 },
                 data: {
-                    teamId: $("#teamDetailsId").text()
+                    teamId: $("#teamId").val(),
+                    points: $("#pointCount").val()
                 },
                 crossDomain: true,
                 success: function (res) {
@@ -212,7 +170,6 @@
             });
         });
     </script>
-
 </body>
 
 </html>
