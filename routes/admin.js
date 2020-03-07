@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const panUsers = require("../models/user");
 const Notification = require("../models/notification");
 const TeamModel = require("../models/team");
+const closeRegistration = require('./../middlewares/closeRegistration');
 const adminAuth = require('./../middlewares/adminAuth');
 const webadminAuth = require("./../middlewares/webadminAuth");
 
@@ -75,7 +76,7 @@ router.post("/rejectTeam", adminAuth, (req, res) => {
     teamReject();
 });
 
-router.get("/leaderboard", (req, res) => {
+router.get("/leaderboard", closeRegistration, (req, res) => {
     async function getLeaderboard() {
         try {
             const leaderboard = await TeamModel.

@@ -55,7 +55,7 @@ router.get("/user", verifyToken, (req, res) => {
     getUser();
 });
 
-router.post("/teamRegister", verifyToken, (req, res, next) => {
+router.post("/teamRegister", closeRegistration, verifyToken, (req, res, next) => {
     // Data Validation
 
     if (!req.body.teamName || !req.body.teamSize) {
@@ -246,7 +246,7 @@ router.post("/teamRegister", verifyToken, (req, res, next) => {
     teamRegister();
 });
 
-router.post("/eventRegister", verifyToken, async (req, res) => {
+router.post("/eventRegister", closeRegistration, verifyToken, async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
         if (!user) return res.json({ status: 400, message: " No such user exist " });
@@ -289,7 +289,7 @@ router.post("/eventRegister", verifyToken, async (req, res) => {
     }
 });
 
-router.post("/eventDeregister", verifyToken, async (req, res) => {
+router.post("/eventDeregister", closeRegistration, verifyToken, async (req, res) => {
     try {
         const user = await UserModel.findById(req.userId);
         if (!user) return res.json({ status: 400, message: " No such user exist " });
@@ -334,7 +334,7 @@ router.post("/eventDeregister", verifyToken, async (req, res) => {
     }
 });
 
-router.post("/deleteTeam", verifyToken, (req, res) => {
+router.post("/deleteTeam", closeRegistration ,verifyToken, (req, res) => {
     const userId = req.userId;
     async function deleteTeam() {
         try {
